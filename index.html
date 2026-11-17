@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>Kho – Ăn Ngon Hoà Lạc (Demo v2)</title>
+<title>Ăn Ngon Hoà Lạc – Bản demo quản lý</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -237,6 +237,124 @@ label.l{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:1
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .toast svg{color:#34d399}.toast.err svg{color:#fda4af}
 .view{animation:fade .2s}
+/* ===== bán hàng ===== */
+.iconbtn{position:relative}
+.dotr{position:absolute;top:3px;right:3px;width:9px;height:9px;border-radius:50%;background:var(--red);border:2px solid #fff}
+.ubtn{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;padding:2px 2px 2px 4px;flex:none;max-width:104px;text-align:right}
+.ubtn b{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.ubtn small{font-size:10.5px;color:var(--muted);white-space:nowrap}
+.pos .nav button{position:relative}
+.pos .nav .nb{position:absolute;top:0;right:2px;background:var(--red);color:#fff;font-size:10px;font-weight:800;min-width:16px;height:16px;border-radius:99px;display:grid;place-items:center;padding:0 4px;line-height:1}
+.nwb{display:inline-block;background:var(--orange);color:#fff;font-size:9.5px;font-weight:800;padding:1px 6px;border-radius:99px;vertical-align:middle;letter-spacing:.2px;line-height:1.5}
+.nwbl{display:inline-block;background:rgba(255,255,255,.22);font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px}
+.fl{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.hd2{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bigbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bigbtns .btn{font-size:15px;padding:0 10px}
+.segw{display:grid;grid-template-columns:1fr 1fr;background:#e2e8f0;border-radius:14px;padding:4px;gap:4px}
+.segw button{border-radius:11px;padding:9px 6px;font-weight:700;font-size:14px;color:var(--ink2)}
+.segw button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(15,23,42,.12)}
+.ocard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 14px}
+.ocard.late{border-color:#fda4af;box-shadow:0 0 0 2px #fff0f3}
+.ohead{display:flex;align-items:center;gap:8px;width:100%;text-align:left;color:var(--ink2)}
+.ohead b{font-size:15px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
+.tbadge{font-size:12px;font-weight:800;border-radius:8px;padding:3px 8px;white-space:nowrap;flex:none}
+.tm{font-size:12.5px;color:var(--muted);font-weight:600;white-space:nowrap}
+.obody{font-size:13.5px;color:var(--ink2);margin:6px 0 10px;line-height:1.5}
+.obody b{color:var(--ink)}
+.oacts{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.btn-kit{background:#f97316;color:#fff}
+.btn-green{background:var(--green);color:#fff}
+.tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tb{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:left;min-height:108px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.tb.busy{background:#f0f7ff;border:1.5px solid #7cb8ff}
+.tb .h{display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
+.tb .h b{font-size:16px}
+.tb small{color:var(--muted);font-size:12px}
+.tb .g{font-size:11.5px;background:#eef2f7;border-radius:99px;padding:2px 7px;display:flex;gap:3px;align-items:center;color:var(--ink2);flex:none}
+.tb .f{display:flex;justify-content:space-between;align-items:center;gap:6px;border-top:1px solid #e5ebf2;padding-top:8px;margin-top:8px;font-size:12px;white-space:nowrap}
+.tkchip{flex:none;background:#fff7ed;border:1.5px solid #fed7aa;border-radius:14px;padding:8px 12px;text-align:left;display:flex;flex-direction:column}
+.tkchip b{font-size:14px}.tkchip span{font-size:12px;color:#c2410c}
+.otop{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:8px 10px;margin:-14px -16px 0}
+.otop .t{flex:1;min-width:0}
+.otop .t b{font-size:16px;display:flex;gap:6px;align-items:center;white-space:nowrap}
+.otop small{font-size:12px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.otop .iconbtn{width:38px;height:38px}
+.code{font-size:11px;background:var(--blue-soft);color:var(--blue);border-radius:6px;padding:2px 6px;font-weight:700}
+.oinfo{display:flex;gap:6px;align-items:center;width:100%;text-align:left;background:#fff;border:1px dashed #cbd5e1;border-radius:12px;padding:10px 12px;font-size:13.5px;color:var(--ink2);font-weight:600;line-height:1.4}
+.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 12px;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:118px;position:relative;cursor:pointer;min-width:0}
+.mi:active{transform:scale(.98)}
+.mi .em{font-size:24px;line-height:1}
+.mi .qt{position:absolute;top:8px;right:8px;font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:6px}
+.qt.bep{background:#fff1e8;color:#c2410c}.qt.bar{background:#e6f7f0;color:#047857}
+.mi b{font-size:14px;line-height:1.3;flex:1}
+.mi .pr{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eef2f6;padding-top:6px;color:var(--blue);font-weight:800;font-size:14px}
+.mi .op{width:32px;height:32px;border-radius:9px;background:#eef2f7;display:grid;place-items:center;color:var(--ink2)}
+.mi.off{opacity:.5}.mi.off .pr{color:var(--red)}
+.mi .inc{position:absolute;top:-7px;left:-7px;background:var(--blue);color:#fff;font-size:12px;font-weight:800;min-width:24px;height:24px;border-radius:99px;display:grid;place-items:center;border:2px solid #fff;padding:0 5px}
+.ol{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eef2f6}
+.ol:last-child{border-bottom:0}
+.ol .tx{flex:1;min-width:0}.ol .tx b{display:block;font-size:14.5px}.ol .tx span{font-size:12.5px;color:var(--muted)}
+.mini{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;flex:none;background:#fff}
+.mini button{width:34px;height:36px;background:#f8fafc;font-weight:800;font-size:18px}
+.mini span{min-width:28px;text-align:center;font-weight:800;font-size:14.5px}
+.obar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid var(--line);padding:8px 10px calc(8px + env(safe-area-inset-bottom));z-index:30;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;box-shadow:0 -6px 20px rgba(15,23,42,.06)}
+.obar .sum{line-height:1.2;min-width:0}.obar .sum small{display:block;font-size:12px;color:var(--muted)}.obar .sum b{font-size:18px;white-space:nowrap}
+.obar .btn{min-height:48px;width:auto;padding:0 14px;font-size:14.5px}
+.ord .pos{display:none}
+.ord .page{padding-bottom:110px}
+.paybox{display:flex;gap:14px;align-items:center;background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:12px}
+.paybox small{display:block;color:var(--muted);font-size:12.5px;margin-top:4px;line-height:1.45}
+.qr{display:block;flex:none;background:#fff}
+.custh{display:block;width:100%;text-align:left;margin-top:8px;background:var(--green-soft);color:#065f46;border-radius:10px;padding:8px 10px;font-size:13px}
+.mapbox{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:14px}
+.mapbox b{font-size:14px;display:block}
+.mapbox small{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+.ctvhead{background:linear-gradient(135deg,#10b981,#0d9488);color:#fff;border:0}
+.ctvhead .st{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.ctvhead .st div{background:rgba(255,255,255,.16);border-radius:12px;padding:8px 10px;min-width:0}
+.ctvhead .st span{font-size:10.5px;opacity:.9;font-weight:700;text-transform:uppercase}
+.ctvhead .st b{display:block;font-size:15.5px}
+.ml{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eef2f6}
+.ml:last-child{border-bottom:0}
+.ml .em{font-size:22px;width:30px;text-align:center;flex:none}
+.ml .tx{flex:1;min-width:0}.ml .tx b{display:block;font-size:14.5px}.ml .tx span{font-size:13px;color:var(--green);font-weight:700}
+.plusb{width:38px;height:38px;border-radius:12px;background:var(--green);color:#fff;display:grid;place-items:center;flex:none}
+.tk{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.tk .hd{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#f8fafc;border-bottom:1px solid var(--line);gap:8px}
+.tk.late{border-color:#fda4af}.tk.late .hd{background:var(--red-soft)}
+.tk .ln{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #eef2f6}
+.tk .ln.dn{opacity:.45;text-decoration:line-through}
+.tk .ln b{font-size:16px}
+.qn{font-size:19px;font-weight:800;min-width:30px;text-align:center}
+.okb{width:42px;height:42px;border-radius:12px;background:var(--green-soft);color:var(--green);display:grid;place-items:center;flex:none}
+.mlist>*+*{margin-top:12px}
+.mc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}
+.mc .h{display:flex;gap:10px;align-items:flex-start}
+.mc .em{font-size:28px;line-height:1.1}
+.mc .tx{flex:1;min-width:0}.mc .tx b{font-size:16px;display:block}.mc .tx small{color:var(--muted);font-size:12.5px;display:block}
+.mc .pr{margin-top:4px;font-weight:800;color:var(--blue)}
+.mc .pr span{font-weight:500;color:var(--muted);font-size:12.5px;margin-left:6px}
+.mc .ft{display:flex;justify-content:flex-end;gap:8px;border-top:1px solid #eef2f6;margin-top:10px;padding-top:10px}
+.qrbox{display:flex;gap:14px;align-items:center;border:0;color:#fff}
+.qrbox .q{background:#fff;border-radius:14px;padding:6px;flex:none}
+.qrbox>div:last-child{min-width:0}
+.qrbox code{font-size:11.5px;background:rgba(0,0,0,.22);border-radius:8px;padding:4px 8px;display:inline-block;margin-top:6px;word-break:break-all}
+.sblue{background:linear-gradient(135deg,#0a84ff,#1d4ed8)}.sorange{background:linear-gradient(135deg,#f97316,#f59e0b)}
+.acc{display:flex;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #eef2f6;flex-wrap:wrap}
+.acc:last-child{border-bottom:0}
+.acc .tx{flex:1 1 100%;min-width:0;line-height:1.7}
+.acc .tx b{font-size:15px}
+.tagu{font-size:11.5px;background:#eef2ff;color:#4338ca;border-radius:6px;padding:1px 6px;font-weight:700;font-family:ui-monospace,Consolas,monospace;white-space:nowrap}
+.lock{font-size:12.5px;color:var(--amber);background:var(--amber-soft);border-radius:10px;padding:8px 10px;margin-top:10px;display:flex;gap:6px;align-items:center;font-weight:600}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #eef2f6}
+.prow:last-child{border-bottom:0}
+.prow span{font-size:14.5px;font-weight:600}
+.logr{padding:9px 0;border-bottom:1px solid #eef2f6;font-size:13.5px}
+.logr:last-child{border-bottom:0}
+.logr small{display:block;color:var(--muted);font-size:12px}
+.card .two .l{margin-top:10px}
 </style>
 </head>
 <body>
@@ -401,34 +519,6 @@ function setTab(t,sub){S.tab=t;S.sub=sub||'menu';render(false);window.scrollTo(0
 const unitOpts=sel=>S.units.map(u=>`<option ${u===sel?'selected':''}>${esc(u)}</option>`).join('');
 const supOpts=sel=>S.sups.map(s=>`<option value="${s.id}" ${s.id===sel?'selected':''}>${esc(s.name)}</option>`).join('');
 const seg=(sel,fn)=>`<div class="seg">${['ok','low','out'].map(k=>`<button class="sg ${k} ${sel===k?'on':''}" onclick="${fn}('${k}',this)">${LV[k]}</button>`).join('')}</div>`;
-
-/* thanh POS giống app của chủ: Kho nằm giữa Thực đơn và Báo cáo */
-function buildPos(){
- const nav=[['grid','Phòng bàn'],['clip','Lên đơn CTV'],['truck','Giao hàng'],['chef','Bếp / Bar'],['utensils','Thực đơn'],['warehouse','Kho',1],['chart','Báo cáo'],['gear','Cài đặt']];
- $('#pos').innerHTML=`<div class="r1"><div class="logo">🍖</div><div class="t"><b>Ăn Ngon Hoà Lạc</b><small>${ic('wifi',12)} Đồng bộ trực tuyến</small></div>
-  <button class="notify" onclick="posToast()">${ic('bell',13)} Bật TB</button>
-  <button class="iconbtn" onclick="posToast()" aria-label="Thông báo">${ic('bell',17)}</button>
-  <button class="iconbtn" onclick="posToast()" aria-label="Đổi ca">${ic('logout',17)}</button></div>
-  <div class="nav" role="tablist">${nav.map(n=>{const mod=n[1]==='Kho'?'kho':n[1]==='Báo cáo'?'report':null,on=mod&&S.mod===mod;
-   return `<button class="${on?'on':''}" ${on?'aria-current="page"':`onclick="${mod?`setMod('${mod}')`:'posToast()'}"`}>${ic(n[0],19)}${n[1]}</button>`}).join('')}</div>`;
- try{const a=$('#pos .nav .on'),nv=$('#pos .nav');nv.scrollLeft=a.offsetLeft-nv.clientWidth/2+a.clientWidth/2}catch(e){}
-}
-function setMod(m){S.mod=m;buildPos();render(false);window.scrollTo(0,0)}
-function posToast(){toast('Màn hình này giữ nguyên như app hiện tại — bản demo chỉ có mục Kho')}
-
-function render(keep=true){
- const y=window.scrollY,nd=needList().length;
- document.querySelector('.phone').classList.toggle('rep',S.mod==='report');
- if(S.mod==='report'){$('#ktitle').innerHTML='';$('#tabbar').innerHTML='';$('#view').innerHTML=vReport();if(keep)window.scrollTo(0,y);return}
- const TITLES={sup:'Nhà cung cấp',auto:'Hàng bán lẻ (tự trừ)',groups:'Nhóm hàng',units:'Đơn vị tính',hist:'Lịch sử mua hàng',count:'Kiểm nhanh kho'};
- const back=S.tab==='more'&&S.sub!=='menu';
- $('#ktitle').innerHTML=back?`<button class="iconbtn" style="background:#fff" onclick="setTab('more')" aria-label="Quay lại">${ic('back',20)}</button><b>${TITLES[S.sub]}</b>`
-   :'';
- $('#tabbar').innerHTML=[['home','Hôm nay','home'],['stock','Kho','pkg'],['buy','Mua hàng','cart'],['more','Thêm','dots']].map(([k,l,i])=>`<button class="${S.tab===k?'on':''}" onclick="setTab('${k}')">${ic(i,24)}${l}${k==='buy'&&nd?`<span class="b">${nd}</span>`:''}</button>`).join('');
- const V={home:vHome,stock:vStock,buy:vBuy,more:vMore};
- $('#view').innerHTML=V[S.tab]();
- if(keep)window.scrollTo(0,y);
-}
 
 /* ===== HÔM NAY ===== */
 function vHome(){
@@ -628,19 +718,59 @@ function cntNum(id,v){const i=it(id);i.amt=Math.max(0,+v||0);refresh(i);render()
 
 /* ================= BÁO CÁO ================= */
 function rng(seed){let s=seed;return()=>(s=(s*1664525+1013904223)%4294967296)/4294967296}
-const MENU=[['Gà ta nướng mật ong',420000],['Lẩu bò nhúng dấm',399000],['Cá chép rán giòn',280000],['Tôm sú rang muối',290000],['Sườn nướng BBQ',180000],['Rau muống xào tỏi',60000],['Cơm chiên trứng',55000],['Bia Hà Nội',30000],['Bia Tiger',36000],['Coca-Cola',20000],['Nước suối',10000]];
-const TABLES=['Bàn 01','Bàn 02','Bàn 03','Bàn 04','Bàn 05','Bàn 06','Bàn 07','Bàn 08','Bàn 09','Bàn 10','Sân 1','Sân 2','Sân 3','Sân 4','Mang về'];
+/* ===== THỰC ĐƠN, BÀN, TÀI KHOẢN (lấy đúng theo app hiện tại) ===== */
+S.cats=['Món chính','Lẩu & Nướng','Khai vị & Ăn vặt','Đồ uống','Tráng miệng'];
+S.menu=[
+ [1,'Phở Bò Đặc Biệt',0,55000,26000,'Tô','bep','🍜'],[2,'Cơm Tấm Sườn Bì Chả',0,52000,24000,'Đĩa','bep','🍛'],
+ [3,'Bún Chả Hà Nội',0,48000,21000,'Suất','bep','🥢'],[4,'Mì Xào Hải Sản',0,65000,30000,'Đĩa','bep','🍝'],
+ [5,'Cơm Rang Dưa Bò',0,50000,22000,'Đĩa','bep','🍚'],[6,'Lẩu Thái Hải Sản',1,249000,125000,'Nồi','bep','🍲'],
+ [7,'Ba Chỉ Bò Mỹ Nướng',1,119000,58000,'Đĩa','bep','🥩'],[8,'Sườn Sụn Nướng Muối Ớt',1,135000,65000,'Đĩa','bep','🍖'],
+ [9,'Mì cay',1,99000,50000,'Phần','bep','🌶️'],[10,'Gà Chiên Mắm Tỏi',2,85000,40000,'Đĩa','bep','🍗'],
+ [11,'Khoai Tây Chiên Lắc Phô Mai',2,39000,15000,'Đĩa','bep','🍟'],[12,'Nem Chua Rán Hà Nội',2,45000,20000,'Đĩa','bep','🍢'],
+ [13,'Salad Trộn Dầu Giấm',2,42000,18000,'Đĩa','bep','🥗'],[14,'Trà Đào Cam Sả',3,35000,9000,'Ly','bar','🍹'],
+ [15,'Cà Phê Sữa Đá Sài Gòn',3,29000,7000,'Ly','bar','☕'],[16,'Nước Ép Dưa Hấu / Cam',3,35000,11000,'Ly','bar','🧃'],
+ [17,'Bia Tiger Bạc (Chai/Lon)',3,25000,14500,'Lon','bar','🍺',13],[18,'Coca-Cola / Pepsi',3,18000,8000,'Lon','bar','🥤',14],
+ [19,'Chè Khúc Bạch Hạnh Nhân',4,32000,12000,'Cốc','bar','🍧'],[20,'Bánh Flan Caramen',4,22000,8000,'Cái','bar','🍮']
+].map(([id,name,c,price,cost,unit,st,em,stock])=>({id,name,cat:S.cats[c],price,cost,unit,st,em,on:true,stock:stock||null}));
+S.tops=[{id:1,name:'Thêm trứng',price:5000},{id:2,name:'Thêm thịt',price:15000},{id:3,name:'Thêm phô mai',price:10000},{id:4,name:'Ít đá',price:0}];
+S.areas=['Tầng 1','Tầng 2 - Máy lạnh','Sân vườn'];
+S.tables=[['Bàn 01',0,4],['Bàn 02',0,4],['Bàn 03',0,4],['Bàn 04',0,4],['Bàn 05',0,6],['Bàn 06',0,6],['Bàn 07',1,4],['Bàn 08',1,4],['Bàn 09',1,4],['Bàn 10',1,8],['Sân 1',2,4],['Sân 2',2,4],['Sân 3',2,4],['Sân 4',2,4]].map(([name,a,seats],k)=>({id:k+1,name,area:S.areas[a],seats}));
+const ROLES={owner:'Chủ quán',mgr:'Quản lý',cash:'Thu ngân',srv:'Phục vụ',bep:'Bếp / Bar',ship:'Shipper',ctv:'CTV'};
+S.accts=[
+ {id:1,name:'Chủ Quán (NTL)',user:'admin',role:'owner',on:true},{id:2,name:'mozart227',user:'mozart227',role:'mgr',on:true},
+ {id:3,name:'Thu Ngân Lan',user:'thungan',role:'cash',on:true},{id:4,name:'Phục Vụ Minh',user:'phucvu',role:'srv',on:true},
+ {id:5,name:'Đầu Bếp Hùng',user:'bep',role:'bep',on:true},{id:6,name:'Shipper Tuấn',user:'shipper',role:'ship',on:true},
+ {id:7,name:'CTV Hoa',user:'ctv',role:'ctv',on:true,code:'CTVHOA'},{id:8,name:'Liêm',user:'liem',role:'srv',on:true}];
+S.me=2;
+const PERMS=[['cancel','Hủy món đã báo bếp'],['disc','Giảm giá cho khách'],['inv','Sửa / hủy hóa đơn đã thanh toán'],['rep','Xem báo cáo, lãi lỗ'],['rec','Chốt đối soát tiền'],['menu','Sửa thực đơn và giá'],['kho','Nhập kho, mua hàng'],['staff','Quản lý tài khoản nhân viên'],['bank','Sửa tài khoản ngân hàng nhận tiền']];
+S.perm={
+ mgr:{cancel:1,disc:1,inv:0,rep:1,rec:1,menu:1,kho:1,staff:1,bank:0},
+ cash:{cancel:0,disc:1,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
+ srv:{cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
+ bep:{cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:1,staff:0,bank:0},
+ ship:{cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
+ ctv:{cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0}};
+S.cfg={name:'Ăn Ngon Hoà Lạc',phone:'0901 234 567',addr:'Hòa Lạc, Thạch Thất, Hà Nội',wifi:'Wifi: AnNgon_Free | Pass: 12345678',bye:'Cảm ơn quý khách & Hẹn gặp lại!',
+ bank:'MBBank (970422)',acc:'0000 1234 5678',accName:'NGUYEN VAN A',lat:'21.0266',lng:'105.5318',km0:2,fee0:15000,feeKm:5000,ctv:10,gt:5,feeTo:'shop'};
+S.custs=[{phone:'0912111222',name:'Chị Hạnh',addr:'Tòa Alpha, ĐH FPT',n:6},{phone:'0987333444',name:'Anh Đức',addr:'KTX ĐH FPT – Dom A',n:3},{phone:'0905555666',name:'Bạn Linh',addr:'Hola Park, Thạch Hòa',n:2}];
+S.orders=[];S.log=[];S.mod='don';S.home='orders';S.dflt='all';S.ord=null;S.oq='';S.ocat='Tất cả';S.tflt='all';S.tarea='all';
+S.sflt='todo';S.bflt='all';S.bgom=false;S.mflt='Tất cả';S.mq='';S.prole='mgr';S.ctvD=null;S.pay=null;
+
+const CHN={table:'Tại bàn',take:'Mang về',ship:'Giao ship',online:'Đặt online',ctv:'CTV lên đơn'};
+const TABLES=S.tables.map(t=>t.name);
 const METHODS={cash:'Tiền mặt',bank:'Chuyển khoản',wallet:'Ví điện tử'};
 const INV=[];
 (function(){const r=rng(20261117);
- for(let d=0;d<7;d++){const n=d===0?13:12+Math.floor(r()*5);
-  for(let k=0;k<n;k++){const lunch=r()<.4,hour=lunch?11+Math.floor(r()*3):17+Math.floor(r()*5),nl=3+Math.floor(r()*3),used=new Set(),lines=[];
-   while(lines.length<nl){const m=Math.floor(r()*MENU.length);if(used.has(m))continue;used.add(m);const p=MENU[m][1];lines.push({name:MENU[m][0],price:p,qty:p>=250000?1:1+Math.floor(r()*4)})}
-   const x=r();INV.push({day:d,hour,min:Math.floor(r()*60),table:TABLES[Math.floor(r()*TABLES.length)],lines,amount:lines.reduce((a,l)=>a+l.price*l.qty,0),method:x<.35?'cash':x<.9?'bank':'wallet'})}}
+ for(let d=0;d<7;d++){const n=d===0?26:38+Math.floor(r()*13);
+  for(let k=0;k<n;k++){const x=r(),ch=x<.45?'take':x<.65?'ship':x<.75?'online':x<.85?'ctv':'table';
+   const lunch=r()<.5,hour=lunch?10+Math.floor(r()*4):17+Math.floor(r()*5),nl=ch==='table'?3+Math.floor(r()*3):1+Math.floor(r()*3),used=new Set(),lines=[];
+   while(lines.length<nl){const m=S.menu[Math.floor(r()*S.menu.length)];if(used.has(m.id))continue;used.add(m.id);lines.push({name:m.name,price:m.price,qty:m.price>=99000?1:1+Math.floor(r()*(ch==='table'?3:2))})}
+   const y=r(),method=(ch==='ship'||ch==='ctv')?(y<.6?'cash':'bank'):(y<.35?'cash':y<.9?'bank':'wallet');
+   INV.push({day:d,hour,min:Math.floor(r()*60),table:ch==='table'?TABLES[Math.floor(r()*TABLES.length)]:CHN[ch],ch,lines,amount:lines.reduce((a,l)=>a+l.price*l.qty,0),method})}}
  for(let d=0;d<7;d++){const dt=new Date(dayStart(d)),ds=String(dt.getFullYear()).slice(2)+pad(dt.getMonth()+1)+pad(dt.getDate());
   INV.filter(i=>i.day===d).sort((a,b)=>a.hour*60+a.min-b.hour*60-b.min).forEach((i,k)=>i.code=`HD${ds}-${String(k+1).padStart(3,'0')}`)}
 })();
-const CANC=[{day:0,hour:12,item:'Bia Tiger',qty:2,whole:false,reason:'Khách gọi nhầm',by:'Em Lan'},{day:1,hour:19,item:'Lẩu bò nhúng dấm',qty:1,whole:true,reason:'Khách đổi ý, chưa nấu',by:'Em Hà'},{day:3,hour:20,item:'Cá chép rán giòn',qty:1,whole:false,reason:'Món ra chậm, khách không chờ',by:'Chị Thu'}];
+let CANC=[{day:0,hour:12,item:'Bia Tiger Bạc (Chai/Lon)',qty:2,whole:false,reason:'Khách gọi nhầm',by:'Em Lan'},{day:1,hour:19,item:'Lẩu Thái Hải Sản',qty:1,whole:true,reason:'Khách đổi ý, chưa nấu',by:'Em Hà'},{day:3,hour:20,item:'Mì cay',qty:1,whole:false,reason:'Món ra chậm, khách không chờ',by:'Chị Thu'}];
 const PERS={today:[0],yday:[1],w7:[0,1,2,3,4,5,6]},PNAME={today:'Hôm nay',yday:'Hôm qua',w7:'7 ngày'};
 const inP=d=>PERS[S.per].includes(d);
 const sumA=a=>a.reduce((x,y)=>x+y,0);
@@ -685,7 +815,9 @@ function vOver(inv,net){
  const pay=net?Object.entries(pm).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="mrow"><div class="top"><span>${METHODS[k]}</span><span>${money(v)} · ${Math.round(v/net*100)}%</span></div><div class="bar"><i style="width:${v/net*100}%"></i></div></div>`).join(''):'<p class="rmuted">Chưa có giao dịch nào.</p>';
  const hrs=`<div class="hrs">${hr.map(v=>`<i style="height:${v?Math.max(4,v/mx*100):3}%;${v?'':'opacity:.4'}" title="${money(v)}"></i>`).join('')}</div><div class="hlab">${hr.map((_,k)=>`<span>${k%3===0?(6+k)+'h':''}</span>`).join('')}</div>`;
  const tp=top.length?top.map(([nm,a],k)=>`<div class="rank"><span class="no">${k+1}</span><div class="tx"><b>${esc(nm)}</b><span>${a.q} phần · ${money(a.m)}</span><div class="bar" style="margin-top:6px"><i style="width:${a.m/tm*100}%"></i></div></div></div>`).join(''):'<p class="rmuted">Chưa có dữ liệu món bán ra.</p>';
- return fold('pay',true,'Theo phương thức thanh toán','',pay)+fold('hrs',false,'Doanh thu theo khung giờ','',hrs)+fold('top',true,'Top món bán chạy','',tp)}
+ const chs={};inv.forEach(i=>{const k=i.ch||'take';(chs[k]=chs[k]||{n:0,m:0});chs[k].n++;chs[k].m+=i.amount});
+ const chb=net?Object.entries(chs).sort((a,b)=>b[1].m-a[1].m).map(([k,v])=>`<div class="mrow"><div class="top"><span>${CHN[k]} <small class="muted" style="font-weight:500">${v.n} đơn</small></span><span>${money(v.m)} · ${Math.round(v.m/net*100)}%</span></div><div class="bar"><i style="width:${v.m/net*100}%;background:#f97316"></i></div></div>`).join(''):'<p class="rmuted">Chưa có giao dịch nào.</p>';
+ return fold('ch',true,'Theo kênh bán '+NW,'',chb)+fold('pay',true,'Theo phương thức thanh toán','',pay)+fold('hrs',false,'Doanh thu theo khung giờ','',hrs)+fold('top',true,'Top món bán chạy','',tp)}
 
 function vInv(inv){
  const rows=[...inv].sort((a,b)=>a.day-b.day||(b.hour*60+b.min)-(a.hour*60+a.min)).slice(0,40);
@@ -742,10 +874,11 @@ function staffPay(s){const q=S.sdays[S.per][s.id]||0;return s.type==='month'?s.r
 function expPay(e){return e.type==='day'?e.rate*PDAYS():e.rate/30*PDAYS()}
 const staffCost=()=>sumA(S.staff.map(staffPay));
 const expCost=()=>sumA(S.exps.map(expPay));
+const ctvComm=()=>Math.round(sumA(INV.filter(i=>inP(i.day)&&i.ch==='ctv').map(i=>i.amount))*S.cfg.ctv/100);
 function vPL(){
- const net=sumA(INV.filter(i=>inP(i.day)).map(i=>i.amount)),nh=nhapHang(),sc=staffCost(),ot=expCost(),gp=net-nh,rem=gp-sc-ot;
+ const net=sumA(INV.filter(i=>inP(i.day)).map(i=>i.amount)),nh=nhapHang(),sc=staffCost(),ot=expCost(),gp=net-nh,hh=ctvComm(),rem=gp-sc-ot-hh;
  const debt=sumA(S.buys.filter(b=>inP(dayOff(b.t))&&!b.paid).map(b=>b.money)),pc=v=>net?Math.round(v/net*100):0;
- const seg=[[nh,'#ff7a2f','Nhập hàng'],[sc,'#0a84ff','Nhân viên'],[ot,'#94a3b8','Chi phí khác'],[Math.max(rem,0),'#059669','Còn lại']],tot=Math.max(net,nh+sc+ot,1);
+ const seg=[[nh,'#ff7a2f','Nhập hàng'],[sc,'#0a84ff','Nhân viên'],[ot,'#94a3b8','Chi phí khác'],[hh,'#a855f7','Hoa hồng CTV'],[Math.max(rem,0),'#059669','Còn lại']],tot=Math.max(net,nh+sc+ot+hh,1);
  const per=PNAME[S.per].toLowerCase();
  const person=s=>{const q=S.sdays[S.per][s.id]||0,L=PAYL[s.type],o=isOpen('s'+s.id,false);
   return `<div class="srow"><button class="fold-h" onclick="tgl('s${s.id}',false)" aria-expanded="${o}"><div><b style="font-size:15.5px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)} · ${PAYT[s.type].toLowerCase()}</small></div><span class="fsum"><b style="font-size:15px">${money(staffPay(s))}</b><i class="chv ${o?'open':''}">${ic('chevd',18)}</i></span></button>
@@ -767,6 +900,7 @@ function vPL(){
   <div class="pl tot"><span>= Lãi gộp</span><span style="color:${gp<0?'var(--red)':'var(--green)'}">${money(gp)}</span></div>
   <div class="pl"><span>− Nhân viên<small>${S.staff.length} người · bấm phần bên dưới để chỉnh</small></span><b>${money(sc)}</b></div>
   <div class="pl"><span>− Chi phí khác<small>${S.exps.length} khoản · bấm phần bên dưới để chỉnh</small></span><b>${money(ot)}</b></div>
+  <div class="pl"><span>− Hoa hồng CTV ${NW}<small>${S.cfg.ctv}% tiền món các đơn CTV lên</small></span><b>${money(hh)}</b></div>
   <div class="pl tot" style="border-bottom:0"><span>= Còn lại (tiền lời)<small>${pc(rem)}% doanh thu</small></span><span style="color:${rem<0?'var(--red)':'var(--green)'}">${money(rem)}</span></div></div>
  ${fold('staff',false,'Nhân viên & lương',money(sc),staffBody,S.staff.length+' người · bấm để bung ra')}
  ${fold('exp',false,'Chi phí khác',money(ot),expBody,S.exps.length+' khoản · bấm để bung ra')}
@@ -815,6 +949,446 @@ function delGroup(k){const n=S.items.filter(i=>i.g===k).length;
  if(Object.keys(GROUPS).length<=1){toast('Cần giữ lại ít nhất 1 nhóm','err');return}
  if(S.cd!=='g'+k){S.cd='g'+k;toast('Bấm “Xóa nhóm” thêm lần nữa để xác nhận','err');return}
  delete GROUPS[k];closeSheet();render();toast('Đã xóa nhóm')}
+
+/* =====================================================================
+   BÁN HÀNG: đơn hàng, gọi món, thanh toán, CTV, giao hàng, bếp, thực đơn, cài đặt
+   ===================================================================== */
+const me=()=>S.accts.find(a=>a.id===S.me);
+const can=p=>me().role==='owner'||!!(S.perm[me().role]||{})[p];
+const NW='<span class="nwb">MỚI</span>';
+function logA(txt){S.log.unshift({t:Date.now(),who:me().name,txt})}
+const SHIPT=['ship','online','ctv'];
+const isShipT=o=>SHIPT.includes(o.type);
+const oById=id=>S.orders.find(o=>o.id===id);
+const mById=id=>S.menu.find(m=>m.id===id);
+const lineUnit=l=>l.price+sumA(l.tops.map(t=>t.price));
+const oSub=o=>sumA(o.lines.map(l=>lineUnit(l)*l.qty));
+const oNet=o=>Math.max(0,oSub(o)-(o.disc||0));
+const oQty=o=>sumA(o.lines.map(l=>l.qty));
+const mins=t=>Math.max(0,Math.round((Date.now()-t)/6e4));
+const ago2=t=>{const m=mins(t);return m<60?m+' phút':Math.floor(m/60)+'g '+(m%60)+'p'};
+const TYC={table:'t-gray',take:'t-blue',ship:'t-orange',online:'t-amber',ctv:'t-green'};
+const tName=o=>o.type==='table'?(S.tables.find(t=>t.id===o.table)||{name:'Bàn ?'}).name:CHN[o.type];
+const oLabel=o=>o.type==='table'?tName(o):CHN[o.type]+(o.cust&&o.cust.name?' · '+o.cust.name:'');
+function stName(o){if(o.type==='table')return o.lines.some(l=>l.st==='cook')?'Bếp đang làm':o.lines.some(l=>l.st==='new')?'Có món chưa báo bếp':'Đang phục vụ';
+ return {new:o.type==='online'?'Chờ quán nhận':'Chưa báo bếp',cook:'Bếp đang làm',ready:isShipT(o)?'Xong · chờ shipper':'Xong · chờ khách lấy',ship:'Đang đi giao',done:'Hoàn tất',cancel:'Đã hủy'}[o.status]}
+const stCls=o=>({new:'low',cook:'gray',ready:'ok',ship:'auto',done:'ok',cancel:'out',open:'gray'})[o.status]||'gray';
+const shipFee=km=>{km=+km||0;const c=S.cfg;if(km<=0)return 0;if(km<=c.km0)return c.fee0;return Math.ceil((c.fee0+(km-c.km0)*c.feeKm)/1000)*1000};
+let oseq=INV.filter(i=>i.day===0).length;
+function nextCode(){const dt=new Date(),ds=String(dt.getFullYear()).slice(2)+pad(dt.getMonth()+1)+pad(dt.getDate());return `HD${ds}-${String(++oseq).padStart(3,'0')}`}
+let oid=0;
+function newOrder(type,extra){const o=Object.assign({id:++oid,code:nextCode(),type,t:Date.now(),lines:[],status:type==='table'?'open':'new',disc:0,paid:false,by:me().name},extra||{});S.orders.push(o);return o}
+function mkLine(mid,qty,st,tops,note){const m=mById(mid);return {mid,name:m.name,price:m.price,qty,st:st||'new',tops:tops||[],note:note||''}}
+function refreshO(o){if(o.type==='table'||!o.lines.length)return;
+ if((o.status==='cook'||o.status==='new')&&o.lines.every(l=>l.st==='done'))o.status='ready'}
+const tickets=()=>S.orders.filter(o=>o.status!=='done'&&o.status!=='cancel'&&o.lines.some(l=>l.st==='cook'));
+function pushInv(o,method){const n=new Date();
+ INV.push({day:0,hour:n.getHours(),min:n.getMinutes(),table:oLabel(o),ch:o.type,code:o.code,method,amount:oNet(o),
+  lines:o.lines.map(l=>({name:l.name+(l.tops.length?' + '+l.tops.map(t=>t.name).join(', '):''),price:lineUnit(l),qty:l.qty}))});
+ /* món bán lẻ có liên kết kho thì tự trừ */
+ const warn=[];o.lines.forEach(l=>{const m=mById(l.mid);if(m&&m.stock){const i=it(m.stock);if(i){const b=i.lv;i.amt=Math.max(0,(i.amt||0)-l.qty);refresh(i);if(b==='ok'&&i.lv!=='ok')warn.push(i.name)}}});
+ if(o.cust&&o.cust.phone){const p=unm(o.cust.phone),c=S.custs.find(x=>x.phone===p);if(c)c.n++;else S.custs.push({phone:p,name:o.cust.name||'Khách',addr:o.cust.addr||'',n:1})}
+ return warn}
+
+/* ---------- dữ liệu mẫu: đơn đang chạy ---------- */
+(function seedOrders(){const at=m=>Date.now()-m*6e4;
+ let o=newOrder('take',{t:at(8)});o.lines=[mkLine(1,2,'cook'),mkLine(14,1,'done')];o.status='cook';o.paid=true;o.method='bank';
+ o=newOrder('ship',{t:at(18),cust:{name:'Chị Hạnh',phone:'0912 111 222',addr:'Tòa Alpha, ĐH FPT'},ship:{km:2.5,fee:shipFee(2.5),pay:'cod'}});o.lines=[mkLine(2,3,'done'),mkLine(18,3,'done')];o.status='ready';
+ o=newOrder('online',{t:at(2),cust:{name:'Anh Đức',phone:'0987 333 444',addr:'KTX ĐH FPT – Dom A'},ship:{km:1.2,fee:shipFee(1.2),pay:'bank'},note:'Không hành'});o.lines=[mkLine(3,2,'new'),mkLine(15,2,'new')];
+ o=newOrder('ctv',{t:at(25),by:'CTV Hoa',cust:{name:'Bạn Linh',phone:'0905 555 666',addr:'Hola Park, Thạch Hòa'},ship:{km:3.5,fee:shipFee(3.5),pay:'cod'},shipper:6});o.lines=[mkLine(4,1,'done'),mkLine(10,1,'done')];o.status='ship';
+ o=newOrder('take',{t:at(4),cust:{name:'Anh Khoa',phone:''},pickAt:'12:15'});o.lines=[mkLine(5,2,'new'),mkLine(11,1,'new')];
+ o=newOrder('table',{t:at(22),table:1,guests:1});o.lines=[mkLine(6,1,'cook'),mkLine(17,4,'done')];
+ o=newOrder('table',{t:at(19),table:2,guests:1});o.lines=[mkLine(9,2,'cook')];
+ /* 2 đơn ship đã giao, shipper chưa nộp tiền COD */
+ [[40,7,2,'Chị Ngọc'],[75,12,3,'Anh Quân']].forEach(([m,mid,q,nm])=>{const x=newOrder('ship',{t:at(m),cust:{name:nm,phone:'',addr:'Thạch Hòa'},ship:{km:2,fee:shipFee(2),pay:'cod'},shipper:6});x.lines=[mkLine(mid,q,'done'),mkLine(18,q,'done')];x.status='done';x.paid=true;x.method='cash';x.cod=true;x.remit=false;pushInv(x,'cash')});
+ S.log=[{t:at(35),who:'Phục Vụ Minh',txt:'Hủy 2 Bia Tiger Bạc ở Bàn 03 · lý do: khách gọi nhầm'},
+  {t:at(90),who:'Thu Ngân Lan',txt:'Giảm giá 10.000đ cho hóa đơn mang về'},
+  {t:at(300),who:'mozart227',txt:'Sửa giá Mì cay: 89.000đ → 99.000đ'},
+  {t:at(1440),who:'Chủ Quán (NTL)',txt:'Tắt quyền “Sửa / hủy hóa đơn đã thanh toán” của Quản lý'}];
+})();
+
+/* ---------- thanh trên cùng + điều hướng theo vai trò ---------- */
+const NAV=[['don','grid','Đơn hàng'],['ctv','clip','Lên đơn CTV'],['ship','truck','Giao hàng'],['bep','chef','Bếp / Bar'],['menu','utensils','Thực đơn'],['kho','warehouse','Kho'],['report','chart','Báo cáo'],['set','gear','Cài đặt']];
+function allowed(m){const r=me().role;if(r==='owner')return true;
+ const base={mgr:['don','ctv','ship','bep','menu','kho','report','set'],cash:['don','ship','bep','report','kho'],srv:['don','bep'],bep:['bep','kho'],ship:['ship'],ctv:['ctv']}[r]||[];
+ if(!base.includes(m))return false;
+ if(m==='report')return can('rep');if(m==='kho')return can('kho');if(m==='menu')return can('menu');if(m==='set')return can('staff')||can('bank');return true}
+function navBadge(m){if(m==='ship')return S.orders.filter(o=>isShipT(o)&&(o.status==='new'||o.status==='ready')).length;if(m==='bep')return tickets().length;if(m==='don')return S.orders.filter(o=>o.type==='take'&&o.status==='ready').length;return 0}
+function buildPos(){const u=me(),nb=S.orders.filter(o=>o.type==='online'&&o.status==='new').length;
+ $('#pos').innerHTML=`<div class="r1"><div class="logo">🍖</div><div class="t"><b>${esc(S.cfg.name)}</b><small>${ic('wifi',12)} Đồng bộ trực tuyến</small></div>
+  <button class="iconbtn" onclick="openNoti()" aria-label="Thông báo">${ic('bell',17)}${nb?'<i class="dotr"></i>':''}</button>
+  <button class="ubtn" onclick="openMe()" aria-label="Tài khoản"><b>${esc(u.user)}</b><small>${ROLES[u.role]} ▾</small></button></div>
+  <div class="nav" role="tablist">${NAV.filter(n=>allowed(n[0])).map(([m,i,l])=>{const on=S.mod===m,b=navBadge(m);
+   return `<button class="${on?'on':''}" ${on?'aria-current="page"':''} onclick="setMod('${m}')">${ic(i,19)}${l}${b?`<span class="nb">${b}</span>`:''}</button>`}).join('')}</div>`;
+ try{const a=$('#pos .nav .on'),nv=$('#pos .nav');nv.scrollLeft=a.offsetLeft-nv.clientWidth/2+a.clientWidth/2}catch(e){}
+}
+function setMod(m){S.mod=m;S.ord=null;render(false);window.scrollTo(0,0)}
+function posToast(){toast('Bản demo')}
+function render(keep=true){
+ const y=window.scrollY,ph=document.querySelector('.phone');
+ if(!allowed(S.mod))S.mod=NAV.map(n=>n[0]).find(allowed);
+ ph.classList.toggle('rep',S.mod==='report'&&!S.ord);ph.classList.toggle('ord',!!S.ord);
+ buildPos();
+ if(S.ord||S.mod!=='kho'){$('#ktitle').innerHTML='';$('#tabbar').innerHTML='';
+  $('#view').innerHTML=S.ord?vOrder(oById(S.ord)):({report:vReport,don:vDon,ctv:vCtv,ship:vShip,bep:vBep,menu:vMenu,set:vSet})[S.mod]();
+  if(keep)window.scrollTo(0,y);return}
+ const nd=needList().length;
+ const TITLES={sup:'Nhà cung cấp',auto:'Hàng bán lẻ (tự trừ)',groups:'Nhóm hàng',units:'Đơn vị tính',hist:'Lịch sử mua hàng',count:'Kiểm nhanh kho'};
+ const back=S.tab==='more'&&S.sub!=='menu';
+ $('#ktitle').innerHTML=back?`<button class="iconbtn" style="background:#fff" onclick="setTab('more')" aria-label="Quay lại">${ic('back',20)}</button><b>${TITLES[S.sub]}</b>`:'';
+ $('#tabbar').innerHTML=[['home','Hôm nay','home'],['stock','Kho','pkg'],['buy','Mua hàng','cart'],['more','Thêm','dots']].map(([k,l,i])=>`<button class="${S.tab===k?'on':''}" onclick="setTab('${k}')">${ic(i,24)}${l}${k==='buy'&&nd?`<span class="b">${nd}</span>`:''}</button>`).join('');
+ $('#view').innerHTML={home:vHome,stock:vStock,buy:vBuy,more:vMore}[S.tab]();
+ if(keep)window.scrollTo(0,y);
+}
+function openMe(){const u=me();
+ sheet(`<h3>${esc(u.name)}</h3><p class="sub">@${esc(u.user)} · ${ROLES[u.role]}</p>
+ <div class="acts" style="margin-top:14px"><button class="btn btn-blue" onclick="doiCa()">${ic('logout',18)} Đổi ca (chốt tiền trước khi đổi)</button>
+ <button class="btn btn-ghost" onclick="closeSheet();toast('Quét mã QR trong Cài đặt để cài app lên điện thoại')">📱 Cài App</button></div>
+ <p class="gtitle">Thử đăng nhập vai trò khác ${NW}</p><p class="sub" style="margin:-4px 0 8px">Chỉ có trong bản demo, để chủ thấy mỗi vai trò nhìn thấy gì.</p>
+ <div class="list">${S.accts.filter(a=>a.on).map(a=>`<button class="row" onclick="switchMe(${a.id})"><div class="tx"><b>${esc(a.name)}</b><span>${ROLES[a.role]}</span></div>${a.id===S.me?'<span class="chip ok">Đang dùng</span>':ic('chev',18)}</button>`).join('')}</div>`)}
+function switchMe(id){S.me=id;S.ord=null;closeSheet();const m=NAV.map(n=>n[0]).find(allowed);if(!allowed(S.mod))S.mod=m;render(false);window.scrollTo(0,0);toast('Đang xem với vai trò '+ROLES[me().role])}
+function doiCa(){closeSheet();if(allowed('report')&&can('rec')){S.mod='report';S.rtab='rec';S.recDay=0;S.ord=null;render(false);window.scrollTo(0,0);toast('Đếm két, nhập số thực nhận rồi bấm chốt trước khi đổi ca')}else toast('Báo quản lý chốt tiền ca trước khi đổi ca')}
+function openNoti(){const on=S.orders.filter(o=>o.type==='online'&&o.status==='new'),late=tickets().filter(o=>mins(o.t)>15),low=needList().length,rd=S.orders.filter(o=>o.status==='ready');
+ const row=(i,c,t,s,fn)=>`<button class="row" onclick="closeSheet();${fn}"><span class="ico ${c}">${ic(i,18)}</span><div class="tx"><b>${t}</b><span>${s}</span></div>${ic('chev',18)}</button>`;
+ sheet(`<h3>Thông báo</h3><div class="list" style="margin-top:12px">
+ ${on.length?row('bell','t-amber',on.length+' đơn online chờ quán nhận','Khách tự đặt qua link Menu Online',"setMod('ship')"):''}
+ ${rd.length?row('check','t-green',rd.length+' đơn đã xong','Chờ khách lấy hoặc chờ giao shipper',"setMod('don')"):''}
+ ${late.length?row('alert','t-red',late.length+' phiếu bếp quá 15 phút','Nhắc bếp làm nhanh',"setMod('bep')"):''}
+ ${low&&allowed('kho')?row('pkg','t-orange',low+' món kho cần mua','Sắp hết hoặc đã hết',"setMod('kho')"):''}
+ ${!on.length&&!rd.length&&!late.length?'<div class="empty">Không có gì cần xử lý</div>':''}</div>`)}
+
+/* ---------- ĐƠN HÀNG (màn hình chính) ---------- */
+function vDon(){
+ const open=S.orders.filter(o=>o.status!=='done'&&o.status!=='cancel'),td=INV.filter(i=>i.day===0);
+ return `<div class="bigbtns"><button class="btn btn-blue" onclick="newTake()">${ic('plus',18)} Đơn Mang Về</button><button class="btn btn-orange" onclick="openShipNew()">${ic('plus',18)} Đơn Giao Ship</button></div>
+ <div class="segw"><button class="${S.home==='orders'?'on':''}" onclick="S.home='orders';render()">Đơn đang mở (${open.length}) ${NW}</button><button class="${S.home==='tables'?'on':''}" onclick="S.home='tables';render()">Phòng bàn</button></div>
+ ${S.home==='tables'?vTables():vOrders(open,td)}`}
+function vOrders(open,td){
+ const F=[['all','Tất cả',()=>true],['new','Chưa báo bếp',o=>o.status==='new'||(o.type==='table'&&o.lines.some(l=>l.st==='new'))],['cook','Đang làm',o=>o.status==='cook'||(o.type==='table'&&o.lines.some(l=>l.st==='cook'))],['ready','Xong',o=>o.status==='ready'],['ship','Đang giao',o=>o.status==='ship']];
+ const f=F.find(x=>x[0]===S.dflt)||F[0],rk={new:0,ready:1,cook:2,ship:3,open:4};
+ const rows=open.filter(f[2]).sort((a,b)=>rk[a.status]-rk[b.status]||a.t-b.t);
+ return `<div class="tiles"><div class="tile"><span>Đơn hôm nay</span><b>${td.length}</b></div><div class="tile"><span>Doanh thu hôm nay</span><b>${money(sumA(td.map(i=>i.amount)))}</b></div></div>
+ <div class="pills">${F.map(([k,l,fn])=>`<button class="pill ${S.dflt===k?'on':''}" onclick="S.dflt='${k}';render()">${l} (${open.filter(fn).length})</button>`).join('')}</div>
+ ${rows.length?rows.map(oCard).join(''):'<div class="card empty">Không có đơn nào ở mục này</div>'}
+ <p class="hint">Quán bán mang về là chính nên màn hình đầu là <b>danh sách đơn</b>, xếp theo việc cần làm. Sơ đồ bàn vẫn còn ở nút “Phòng bàn”.</p>`}
+function oCard(o){const late=o.status!=='ready'&&o.status!=='ship'&&mins(o.t)>15&&o.lines.some(l=>l.st!=='done');
+ let act='';
+ if(o.type==='table')act=`<button class="btn btn-blue btn-sm" onclick="openCheckout(${o.id})">Thanh toán</button>`;
+ else if(o.status==='new')act=o.type==='online'?`<button class="btn btn-orange btn-sm" onclick="acceptO(${o.id})">Nhận đơn</button>`:`<button class="btn btn-kit btn-sm" onclick="sendK(${o.id})">Báo bếp</button>`;
+ else if(o.status==='ready')act=isShipT(o)?`<button class="btn btn-orange btn-sm" onclick="openAssign(${o.id})">Giao shipper</button>`:(o.paid?`<button class="btn btn-green btn-sm" onclick="pickedUp(${o.id})">Khách đã lấy</button>`:`<button class="btn btn-blue btn-sm" onclick="openCheckout(${o.id})">Thu tiền</button>`);
+ else if(o.status==='ship')act=`<button class="btn btn-green btn-sm" onclick="delivered(${o.id})">Đã giao xong</button>`;
+ return `<div class="ocard ${late?'late':''}"><button class="ohead" onclick="openOrd(${o.id})"><span class="tbadge ${TYC[o.type]}">${tName(o)}</span><b>${o.cust&&o.cust.name?esc(o.cust.name):o.code}</b><span class="tm">${late?'⚠ ':''}${ago2(o.t)}</span>${ic('chev',16)}</button>
+ <div class="obody">${o.lines.map(l=>l.qty+' '+esc(l.name)).join(', ')||'Chưa có món'}${o.pickAt?` · <b>hẹn lấy ${esc(o.pickAt)}</b>`:''}${o.ship?` · ship ${money(o.ship.fee)}`:''}</div>
+ <div class="oacts"><div><span class="chip ${stCls(o)}">${stName(o)}</span> <b style="font-size:15px;margin-left:4px">${money(oNet(o))}</b>${o.paid?' <span class="chip ok" style="padding:2px 8px;font-size:11.5px">Đã trả</span>':''}</div>${act}</div></div>`}
+function vTables(){const busy=t=>S.orders.find(o=>o.type==='table'&&o.table===t.id&&o.status==='open');
+ const nb=S.tables.filter(busy).length,rows=S.tables.filter(t=>(S.tarea==='all'||t.area===S.tarea)&&(S.tflt==='all'||(S.tflt==='busy')===!!busy(t)));
+ const take=S.orders.filter(o=>o.type==='take'&&o.status!=='done'&&o.status!=='cancel');
+ return `<div class="pills">${[['all','Tất cả',S.tables.length],['busy','Có khách',nb],['free','Trống',S.tables.length-nb]].map(([k,l,n])=>`<button class="pill ${S.tflt===k?'on':''}" onclick="S.tflt='${k}';render()">${l} (${n})</button>`).join('')}</div>
+ ${take.length?`<p class="gtitle" style="margin:6px 4px 0">🛍 Đơn mang về đang mở (${take.length})</p><div class="pills">${take.map(o=>`<button class="tkchip" onclick="openOrd(${o.id})"><b>${o.cust&&o.cust.name?esc(o.cust.name):'Khách mang về'}</b><span>${o.code} · ${money(oNet(o))}</span></button>`).join('')}</div>`:''}
+ <div class="pills">${['all',...S.areas].map(a=>`<button class="pill ${S.tarea===a?'on':''}" onclick="S.tarea='${a.replace(/'/g,"\\'")}';render()">${a==='all'?'Tất cả khu vực':esc(a)}</button>`).join('')}</div>
+ <div class="tgrid">${rows.map(t=>{const o=busy(t);return o?`<button class="tb busy" onclick="openOrd(${o.id})"><div class="h"><div><b>${esc(t.name)}</b><br><small>${esc(t.area)}</small></div><span class="g">${ic('users',12)} ${o.guests||1}</span></div><div class="f"><span>⏱ ${ago2(o.t)} · ${oQty(o)} món</span><b style="color:var(--blue)">${money(oNet(o))}</b></div></button>`
+  :`<button class="tb" onclick="openTable(${t.id})"><div class="h"><div><b>${esc(t.name)}</b><br><small>${esc(t.area)}</small></div><span class="g">${ic('users',12)} ${t.seats}</span></div><div class="f"><span style="color:var(--green);font-weight:700">${ic('utensils',13)} Bàn trống</span><span class="muted">Chạm để mở</span></div></button>`}).join('')}</div>`}
+function openTable(id){const o=newOrder('table',{table:id,guests:1});openOrd(o.id)}
+function newTake(){const o=newOrder('take');openOrd(o.id)}
+function openOrd(id){S.ord=id;S.oq='';S.ocat='Tất cả';render(false);window.scrollTo(0,0)}
+function closeOrd(){const o=oById(S.ord);if(o&&!o.lines.length&&o.status!=='done'){S.orders=S.orders.filter(x=>x!==o)}S.ord=null;render(false);window.scrollTo(0,0)}
+function sendK(id){const o=oById(id),n=o.lines.filter(l=>l.st==='new');if(!n.length){toast('Không có món mới để báo bếp','err');return}
+ n.forEach(l=>l.st='cook');if(o.status==='new')o.status='cook';render();toast(`Đã báo bếp ${sumA(n.map(l=>l.qty))} món · ${tName(o)} ${o.code}`)}
+function acceptO(id){const o=oById(id);o.lines.forEach(l=>{if(l.st==='new')l.st='cook'});o.status='cook';logA('Nhận đơn online '+o.code);render();toast('Đã nhận đơn và báo bếp')}
+function pickedUp(id){const o=oById(id);o.status='done';render();toast(`Đơn ${o.code} hoàn tất`)}
+
+/* ---------- MÀN HÌNH GỌI MÓN ---------- */
+function vOrder(o){
+ if(!o){S.ord=null;return vDon()}
+ const nNew=sumA(o.lines.filter(l=>l.st==='new').map(l=>l.qty)),ship=isShipT(o),closed=o.status==='done'||o.status==='cancel';
+ const sub=o.type==='table'?`${(S.tables.find(t=>t.id===o.table)||{}).area||''} · ${o.guests||1} khách · mở ${ago2(o.t)}`:o.cust?[o.cust.name,o.cust.phone].filter(Boolean).map(esc).join(' · '):'Khách mang về';
+ return `<div class="otop"><button class="iconbtn" onclick="closeOrd()" aria-label="Quay lại">${ic('back',20)}</button><div class="t"><b>${tName(o)} <span class="code">#${o.code.slice(-3)}</span></b><small>${sub}</small></div>
+  ${closed?'':`<button class="btn btn-ghost btn-sm" style="padding:0 10px" onclick="openMove(${o.id})">⇄ Chuyển/Gộp</button><button class="iconbtn" style="color:var(--red)" onclick="askCancel(${o.id})" aria-label="Hủy đơn">${ic('x',18)}</button>`}</div>
+ ${o.type==='take'?`<button class="oinfo" onclick="openTakeInfo(${o.id})">${ic('edit',15)} ${o.cust&&o.cust.name?esc(o.cust.name):'Thêm tên khách'} · ${o.pickAt?'hẹn lấy '+esc(o.pickAt):'đặt giờ hẹn lấy'} ${NW}</button>`:''}
+ ${ship?`<div class="oinfo">${ic('truck',15)} ${esc(o.cust.addr||'')} · ${o.ship.km} km · ship ${money(o.ship.fee)} · ${o.ship.pay==='cod'?'Thu hộ tiền mặt (COD)':'Chuyển khoản VietQR'}${o.note?' · '+esc(o.note):''}</div>`:''}
+ ${o.lines.length?`<div class="card" style="padding:6px 14px"><div class="hd2" style="padding-top:8px"><h3>Món trong đơn (${oQty(o)})</h3><b>${money(oSub(o))}</b></div>${o.lines.map((l,k)=>`<div class="ol"><div class="tx"><b>${esc(l.name)}</b><span>${money(lineUnit(l))}${l.tops.length?' · '+l.tops.map(t=>esc(t.name)).join(', '):''}${l.note?' · “'+esc(l.note)+'”':''}</span><br><span class="chip ${l.st==='new'?'low':l.st==='cook'?'gray':'ok'}" style="padding:1px 8px;font-size:11.5px;margin-top:3px">${l.st==='new'?'Chưa báo bếp':l.st==='cook'?'Bếp đang làm':'Đã xong'}</span></div>
+  ${closed?`<b>× ${l.qty}</b>`:`<div class="mini"><button onclick="lineQ(${o.id},${k},-1)" aria-label="Bớt">−</button><span>${l.qty}</span><button onclick="lineQ(${o.id},${k},1)" aria-label="Thêm">+</button></div>`}</div>`).join('')}</div>`:''}
+ ${closed?'':`<div class="search">${ic('search',18)}<input id="oq" placeholder="Tìm món nhanh (VD: pho bo, lau thai…)" value="${esc(S.oq)}" oninput="S.oq=this.value;omenu()" aria-label="Tìm món"></div>
+ <div class="pills">${['Tất cả',...S.cats].map((c,k)=>`<button class="pill ${S.ocat===c?'on':''}" onclick="S.ocat=['Tất cả',...S.cats][${k}];render()">${esc(c)}</button>`).join('')}</div>
+ <div class="mgrid" id="omenu">${menuCards(o)}</div>`}
+ ${closed?'':`<div class="obar"><div class="sum"><small>Tạm tính (${oQty(o)} món)</small><b>${money(oSub(o))}</b></div>
+  <button class="btn btn-kit" onclick="sendK(${o.id})" ${nNew?'':'disabled'}>Báo bếp (${nNew})</button>
+  ${ship?`<button class="btn btn-orange" onclick="shipDone(${o.id})">Gửi đơn</button>`:`<button class="btn btn-blue" onclick="openCheckout(${o.id})" ${o.lines.length?'':'disabled'}>${o.paid?'Đã trả':'Thanh toán'}</button>`}</div>`}`}
+function menuCards(o){const q=S.oq.trim().toLowerCase(),nq=q.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
+ const list=S.menu.filter(m=>(S.ocat==='Tất cả'||m.cat===S.ocat)&&(!q||m.name.toLowerCase().includes(q)||m.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').includes(nq)));
+ return list.length?list.map(m=>{const n=sumA(o.lines.filter(l=>l.mid===m.id).map(l=>l.qty));
+  return `<div class="mi ${m.on?'':'off'}" role="button" tabindex="0" onclick="addM(${o.id},${m.id})">${n?`<span class="inc">${n}</span>`:''}<span class="qt ${m.st}">${m.st==='bep'?'Bếp':'Bar'}</span><span class="em">${m.em}</span><b>${esc(m.name)}</b>
+  <div class="pr"><span>${m.on?money(m.price):'Hết món'}</span><button class="op" onclick="event.stopPropagation();openOpt(${o.id},${m.id})" aria-label="Tùy chọn ${esc(m.name)}">${ic('dots',16)}</button></div></div>`}).join(''):'<div class="card empty" style="grid-column:1/-1">Không tìm thấy món</div>'}
+function omenu(){const o=oById(S.ord);if(o)$('#omenu').innerHTML=menuCards(o)}
+function addM(oid,mid,qty,tops,note){const o=oById(oid),m=mById(mid);if(!m.on){toast(m.name+' đang hết món','err');return}
+ const ex=!tops&&!note&&o.lines.find(l=>l.mid===mid&&l.st==='new'&&!l.tops.length&&!l.note);
+ if(ex)ex.qty+=qty||1;else o.lines.push(mkLine(mid,qty||1,'new',tops,note));
+ if(o.status==='ready'||o.status==='done')o.status='cook';render()}
+function openOpt(oid,mid){const m=mById(mid);
+ sheet(`<h3>${m.em} ${esc(m.name)}</h3><p class="sub">${money(m.price)} / ${esc(m.unit)}</p>
+ <label class="l">Số lượng</label><div class="stepper" style="width:150px"><button onclick="optQ(-1)">−</button><input id="op-q" type="number" min="1" value="1" aria-label="Số lượng"><button onclick="optQ(1)">+</button></div>
+ ${S.tops.length?`<label class="l">Topping / thêm</label><div class="unitchips">${S.tops.map(t=>`<label class="u" style="padding:8px 14px;cursor:pointer"><input type="checkbox" value="${t.id}" class="op-t"> ${esc(t.name)}${t.price?' +'+money(t.price):''}</label>`).join('')}</div>`:''}
+ <label class="l" for="op-n">Ghi chú cho bếp</label><input id="op-n" class="in" placeholder="VD: ít cay, không hành">
+ <div class="acts"><button class="btn btn-blue" onclick="optAdd(${oid},${mid})">Thêm vào đơn</button><button class="btn btn-ghost" onclick="closeSheet()">Đóng</button></div>`)}
+function optQ(d){const e=$('#op-q');e.value=Math.max(1,(+e.value||1)+d)}
+function optAdd(oid,mid){const q=Math.max(1,Math.floor(+$('#op-q').value||1)),tops=[...document.querySelectorAll('.op-t:checked')].map(x=>S.tops.find(t=>t.id===+x.value)),n=$('#op-n').value.trim();closeSheet();addM(oid,mid,q,tops.length?tops:null,n||null)}
+function lineQ(oid,k,d){const o=oById(oid),l=o.lines[k];
+ if(d>0){l.qty++;render();return}
+ if(l.st==='new'){l.qty--;if(l.qty<=0)o.lines.splice(k,1);render();return}
+ if(!can('cancel')){toast('Món đã báo bếp — bạn không có quyền hủy, nhờ quản lý','err');return}
+ sheet(`<h3>Hủy 1 ${esc(l.name)}?</h3><p class="sub">Món đã báo bếp. Chọn lý do để lưu vào báo cáo “Món đã hủy” và nhật ký.</p>
+ <div class="list" style="margin-top:12px">${['Khách đổi ý','Gọi nhầm món','Món ra chậm, khách không chờ','Món bị lỗi / đổ vỡ'].map(r=>`<button class="row" onclick="doCancelLine(${oid},${k},'${r}')"><div class="tx"><b>${r}</b></div>${ic('chev',18)}</button>`).join('')}</div>
+ <div class="acts"><button class="btn btn-ghost" onclick="closeSheet()">Không hủy</button></div>`)}
+function doCancelLine(oid,k,reason){const o=oById(oid),l=o.lines[k],h=new Date().getHours();
+ CANC.push({day:0,hour:h,item:l.name,qty:1,whole:false,reason,by:me().name});logA(`Hủy 1 ${l.name} · ${tName(o)} ${o.code} · lý do: ${reason}`);
+ l.qty--;if(l.qty<=0)o.lines.splice(k,1);refreshO(o);closeSheet();render();toast('Đã hủy món và ghi lại lý do')}
+function askCancel(id){const o=oById(id);
+ if(!o.lines.length){closeOrd();return}
+ if(o.lines.some(l=>l.st!=='new')&&!can('cancel')){toast('Đơn có món đã báo bếp — bạn không có quyền hủy, nhờ quản lý','err');return}
+ sheet(`<h3>Hủy cả đơn ${o.code}?</h3><p class="sub">${oQty(o)} món · ${money(oNet(o))}. Đơn sẽ lưu lại với trạng thái “Đã hủy”, không xóa mất.</p>
+ <label class="l" for="cx-r">Lý do</label><input id="cx-r" class="in" placeholder="VD: khách không đến lấy">
+ <div class="acts"><button class="btn btn-danger" onclick="doCancelO(${id})">Hủy đơn</button><button class="btn btn-ghost" onclick="closeSheet()">Không</button></div>`)}
+function doCancelO(id){const o=oById(id),r=$('#cx-r').value.trim();if(!r){toast('Nhập lý do hủy','err');return}
+ o.status='cancel';CANC.push({day:0,hour:new Date().getHours(),item:o.lines.map(l=>l.name).join(', '),qty:oQty(o),whole:true,reason:r,by:me().name});logA(`Hủy cả đơn ${o.code} (${money(oNet(o))}) · lý do: ${r}`);
+ closeSheet();S.ord=null;render(false);toast('Đã hủy đơn và ghi vào nhật ký')}
+function openTakeInfo(id){const o=oById(id),c=o.cust||{};
+ sheet(`<h3>Khách mang về</h3><label class="l" for="tk-p">Số điện thoại</label><input id="tk-p" class="in" inputmode="tel" value="${esc(c.phone||'')}" oninput="custHint('tk')"><div id="tk-hint"></div>
+ <label class="l" for="tk-n">Tên khách</label><input id="tk-n" class="in" value="${esc(c.name||'')}" placeholder="VD: Anh Nam">
+ <label class="l" for="tk-t">Hẹn giờ lấy</label><input id="tk-t" class="in" type="time" value="${esc(o.pickAt||'')}">
+ <div class="acts"><button class="btn btn-blue" onclick="saveTake(${id})">Lưu</button></div>`)}
+function saveTake(id){const o=oById(id);o.cust={name:$('#tk-n').value.trim(),phone:$('#tk-p').value.trim()};o.pickAt=$('#tk-t').value||null;closeSheet();render()}
+function openMove(id){const o=oById(id),free=S.tables.filter(t=>!S.orders.some(x=>x.type==='table'&&x.table===t.id&&x.status==='open')),others=S.orders.filter(x=>x!==o&&x.status!=='done'&&x.status!=='cancel'&&!isShipT(x));
+ sheet(`<h3>Chuyển / Gộp đơn</h3><p class="sub">${tName(o)} ${o.code}</p>
+ ${o.type==='table'?`<label class="l">Chuyển sang bàn trống</label><div class="unitchips">${free.map(t=>`<button class="u" style="padding:8px 14px" onclick="moveT(${id},${t.id})">${esc(t.name)}</button>`).join('')||'<span class="muted">Hết bàn trống</span>'}</div>`:''}
+ <label class="l">Gộp vào đơn khác</label>${others.length?`<div class="list">${others.map(x=>`<button class="row" onclick="mergeO(${id},${x.id})"><div class="tx"><b>${tName(x)} · ${x.code}</b><span>${oQty(x)} món · ${money(oNet(x))}</span></div>${ic('chev',18)}</button>`).join('')}</div>`:'<p class="muted">Không có đơn nào để gộp</p>'}
+ <div class="acts"><button class="btn btn-ghost" onclick="closeSheet()">Đóng</button></div>`)}
+function moveT(id,tid){const o=oById(id),a=tName(o);o.table=tid;logA(`Chuyển ${a} → ${tName(o)}`);closeSheet();render();toast('Đã chuyển sang '+tName(o))}
+function mergeO(id,into){const o=oById(id),x=oById(into);x.lines.push(...o.lines);o.lines=[];o.status='cancel';logA(`Gộp ${o.code} vào ${x.code}`);closeSheet();S.ord=into;render(false);toast('Đã gộp vào '+tName(x)+' '+x.code)}
+
+/* ---------- THANH TOÁN ---------- */
+function openCheckout(id){const o=oById(id);if(!o.lines.length){toast('Đơn chưa có món','err');return}
+ if(o.paid){toast('Đơn này đã thanh toán rồi');return}
+ S.pay={id,disc:o.disc||0,method:'cash',given:'',print:true};renderPay()}
+function renderPay(){const p=S.pay,o=oById(p.id),sub=oSub(o),d=Math.min(sub,p.disc),tot=sub-d,giv=+unm(p.given),cd=can('disc');
+ sheet(`<h3>Thanh toán · ${tName(o)}</h3><p class="sub">${o.code} · ${oQty(o)} món</p>
+ <div class="pl"><span>Tạm tính</span><b>${money(sub)}</b></div>
+ <div class="pl" style="flex-wrap:wrap"><span>Giảm giá</span>${cd?`<div class="unitchips">${[0,.05,.1].map(r=>`<button class="u" style="padding:6px 12px;${Math.round(sub*r)===d?'border-color:var(--blue);color:var(--blue)':''}" onclick="S.pay.disc=${Math.round(sub*r)};renderPay()">${r?r*100+'%':'Không'}</button>`).join('')}<input class="in mny" style="width:110px;min-height:38px" type="text" inputmode="numeric" placeholder="Số tiền" value="${d&&![.05,.1].some(r=>Math.round(sub*r)===d)?fmtIn(d):''}" onchange="S.pay.disc=+unm(this.value);renderPay()" aria-label="Giảm số tiền"></div>`:`<span class="lock" style="margin:0">🔒 Vai trò của bạn không được giảm giá</span>`}</div>
+ <div class="pl tot"><span>Khách cần trả</span><span style="color:var(--blue);font-size:22px">${money(tot)}</span></div>
+ <label class="l">Hình thức</label><div class="seg">${Object.entries(METHODS).map(([k,v])=>`<button class="sg ${p.method===k?'on plain':''}" onclick="S.pay.method='${k}';renderPay()">${v}</button>`).join('')}</div>
+ ${p.method==='cash'?`<label class="l" for="py-g">Khách đưa</label><input id="py-g" class="in mny" type="text" inputmode="numeric" value="${fmtIn(p.given)}" onchange="S.pay.given=unm(this.value);renderPay()" placeholder="${fmtIn(tot)}">
+  <div class="unitchips" style="margin-top:8px">${[tot,100000,200000,500000].filter((v,i,a)=>v>=tot&&a.indexOf(v)===i).map(v=>`<button class="u" style="padding:6px 12px" onclick="S.pay.given='${v}';renderPay()">${v===tot?'Vừa đủ':money(v)}</button>`).join('')}</div>
+  ${giv?`<div class="pl"><span>Tiền thối lại</span><b style="color:${giv<tot?'var(--red)':'var(--green)'}">${giv<tot?'Còn thiếu '+money(tot-giv):money(giv-tot)}</b></div>`:''}`
+ :p.method==='bank'?`<div class="paybox">${fakeQR(tot%997+3,132)}<div><b>Quét VietQR để trả ${money(tot)}</b><small>${esc(S.cfg.bank)}<br>${esc(S.cfg.acc)} · ${esc(S.cfg.accName)}<br>Nội dung: ${o.code}</small></div></div>`:'<p class="hint" style="margin-top:10px">Khách trả bằng Momo / ZaloPay… Thu ngân kiểm tra tin báo rồi bấm xác nhận.</p>'}
+ <div class="swrow"><div><b>In hóa đơn</b><span>In bill kèm wifi và lời chào cuối</span></div><label class="sw"><input type="checkbox" ${p.print?'checked':''} onchange="S.pay.print=this.checked"><i></i></label></div>
+ <div class="acts"><button class="btn btn-blue" onclick="doCheckout()">Xác nhận đã nhận ${money(tot)}</button><button class="btn btn-ghost" onclick="closeSheet()">Quay lại</button></div>`)}
+function doCheckout(){const p=S.pay,o=oById(p.id),sub=oSub(o),d=Math.min(sub,p.disc),tot=sub-d;
+ if(p.method==='cash'&&p.given&&+p.given<tot){toast('Khách đưa chưa đủ tiền','err');return}
+ o.disc=d;const unsent=o.lines.filter(l=>l.st==='new');unsent.forEach(l=>l.st='cook');
+ o.paid=true;o.method=p.method;const warn=pushInv(o,p.method);if(d)logA(`Giảm giá ${money(d)} cho ${tName(o)} ${o.code}`);
+ if(o.type==='table'||o.lines.every(l=>l.st==='done'))o.status='done';else if(o.status==='new')o.status='cook';
+ closeSheet();S.ord=null;render(false);window.scrollTo(0,0);
+ toast(`Đã thu ${money(tot)} · ${METHODS[p.method]}${p.print?' · đang in bill':''}${unsent.length?' · đã báo bếp món còn lại':''}${warn.length?' · ⚠ kho sắp hết '+warn.join(', '):''}`)}
+function fakeQR(seed,size){const r=rng(seed*7919+13),n=25,c=size/n;let s='';
+ for(let y=0;y<n;y++)for(let x=0;x<n;x++){if((x<8&&y<8)||(x>=n-8&&y<8)||(x<8&&y>=n-8))continue;if(r()<.46)s+=`<rect x="${(x*c).toFixed(1)}" y="${(y*c).toFixed(1)}" width="${c.toFixed(1)}" height="${c.toFixed(1)}"/>`}
+ const f=(X,Y)=>`<rect x="${X*c}" y="${Y*c}" width="${7*c}" height="${7*c}"/><rect x="${(X+1)*c}" y="${(Y+1)*c}" width="${5*c}" height="${5*c}" fill="#fff"/><rect x="${(X+2)*c}" y="${(Y+2)*c}" width="${3*c}" height="${3*c}"/>`;
+ return `<svg class="qr" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" fill="#0f172a" aria-hidden="true">${s}${f(0,0)}${f(n-7,0)}${f(0,n-7)}</svg>`}
+
+/* ---------- ĐƠN GIAO SHIP: tạo, khách quen ---------- */
+function custHint(p){const v=unm($('#'+p+'-p').value),c=v.length>=4&&S.custs.find(x=>x.phone.startsWith(v)||x.phone===v),e=$('#'+p+'-hint');if(!e)return;
+ e.innerHTML=c?`<button class="custh" onclick="custFill('${p}','${c.phone}')">👤 Khách quen: <b>${esc(c.name)}</b> · ${c.n} đơn · ${esc(c.addr)} — <u>bấm để điền</u></button>`:''}
+function custFill(p,phone){const c=S.custs.find(x=>x.phone===phone),g=id=>$('#'+p+'-'+id);if(g('p'))g('p').value=phone.replace(/(\d{4})(\d{3})(\d+)/,'$1 $2 $3');if(g('n'))g('n').value=c.name;if(g('a'))g('a').value=c.addr;$('#'+p+'-hint').innerHTML='';if(p==='ct'){S.ctvD.phone=g('p').value;S.ctvD.name=c.name;S.ctvD.addr=c.addr}}
+function shipBlock(p,km,fee){return `<div class="mapbox"><b>📍 Đo khoảng cách & tính phí ship tự động</b><small>Đơn giá quán: <b>${S.cfg.km0} km đầu = ${money(S.cfg.fee0)}</b>, mỗi km thêm <b>${money(S.cfg.feeKm)}</b></small>
+ <div style="display:flex;gap:8px;margin-top:8px"><input id="${p}-l" class="in" style="min-height:44px" placeholder="Dán link Google Maps"><button class="btn btn-sm" style="background:var(--ink);color:#fff;flex:none" onclick="measure('${p}')">Đo & tính ship</button></div>
+ <div class="two" style="margin-top:8px"><div><span class="fl">Khoảng cách (km)</span><input id="${p}-k" class="in" style="min-height:44px" type="number" inputmode="decimal" step="0.1" min="0" placeholder="VD: 3.2" value="${km||''}" oninput="kmFee('${p}')"></div><div><span class="fl">Phí ship (đ)</span><input id="${p}-f" class="in mny" style="min-height:44px;color:var(--orange);font-weight:800" type="text" inputmode="numeric" value="${fmtIn(fee||0)}"></div></div></div>`}
+function kmFee(p){$('#'+p+'-f').value=fmtIn(shipFee($('#'+p+'-k').value));if(p==='ct'){S.ctvD.km=$('#ct-k').value;S.ctvD.fee=shipFee(S.ctvD.km);ctvSum()}}
+function measure(p){const l=$('#'+p+'-l').value.trim();const km=l?(1.2+(l.length%40)/10).toFixed(1):'2.8';$('#'+p+'-k').value=km;kmFee(p);toast(`Bản demo: giả lập đo được ${km} km${l?'':' (chưa dán link nên lấy số mẫu)'}`)}
+function openShipNew(){
+ sheet(`<h3>${ic('truck',20)} Tạo đơn giao hàng (Shipper)</h3>
+ <label class="l" for="sn-p">Số điện thoại</label><input id="sn-p" class="in" inputmode="tel" placeholder="09xx…" oninput="custHint('sn')"><div id="sn-hint"></div>
+ <label class="l" for="sn-n">Tên khách hàng *</label><input id="sn-n" class="in" placeholder="VD: Anh Nam - FPT">
+ <label class="l" for="sn-a">Địa chỉ giao hàng</label><input id="sn-a" class="in" placeholder="VD: Cổng Đại học FPT Hòa Lạc…">
+ ${shipBlock('sn')}
+ <label class="l">Hình thức thanh toán</label><div class="radios"><label><input type="radio" name="sn-pay" value="cod" checked>Thu hộ tiền mặt (COD)</label><label><input type="radio" name="sn-pay" value="bank">Chuyển khoản VietQR</label></div>
+ <label class="l" for="sn-no">Ghi chú cho bếp / shipper</label><input id="sn-no" class="in" placeholder="VD: giao trước 12h15, gọi trước khi đến">
+ <div class="acts"><button class="btn btn-orange" onclick="saveShipNew()">Tạo & chọn món</button><button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
+function saveShipNew(){const n=$('#sn-n').value.trim();if(!n){toast('Nhập tên khách hàng','err');return}
+ const km=+$('#sn-k').value||0,o=newOrder('ship',{cust:{name:n,phone:$('#sn-p').value.trim(),addr:$('#sn-a').value.trim()},ship:{km,fee:+unm($('#sn-f').value)||0,pay:document.querySelector('input[name=sn-pay]:checked').value},note:$('#sn-no').value.trim()});
+ closeSheet();openOrd(o.id)}
+function shipDone(id){const o=oById(id);if(!o.lines.length){toast('Chọn món cho đơn trước','err');return}
+ o.lines.forEach(l=>{if(l.st==='new')l.st='cook'});if(o.status==='new')o.status='cook';S.ord=null;S.mod='ship';S.sflt='todo';render(false);window.scrollTo(0,0);toast('Đã gửi đơn cho bếp, đơn hiện ở mục Giao hàng')}
+
+/* ---------- GIAO HÀNG ---------- */
+function vShip(){
+ const so=S.orders.filter(isShipT),T=[['todo','Cần xử lý',o=>o.status==='new'||o.status==='cook'],['wait','Chờ nhận',o=>o.status==='ready'],['go','Đang đi giao',o=>o.status==='ship'],['done','Đã giao hôm nay',o=>o.status==='done']];
+ const f=T.find(t=>t[0]===S.sflt)||T[0],rows=so.filter(f[2]).sort((a,b)=>a.t-b.t),cnt=k=>so.filter(T.find(t=>t[0]===k)[2]).length;
+ const isShipper=me().role==='ship',hold={};so.filter(o=>o.status==='done'&&o.cod&&!o.remit).forEach(o=>{const k=o.shipper||0;(hold[k]=hold[k]||[]).push(o)});
+ const owe=o=>oNet(o)+(S.cfg.feeTo==='shop'?o.ship.fee:0);
+ return `<div class="rcard"><div class="hd2"><div><h3>Điều phối Giao hàng & Đơn Online</h3><p class="rsub" style="font-size:13px">${cnt('wait')} chờ nhận · ${cnt('go')} đang giao · ${cnt('done')} hoàn tất hôm nay</p></div></div>
+  <div class="two" style="margin-top:12px"><button class="btn btn-ghost btn-sm" style="width:100%" onclick="render();toast('Đã làm mới')">↻ Làm mới</button><button class="btn btn-orange btn-sm" style="width:100%" onclick="openShipNew()">${ic('plus',16)} Tạo đơn giao hàng</button></div></div>
+ ${Object.keys(hold).length?`<div class="rcard"><h3>Tiền COD shipper đang giữ ${NW}</h3><p class="rsub" style="font-size:13px">Shipper thu tiền mặt của khách, về quán phải nộp lại. Phí ship đang tính cho: <b>${S.cfg.feeTo==='shop'?'quán':'shipper'}</b> (đổi trong Cài đặt).</p>
+  ${Object.entries(hold).map(([k,os])=>{const a=S.accts.find(x=>x.id===+k);return `<div class="pl"><span><b>${esc(a?a.name:'Chưa gán')}</b><small>${os.length} đơn: ${os.map(o=>o.code.slice(-3)).join(', ')}</small></span><span style="text-align:right"><b style="color:var(--orange)">${money(sumA(os.map(owe)))}</b><br>${isShipper?'':`<button class="link" style="padding:0" onclick="remit(${k})">Đã nhận tiền</button>`}</span></div>`}).join('')}</div>`:''}
+ <div class="pills">${T.map(([k,l])=>`<button class="pill ${S.sflt===k?'on':''}" onclick="S.sflt='${k}';render()">${l} (${cnt(k)})</button>`).join('')}</div>
+ ${rows.length?rows.map(o=>{const sh=S.accts.find(a=>a.id===o.shipper);let act='';
+  if(o.status==='new')act=o.type==='online'?`<button class="btn btn-orange btn-sm" onclick="acceptO(${o.id})">Nhận đơn & báo bếp</button>`:`<button class="btn btn-kit btn-sm" onclick="sendK(${o.id})">Báo bếp</button>`;
+  else if(o.status==='cook')act='<span class="chip gray">Bếp đang làm</span>';
+  else if(o.status==='ready')act=`<button class="btn btn-orange btn-sm" onclick="openAssign(${o.id})">Giao shipper</button>`;
+  else if(o.status==='ship')act=`<button class="btn btn-green btn-sm" onclick="delivered(${o.id})">Đã giao xong</button>`;
+  else act=o.cod?(o.remit?'<span class="chip ok">Đã nộp tiền</span>':'<span class="chip low">Chưa nộp tiền</span>'):'<span class="chip ok">Đã chuyển khoản</span>';
+  return `<div class="ocard"><div class="ohead"><span class="tbadge ${TYC[o.type]}">${CHN[o.type]}</span><b>${esc(o.cust.name)} · ${o.code.slice(-3)}</b><span class="tm">${ago2(o.t)}</span></div>
+  <div class="obody">${ic('truck',13)} ${esc(o.cust.addr||'')} ${o.cust.phone?'· '+esc(o.cust.phone):''}<br>${o.lines.map(l=>l.qty+' '+esc(l.name)).join(', ')}${o.note?`<br>📝 ${esc(o.note)}`:''}${o.type==='ctv'?`<br>CTV: ${esc(o.by)}`:''}${sh?`<br>Shipper: <b>${esc(sh.name)}</b>`:''}</div>
+  <div class="oacts"><div><b>${money(oNet(o)+o.ship.fee)}</b><small class="muted" style="display:block;font-size:12px">gồm ship ${money(o.ship.fee)} · ${o.ship.pay==='cod'?'COD':'VietQR'}</small></div>${act}</div></div>`}).join(''):`<div class="card empty">${ic('pkg',30)}<p style="margin-top:6px;font-weight:700;color:var(--ink2)">Chưa có đơn giao hàng trong mục này.</p><p style="font-size:13px">Khi khách đặt qua link Menu Online hoặc thu ngân tạo đơn giao ship, đơn sẽ hiện tự động tại đây.</p></div>`}`}
+function openAssign(id){const sh=S.accts.filter(a=>a.role==='ship'&&a.on);
+ sheet(`<h3>Giao cho shipper</h3><p class="sub">${oById(id).code}</p><div class="list" style="margin-top:12px">${sh.map(a=>`<button class="row" onclick="assign(${id},${a.id})"><span class="ico t-orange">${ic('truck',18)}</span><div class="tx"><b>${esc(a.name)}</b><span>@${esc(a.user)}</span></div>${ic('chev',18)}</button>`).join('')}</div>
+ <div class="acts"><button class="btn btn-ghost" onclick="closeSheet()">Đóng</button></div>`)}
+function assign(id,sid){const o=oById(id);o.shipper=sid;o.status='ship';closeSheet();render();toast('Đã giao đơn cho '+S.accts.find(a=>a.id===sid).name)}
+function delivered(id){const o=oById(id);o.status='done';o.paid=true;const m=o.ship&&o.ship.pay==='cod'?'cash':'bank';o.method=m;if(m==='cash'){o.cod=true;o.remit=false}pushInv(o,m);render();toast(m==='cash'?`Đã giao · shipper đang giữ ${money(oNet(o)+o.ship.fee)} tiền mặt`:'Đã giao · khách đã chuyển khoản')}
+function remit(sid){const os=S.orders.filter(o=>o.status==='done'&&o.cod&&!o.remit&&(o.shipper||0)===sid);os.forEach(o=>o.remit=true);const a=S.accts.find(x=>x.id===sid);logA(`Nhận tiền COD từ ${a?a.name:'shipper'} (${os.length} đơn)`);render();toast('Đã ghi nhận shipper nộp tiền')}
+
+/* ---------- LÊN ĐƠN CTV ---------- */
+function ctvReset(){S.ctvD={phone:'',name:'',addr:'',km:'',fee:0,note:'',pay:'cod',lines:{}}}
+function vCtv(){if(!S.ctvD)ctvReset();const d=S.ctvD,u=me(),mine=S.orders.filter(o=>o.type==='ctv'&&(u.role!=='ctv'||o.by===u.name));
+ const comm=o=>Math.round(oNet(o)*S.cfg.ctv/100),paid=sumA(mine.filter(o=>o.status==='done').map(comm)),wait=mine.filter(o=>o.status!=='done'&&o.status!=='cancel');
+ return `<div class="card ctvhead"><div style="display:flex;gap:10px;align-items:center"><span style="font-size:24px">🤝</span><div><b style="font-size:17px">Cổng lên đơn Cộng tác viên (${esc(u.user)})</b><p style="font-size:13px;opacity:.9">Tạo đơn giao hàng & theo dõi hoa hồng CTV</p></div></div>
+  <div class="st"><div><span>Hoa hồng đã giao</span><b>${money(paid)}</b></div><div><span>Đang chờ giao</span><b>${wait.length} đơn (${money(sumA(wait.map(comm)))})</b></div></div>
+  <button class="btn" style="background:#fff;color:#047857;margin-top:12px;min-height:44px" onclick="myCtv()">Xem đơn của tôi →</button></div>
+ <div class="card"><h3>${ic('truck',17)} 1. Thông tin khách & phí ship</h3>
+  <label class="l" for="ct-p">Số điện thoại khách *</label><input id="ct-p" class="in" inputmode="tel" placeholder="09xxxxxxxx" value="${esc(d.phone)}" oninput="S.ctvD.phone=this.value;custHint('ct')"><div id="ct-hint"></div>
+  <label class="l" for="ct-n">Tên khách</label><input id="ct-n" class="in" placeholder="VD: Anh Nam - FPT" value="${esc(d.name)}" oninput="S.ctvD.name=this.value">
+  <label class="l" for="ct-a">Địa chỉ giao hàng *</label><input id="ct-a" class="in" placeholder="VD: Tòa Alpha ĐH FPT, Thạch Hoà…" value="${esc(d.addr)}" oninput="S.ctvD.addr=this.value">
+  ${shipBlock('ct',d.km,d.fee)}
+  <label class="l" for="ct-no">Ghi chú (nếu có)</label><input id="ct-no" class="in" placeholder="VD: giao trước 12h15, gọi trước khi đến" value="${esc(d.note)}" oninput="S.ctvD.note=this.value">
+  <label class="l">Khách thanh toán bằng</label><div class="seg"><button class="sg ${d.pay==='cod'?'on plain':''}" onclick="S.ctvD.pay='cod';render()">Tiền mặt khi nhận (COD)</button><button class="sg ${d.pay==='bank'?'on plain':''}" onclick="S.ctvD.pay='bank';render()">Chuyển khoản VietQR</button></div></div>
+ <div class="card"><h3>${ic('utensils',17)} 2. Chọn món ăn khách đặt</h3>
+  <div class="search" style="margin-top:10px">${ic('search',18)}<input placeholder="Tìm nhanh món ăn, đồ uống…" value="${esc(S.mq)}" oninput="S.mq=this.value;ctvList()" aria-label="Tìm món"></div>
+  <div id="ct-list" style="margin-top:6px">${ctvRows()}</div></div>
+ <div class="card" id="ct-sum">${ctvSumHTML()}</div>`}
+function ctvRows(){const q=S.mq.trim().toLowerCase(),d=S.ctvD;return S.menu.filter(m=>m.on&&(!q||m.name.toLowerCase().includes(q))).map(m=>{const n=d.lines[m.id]||0;
+ return `<div class="ml"><span class="em">${m.em}</span><div class="tx"><b>${esc(m.name)}</b><span>${money(m.price)} <small class="muted" style="font-weight:500">/ ${esc(m.unit)}</small></span></div>${n?`<div class="mini"><button onclick="ctvQ(${m.id},-1)">−</button><span>${n}</span><button onclick="ctvQ(${m.id},1)">+</button></div>`:`<button class="plusb" onclick="ctvQ(${m.id},1)" aria-label="Thêm ${esc(m.name)}">${ic('plus',18)}</button>`}</div>`}).join('')}
+function ctvList(){$('#ct-list').innerHTML=ctvRows()}
+function ctvQ(mid,d){const L=S.ctvD.lines;L[mid]=Math.max(0,(L[mid]||0)+d);if(!L[mid])delete L[mid];ctvList();ctvSum()}
+function ctvSumHTML(){const d=S.ctvD,ls=Object.entries(d.lines),sub=sumA(ls.map(([id,q])=>mById(+id).price*q)),fee=d.fee||0;
+ return `<h3>🛍 Món đã chọn (${sumA(ls.map(x=>x[1]))})</h3>${ls.length?ls.map(([id,q])=>`<div class="pl"><span>${q} × ${esc(mById(+id).name)}</span><b>${money(mById(+id).price*q)}</b></div>`).join(''):'<p class="rmuted" style="text-align:center;padding:14px 0">Chọn món bên trên để thêm vào đơn cho khách.</p>'}
+ <div class="pl"><span>Tiền món</span><b>${money(sub)}</b></div><div class="pl"><span>Phí ship</span><b>${money(fee)}</b></div>
+ <div class="pl tot"><span>Tổng thu khách</span><span style="color:var(--blue)">${money(sub+fee)}</span></div>
+ <div class="pl" style="border:0"><span>Hoa hồng của bạn (${S.cfg.ctv}%) ${NW}</span><b style="color:var(--green)">${money(Math.round(sub*S.cfg.ctv/100))}</b></div>
+ <button class="btn" style="background:#10b981;color:#fff;margin-top:8px" onclick="ctvSend()" ${ls.length?'':'disabled'}>${ic('arrowr',18)} Gửi đơn cho Bếp & Shipper</button>`}
+function ctvSum(){$('#ct-sum').innerHTML=ctvSumHTML()}
+function ctvSend(){const d=S.ctvD;d.fee=+unm($('#ct-f').value)||0;d.km=$('#ct-k').value;
+ if(!d.phone.trim()||!d.addr.trim()){toast('Nhập số điện thoại và địa chỉ khách','err');return}
+ const o=newOrder('ctv',{by:me().role==='ctv'?me().name:me().name,cust:{name:d.name||'Khách',phone:d.phone,addr:d.addr},ship:{km:+d.km||0,fee:d.fee,pay:d.pay},note:d.note});
+ o.lines=Object.entries(d.lines).map(([id,q])=>mkLine(+id,q,'cook'));o.status='cook';ctvReset();render(false);window.scrollTo(0,0);toast(`Đã gửi đơn ${o.code} cho bếp & shipper`)}
+function myCtv(){const u=me(),os=S.orders.filter(o=>o.type==='ctv'&&(u.role!=='ctv'||o.by===u.name)).sort((a,b)=>b.t-a.t);
+ sheet(`<h3>Đơn CTV</h3><p class="sub">${os.length} đơn</p><div class="list" style="margin-top:12px">${os.map(o=>`<div class="row"><div class="tx"><b>${o.code.slice(-3)} · ${esc(o.cust.name)}</b><span>${esc(o.by)} · ${stName(o)}</span></div><div style="text-align:right"><b>${money(oNet(o))}</b><br><small style="color:var(--green);font-weight:700">HH ${money(Math.round(oNet(o)*S.cfg.ctv/100))}</small></div></div>`).join('')||'<div class="empty">Chưa có đơn</div>'}</div>
+ <div class="acts"><button class="btn btn-ghost" onclick="closeSheet()">Đóng</button></div>`)}
+
+/* ---------- BẾP / BAR ---------- */
+function vBep(){const tk=tickets(),inSt=l=>l.st==='cook'&&(S.bflt==='all'||mById(l.mid).st===S.bflt);
+ const rows=tk.filter(o=>o.lines.some(inSt)).sort((a,b)=>a.t-b.t),cnt=f=>tk.filter(o=>o.lines.some(l=>l.st==='cook'&&(f==='all'||mById(l.mid).st===f))).length;
+ const head=`<div class="pills">${[['all','Tất cả'],['bep','🍳 Quầy Bếp'],['bar','🍹 Quầy Bar']].map(([k,l])=>`<button class="pill ${S.bflt===k?'on':''}" onclick="S.bflt='${k}';render()">${l} (${cnt(k)})</button>`).join('')}</div>
+ <div class="pills"><button class="pill ${S.bgom?'on':''}" onclick="S.bgom=!S.bgom;render()">≡ Gom theo món</button><button class="pill" onclick="openSoldOut()">⚠ Báo hết món</button><button class="pill" onclick="toast('Đã bật âm báo khi có phiếu mới')">🔊 Âm báo</button></div>`;
+ if(!rows.length)return head+`<div class="card empty">${ic('chef',34)}<p style="font-weight:700;color:var(--ink2);margin-top:6px">Bếp / Bar đang trống phiếu</p><p style="font-size:13px">Khi phục vụ bấm “Báo bếp”, món mới sẽ hiển thị tự động tại đây ngay lập tức.</p></div>`;
+ if(S.bgom){const g={};rows.forEach(o=>o.lines.forEach(l=>{if(inSt(l)){const x=g[l.name]||(g[l.name]={q:0,o:[]});x.q+=l.qty;x.o.push(tName(o)+(o.type==='table'?'':' '+o.code.slice(-3)))}}));
+  return head+`<div class="list">${Object.entries(g).sort((a,b)=>b[1].q-a[1].q).map(([n,x])=>`<div class="row"><span class="qn">${x.q}</span><div class="tx"><b>${esc(n)}</b><span>${x.o.map(esc).join(' · ')}</span></div><button class="okb" onclick="doneName('${n.replace(/'/g,"\\'")}')" aria-label="Xong hết ${esc(n)}">${ic('check',20)}</button></div>`).join('')}</div><p class="hint">Gom các đơn cùng món để bếp nấu một lần. Bấm ✓ để xong hết món đó.</p>`}
+ return head+rows.map(o=>{const late=mins(o.t)>15;return `<div class="tk ${late?'late':''}"><div class="hd"><div><span class="tbadge ${TYC[o.type]}">${tName(o)}</span> <b style="font-size:14px">${o.code.slice(-3)}</b>${o.pickAt?` <span class="chip low" style="padding:1px 8px;font-size:12px">hẹn ${esc(o.pickAt)}</span>`:''}</div><span class="tm" style="${late?'color:var(--red)':''}">${late?'⚠ ':''}${ago2(o.t)}</span></div>
+  ${o.lines.map((l,k)=>inSt(l)||(l.st==='done'&&(S.bflt==='all'||mById(l.mid).st===S.bflt))?`<div class="ln ${l.st==='done'?'dn':''}"><span class="qn">${l.qty}</span><div style="flex:1;min-width:0"><b>${esc(l.name)}</b>${l.tops.length||l.note?`<div style="font-size:13px;color:var(--orange);font-weight:600">${[...l.tops.map(t=>t.name),l.note].filter(Boolean).map(esc).join(' · ')}</div>`:''}</div>${l.st==='cook'?`<button class="okb" onclick="doneL(${o.id},${k})" aria-label="Xong">${ic('check',20)}</button>`:''}</div>`:'').join('')}
+  ${o.note?`<div class="ln" style="font-size:13px;color:var(--ink2)">📝 ${esc(o.note)}</div>`:''}
+  <div style="padding:10px 14px"><button class="btn btn-green btn-sm" style="width:100%" onclick="doneAll(${o.id})">Xong cả phiếu</button></div></div>`}).join('')}
+function doneL(id,k){const o=oById(id);o.lines[k].st='done';refreshO(o);render()}
+function doneAll(id){const o=oById(id);o.lines.forEach(l=>{if(l.st==='cook'&&(S.bflt==='all'||mById(l.mid).st===S.bflt))l.st='done'});refreshO(o);render();toast(`Xong phiếu ${tName(o)} ${o.code.slice(-3)}`+(o.status==='ready'?(isShipT(o)?' · chờ shipper':' · báo khách lấy'):''))}
+function doneName(n){tickets().forEach(o=>{o.lines.forEach(l=>{if(l.st==='cook'&&l.name===n)l.st='done'});refreshO(o)});render();toast('Đã xong hết '+n)}
+function openSoldOut(){sheet(`<h3>Báo hết món</h3><p class="sub">Tắt món nào hết, phục vụ và khách đặt online sẽ không gọi được nữa.</p>
+ <div style="margin-top:8px">${S.menu.map(m=>`<div class="prow"><span>${m.em} ${esc(m.name)}</span><label class="sw"><input type="checkbox" ${m.on?'checked':''} onchange="setOn(${m.id},this.checked)" aria-label="Còn món ${esc(m.name)}"><i></i></label></div>`).join('')}</div>
+ <div class="acts"><button class="btn btn-ghost" onclick="closeSheet();render()">Xong</button></div>`)}
+function setOn(id,v){const m=mById(id);m.on=v;logA(`${v?'Mở bán lại':'Báo hết'} ${m.name}`)}
+
+/* ---------- THỰC ĐƠN ---------- */
+function vMenu(){
+ return `<div class="rcard"><div class="hd2"><div><h3>Quản lý Thực đơn & Món ăn</h3><p class="rsub" style="font-size:13px">Cập nhật giá bán, giá vốn, size/topping và bật tắt tình trạng hết món</p></div></div>
+  <button class="btn btn-blue" style="margin-top:12px" onclick="openMenuItem(null)">${ic('plus',18)} Thêm món mới</button></div>
+ <div class="card"><div class="sbar"><input id="cat-new" class="in" placeholder="Tên danh mục mới (VD: Hải sản)…"><button class="btn btn-sm" style="background:var(--ink);color:#fff;flex:none" onclick="addCat()">+ Danh mục</button></div>
+  <div class="sbar" style="margin-top:10px"><input id="top-new" class="in" placeholder="Topping mới (VD: Thêm trứng)…"><input id="top-p" class="in mny" style="width:96px;flex:none" type="text" inputmode="numeric" placeholder="Giá"><button class="btn btn-sm" style="background:var(--ink);color:#fff;flex:none" onclick="addTop()">+ Topping</button></div>
+  <div class="unitchips" style="margin-top:10px">${S.tops.map(t=>`<span class="u" style="font-size:13.5px">${esc(t.name)} ${t.price?'+'+money(t.price):''}<button onclick="delTop(${t.id})" aria-label="Xóa ${esc(t.name)}">${ic('x',14)}</button></span>`).join('')}</div></div>
+ <div class="search">${ic('search',18)}<input placeholder="Tìm món trong thực đơn…" value="${esc(S.mq2)}" oninput="S.mq2=this.value;$('#mlist').innerHTML=menuRows()" aria-label="Tìm món"></div>
+ <div class="pills">${['Tất cả',...S.cats].map(c=>`<button class="pill ${S.mflt===c?'on':''}" onclick="S.mflt='${c.replace(/'/g,"\\'")}';render()">${esc(c)}${c==='Tất cả'?' ('+S.menu.length+')':''}</button>`).join('')}</div>
+ <div id="mlist" class="mlist">${menuRows()}</div>`}
+function menuRows(){const q=(S.mq2||'').trim().toLowerCase(),rows=S.menu.filter(m=>(S.mflt==='Tất cả'||m.cat===S.mflt)&&(!q||m.name.toLowerCase().includes(q)));
+ return `${rows.map(m=>{const st=m.stock&&it(m.stock);return `<div class="mc"><div class="h"><span class="em">${m.em}</span><div class="tx"><b>${esc(m.name)}</b><small>${esc(m.cat)} · Quầy ${m.st==='bep'?'Bếp':'Bar'} · ${esc(m.unit)}</small><div class="pr">${money(m.price)}<span>Vốn: ${money(m.cost)} · lời ${Math.round((m.price-m.cost)/m.price*100)}%</span></div>${st?`<small style="color:var(--blue);font-weight:600">🔗 Tự trừ kho: ${esc(st.name)} (còn ${num(st.amt)} ${esc(st.unit)})</small>`:''}</div>
+  <button class="chip ${m.on?'ok':'out'}" onclick="setOn(${m.id},${!m.on});render()">${m.on?'Còn món':'Hết món'}</button></div>
+  <div class="ft"><button class="btn btn-ghost btn-sm" onclick="openMenuItem(${m.id})">${ic('edit',14)} Sửa</button><button class="btn btn-danger btn-sm" onclick="delMenu(${m.id})">Xóa</button></div></div>`}).join('')||'<div class="card empty">Không có món nào</div>'}`}
+function openMenuItem(id){const m=id?mById(id):{name:'',cat:S.cats[0],price:0,cost:0,unit:'Đĩa',st:'bep',em:'🍽️',stock:null};const autos=S.items.filter(i=>i.auto);
+ sheet(`<h3>${id?'Sửa món':'Thêm món mới'}</h3>
+ <div class="frow" style="grid-template-columns:70px 1fr"><div><label class="l" for="mm-e">Biểu tượng</label><input id="mm-e" class="in" style="text-align:center;font-size:22px" value="${m.em}"></div><div><label class="l" for="mm-n">Tên món</label><input id="mm-n" class="in" value="${esc(m.name)}"></div></div>
+ <div class="two"><div><label class="l" for="mm-c">Danh mục</label><select id="mm-c" class="in">${S.cats.map(c=>`<option ${c===m.cat?'selected':''}>${esc(c)}</option>`).join('')}</select></div><div><label class="l" for="mm-s">Quầy làm</label><select id="mm-s" class="in"><option value="bep" ${m.st==='bep'?'selected':''}>Bếp</option><option value="bar" ${m.st==='bar'?'selected':''}>Bar</option></select></div></div>
+ <div class="two"><div><label class="l" for="mm-p">Giá bán (đ)</label><input id="mm-p" class="in mny" type="text" inputmode="numeric" value="${fmtIn(m.price)}"></div><div><label class="l" for="mm-v">Giá vốn (đ)</label><input id="mm-v" class="in mny" type="text" inputmode="numeric" value="${fmtIn(m.cost)}"></div></div>
+ <label class="l" for="mm-u">Đơn vị bán</label><input id="mm-u" class="in" value="${esc(m.unit)}" placeholder="Tô, Đĩa, Ly…">
+ <label class="l" for="mm-k">Tự trừ kho khi bán ${NW}</label><select id="mm-k" class="in"><option value="">Không trừ kho (món nấu)</option>${autos.map(i=>`<option value="${i.id}" ${m.stock===i.id?'selected':''}>${esc(i.name)} — còn ${num(i.amt)} ${esc(i.unit)}</option>`).join('')}</select>
+ <p class="hint" style="margin-top:8px">Dùng cho bia, nước ngọt… Bán 1 món sẽ trừ 1 ${'đơn vị'} trong Kho.</p>
+ <div class="acts"><button class="btn btn-blue" onclick="saveMenu(${id||0})">${id?'Lưu thay đổi':'Thêm món'}</button><button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
+function saveMenu(id){const n=$('#mm-n').value.trim(),p=+unm($('#mm-p').value);if(!n||!p){toast('Nhập tên món và giá bán','err');return}
+ const v={name:n,em:$('#mm-e').value.trim()||'🍽️',cat:$('#mm-c').value,st:$('#mm-s').value,price:p,cost:+unm($('#mm-v').value)||0,unit:$('#mm-u').value.trim()||'Phần',stock:+$('#mm-k').value||null};
+ if(id){const m=mById(id);if(m.price!==p)logA(`Sửa giá ${m.name}: ${money(m.price)} → ${money(p)}`);Object.assign(m,v)}else{S.menu.push(Object.assign({id:Math.max(...S.menu.map(x=>x.id))+1,on:true},v));logA('Thêm món '+n)}
+ closeSheet();render();toast(id?'Đã lưu món':'Đã thêm món '+n)}
+function delMenu(id){const m=mById(id);if(S.cd!=='m'+id){S.cd='m'+id;toast('Bấm “Xóa” thêm lần nữa để xóa '+m.name,'err');return}S.menu=S.menu.filter(x=>x.id!==id);logA('Xóa món '+m.name);S.cd=null;render();toast('Đã xóa '+m.name)}
+function addCat(){const v=$('#cat-new').value.trim();if(!v){toast('Gõ tên danh mục','err');return}if(S.cats.includes(v)){toast('Danh mục đã có','err');return}S.cats.push(v);render();toast('Đã thêm danh mục '+v)}
+function addTop(){const v=$('#top-new').value.trim();if(!v){toast('Gõ tên topping','err');return}S.tops.push({id:Math.max(0,...S.tops.map(t=>t.id))+1,name:v,price:+unm($('#top-p').value)||0});render();toast('Đã thêm topping '+v)}
+function delTop(id){S.tops=S.tops.filter(t=>t.id!==id);render()}
+
+/* ---------- CÀI ĐẶT ---------- */
+function vSet(){const c=S.cfg,cb=can('bank'),cs=can('staff'),isOwner=me().role==='owner',link='https://ten-quan.netlify.app';
+ const f=(id,l,v,dis,full)=>`<div ${full?'style="grid-column:1/-1"':''}><label class="l" for="cf-${id}">${l}</label><input id="cf-${id}" class="in" value="${esc(v)}" ${dis?'disabled':''}></div>`;
+ return `<div class="card qrbox sblue"><div class="q">${fakeQR(11,92)}</div><div><span class="nwbl">Kết nối Cloud Realtime</span><b style="display:block;font-size:16px;margin-top:4px">Mở app trên điện thoại phục vụ, shipper & bếp</b><code>${link}</code><br><button class="btn btn-sm" style="background:#facc15;color:#111;margin-top:8px" onclick="toast('Bấm “Thêm vào màn hình chính” để cài thành app')">📱 Cài đặt ngay · Android / iOS</button></div></div>
+ <div class="card qrbox sorange"><div class="q">${fakeQR(29,92)}</div><div><span class="nwbl">Link đặt món online cho khách</span><b style="display:block;font-size:16px;margin-top:4px">Gửi link hoặc in QR cho khách tự đặt món giao tận nơi</b><code>${link}/?mode=online</code><br><div style="display:flex;gap:8px;margin-top:8px"><button class="btn btn-sm" style="background:#fff;color:var(--orange)" onclick="toast('Đã sao chép link')">Copy link</button><button class="btn btn-sm" style="background:#111;color:#fff" onclick="fakeOnline()">Mở thử</button></div></div></div>
+ <div class="card"><h3>🏢 Thông tin quán & cấu hình thanh toán VietQR</h3>
+  <div class="two">${f('name','Tên quán ăn',c.name)}${f('phone','Số điện thoại',c.phone)}${f('addr','Địa chỉ quán',c.addr,0,1)}${f('wifi','Thông tin wifi in trên bill',c.wifi,0,1)}${f('bye','Lời chào cuối hóa đơn',c.bye,0,1)}</div>
+  <p class="gtitle">💳 Tài khoản ngân hàng nhận VietQR</p>
+  <div class="two">${f('bank','Ngân hàng',c.bank,!cb)}${f('acc','Số tài khoản',c.acc,!cb)}${f('accName','Tên chủ tài khoản',c.accName,!cb,1)}</div>
+  ${cb?'':`<div class="lock">🔒 Chỉ Chủ quán sửa được tài khoản nhận tiền ${NW}</div>`}
+  <p class="gtitle">📍 Vị trí quán, đơn giá ship theo km & hoa hồng CTV</p>
+  <div class="two">${f('lat','Vĩ độ (Lat)',c.lat)}${f('lng','Kinh độ (Lng)',c.lng)}${f('km0','Số km đầu',c.km0)}${f('fee0','Phí km đầu (đ)',c.fee0)}${f('feeKm','Mỗi km thêm (đ)',c.feeKm)}${f('ctv','% Hoa hồng CTV',c.ctv)}${f('gt','% Hoa hồng mã giới thiệu',c.gt)}</div>
+  <label class="l">Phí ship thuộc về ${NW}</label><div class="seg"><button class="sg ${c.feeTo==='shop'?'on plain':''}" onclick="S.cfg.feeTo='shop';render()">Quán (shipper nộp lại)</button><button class="sg ${c.feeTo==='shipper'?'on plain':''}" onclick="S.cfg.feeTo='shipper';render()">Shipper giữ</button></div>
+  <p class="hint" style="margin-top:10px">Ví dụ: đơn cách 3,5 km → phí ship <b style="color:var(--orange)">${money(shipFee(3.5))}</b> · CTV tự lên đơn: <b>${c.ctv}%</b> · khách nhập mã CTV: <b>${c.gt}%</b> tiền món.</p>
+  <button class="btn btn-blue" style="margin-top:12px" onclick="saveCfg()">Lưu cài đặt</button></div>
+ <div class="card"><h3>🪑 Quản lý khu vực & bàn (${S.tables.length} bàn)</h3>
+  <div class="sbar" style="margin-top:10px"><input id="ar-n" class="in" placeholder="Tên khu vực mới (VD: Phòng VIP)…"><button class="btn btn-sm" style="background:var(--ink);color:#fff;flex:none" onclick="addArea()">+ Khu vực</button></div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) 64px auto;gap:8px;margin-top:10px"><select id="tb-a" class="in" style="grid-column:1/-1">${S.areas.map(a=>`<option>${esc(a)}</option>`).join('')}</select><input id="tb-n" class="in" placeholder="Tên bàn"><input id="tb-s" class="in" type="number" min="1" value="4" aria-label="Số ghế"><button class="btn btn-blue btn-sm" onclick="addTable()">+ Bàn</button></div>
+  <div class="unitchips" style="margin-top:12px">${S.tables.map(t=>`<span class="u" style="font-size:13.5px">${esc(t.name)} <small class="muted" style="font-weight:500">(${esc(t.area)} · ${t.seats} ghế)</small><button onclick="delTable(${t.id})" aria-label="Xóa ${esc(t.name)}">${ic('x',14)}</button></span>`).join('')}</div></div>
+ ${cs?vAccts(isOwner):''}
+ ${isOwner||me().role==='mgr'?vPerm(isOwner):''}
+ <div class="card"><div class="hd2"><h3>🧾 Nhật ký thao tác ${NW}</h3><span class="muted" style="font-size:13px">${S.log.length} mục</span></div><p class="rsub" style="font-size:13px">Ai hủy món, giảm giá, sửa giá, đổi quyền… đều được ghi lại, không xóa được.</p>
+  ${S.log.slice(0,12).map(l=>`<div class="logr"><b>${esc(l.who)}</b> · ${esc(l.txt)}<small>${dayLabel(l.t)} ${pad(new Date(l.t).getHours())}:${pad(new Date(l.t).getMinutes())}</small></div>`).join('')}</div>
+ <div class="card"><div class="hd2"><h3>🔑 Đổi mật khẩu tài khoản</h3><span class="tagu">@${esc(me().user)}</span></div>
+  <input class="in" type="password" placeholder="Mật khẩu hiện tại" style="margin-top:10px" autocomplete="off"><input class="in" type="password" placeholder="Mật khẩu mới (≥ 4 ký tự)" style="margin-top:8px" autocomplete="off"><input class="in" type="password" placeholder="Nhập lại mật khẩu mới" style="margin-top:8px" autocomplete="off">
+  <button class="btn btn-blue" style="margin-top:10px" onclick="toast('Bản demo: không đổi mật khẩu thật')">Cập nhật mật khẩu</button></div>`}
+function vAccts(isOwner){
+ return `<div class="card"><h3>👥 Quản lý tài khoản nhân viên & phân quyền</h3>
+  <div class="two" style="margin-top:10px"><input id="ac-n" class="in" placeholder="Họ tên (VD: Minh)"><input id="ac-u" class="in" placeholder="Tài khoản (VD: minh.nv)" autocomplete="off"><input id="ac-p" class="in" type="password" placeholder="Mật khẩu (≥ 4 ký tự)" autocomplete="new-password"><select id="ac-r" class="in">${Object.entries(ROLES).filter(([k])=>k!=='owner'||isOwner).map(([k,v])=>`<option value="${k}" ${k==='srv'?'selected':''}>${v}</option>`).join('')}</select></div>
+  <button class="btn" style="background:var(--ink);color:#fff;margin-top:10px" onclick="addAcct()">${ic('plus',18)} Thêm NV</button>
+  ${S.accts.map(a=>{const prot=a.role==='owner'&&!isOwner,self=a.id===S.me;return `<div class="acc"><div class="tx"><b>${esc(a.name)}</b> <span class="tagu">@${esc(a.user)}</span> <span class="chip ${a.role==='owner'?'auto':'gray'}" style="padding:2px 8px;font-size:12px">${ROLES[a.role]}</span>${a.code?` <span class="tagu" style="background:#f5f3ff;color:#7c3aed">Mã GT: ${a.code}</span>`:''}${self?' <span class="chip auto" style="padding:2px 8px;font-size:11.5px">Đang đăng nhập</span>':''}</div>
+   <span class="chip ${a.on?'ok':'out'}" style="font-size:12px">${a.on?'Đang hoạt động':'Đã khóa'}</span>
+   ${prot?`<span class="lock" style="margin:0;padding:4px 8px">🔒 Chỉ chủ sửa</span>`:`<button class="btn btn-ghost btn-sm" onclick="openAcct(${a.id})">${ic('edit',14)} Sửa</button>${self?'':`<button class="btn btn-danger btn-sm" onclick="delAcct(${a.id})" aria-label="Xóa ${esc(a.name)}">${ic('x',14)}</button>`}`}</div>`}).join('')}</div>`}
+function vPerm(isOwner){const r=S.prole,P=S.perm[r];
+ return `<div class="card"><h3>🛡 Phân quyền theo vai trò ${NW}</h3><p class="rsub" style="font-size:13px">Chủ quán luôn có toàn quyền. ${isOwner?'Bật / tắt từng quyền cho các vai trò còn lại.':'Chỉ Chủ quán được thay đổi bảng này.'}</p>
+  <div class="pills" style="margin-top:10px">${Object.keys(S.perm).map(k=>`<button class="pill ${r===k?'on':''}" onclick="S.prole='${k}';render()">${ROLES[k]}</button>`).join('')}</div>
+  ${PERMS.map(([k,l])=>`<div class="prow"><span>${l}</span><label class="sw"><input type="checkbox" ${P[k]?'checked':''} ${isOwner?`onchange="setPerm('${r}','${k}',this.checked)"`:'disabled'} aria-label="${l}"><i></i></label></div>`).join('')}</div>`}
+function setPerm(r,k,v){S.perm[r][k]=v?1:0;logA(`${v?'Bật':'Tắt'} quyền “${PERMS.find(p=>p[0]===k)[1]}” của ${ROLES[r]}`);render();toast('Đã lưu quyền')}
+function saveCfg(){const c=S.cfg,g=k=>{const e=$('#cf-'+k);return e?e.value.trim():c[k]};
+ ['name','phone','addr','wifi','bye','lat','lng'].forEach(k=>c[k]=g(k));if(can('bank')){const old=c.acc;['bank','acc','accName'].forEach(k=>c[k]=g(k));if(old!==c.acc)logA('Đổi số tài khoản nhận tiền')}
+ ['km0','fee0','feeKm','ctv','gt'].forEach(k=>c[k]=+g(k)||0);render();toast('Đã lưu cài đặt')}
+function addArea(){const v=$('#ar-n').value.trim();if(!v){toast('Gõ tên khu vực','err');return}if(S.areas.includes(v)){toast('Khu vực đã có','err');return}S.areas.push(v);render();toast('Đã thêm khu vực '+v)}
+function addTable(){const n=$('#tb-n').value.trim();if(!n){toast('Gõ tên bàn','err');return}S.tables.push({id:Math.max(0,...S.tables.map(t=>t.id))+1,name:n,area:$('#tb-a').value,seats:Math.max(1,+$('#tb-s').value||4)});render();toast('Đã thêm '+n)}
+function delTable(id){if(S.orders.some(o=>o.type==='table'&&o.table===id&&o.status==='open')){toast('Bàn đang có khách, chưa xóa được','err');return}if(S.cd!=='t'+id){S.cd='t'+id;toast('Bấm ✕ lần nữa để xóa bàn','err');return}S.tables=S.tables.filter(t=>t.id!==id);S.cd=null;render()}
+function addAcct(){const n=$('#ac-n').value.trim(),u=$('#ac-u').value.trim(),p=$('#ac-p').value;if(!n||!u){toast('Nhập họ tên và tài khoản','err');return}if(p.length<4){toast('Mật khẩu ít nhất 4 ký tự','err');return}
+ if(S.accts.some(a=>a.user===u)){toast('Tài khoản này đã có','err');return}const r=$('#ac-r').value;S.accts.push({id:Math.max(...S.accts.map(a=>a.id))+1,name:n,user:u,role:r,on:true});logA(`Thêm tài khoản ${n} (${ROLES[r]})`);render();toast('Đã thêm '+n)}
+function openAcct(id){const a=S.accts.find(x=>x.id===id),isOwner=me().role==='owner';
+ sheet(`<h3>Sửa tài khoản</h3><p class="sub">@${esc(a.user)}</p><label class="l" for="ae-n">Họ tên</label><input id="ae-n" class="in" value="${esc(a.name)}">
+ <label class="l" for="ae-r">Vai trò</label><select id="ae-r" class="in" ${a.id===S.me&&!isOwner?'disabled':''}>${Object.entries(ROLES).filter(([k])=>k!=='owner'||isOwner).map(([k,v])=>`<option value="${k}" ${k===a.role?'selected':''}>${v}</option>`).join('')}</select>
+ ${a.id===S.me?'':`<div class="swrow"><div><b>Cho phép đăng nhập</b><span>Tắt khi nhân viên nghỉ việc, dữ liệu cũ vẫn giữ</span></div><label class="sw"><input id="ae-on" type="checkbox" ${a.on?'checked':''}><i></i></label></div>`}
+ <div class="acts"><button class="btn btn-blue" onclick="saveAcct(${id})">Lưu</button><button class="btn btn-ghost" onclick="closeSheet();toast('Bản demo: đã gửi mật khẩu tạm cho nhân viên')">Đặt lại mật khẩu</button></div>`)}
+function saveAcct(id){const a=S.accts.find(x=>x.id===id),r=$('#ae-r').value,on=$('#ae-on')?$('#ae-on').checked:true;if(r!==a.role)logA(`Đổi vai trò ${a.name}: ${ROLES[a.role]} → ${ROLES[r]}`);if(on!==a.on)logA(`${on?'Mở khóa':'Khóa'} tài khoản ${a.name}`);
+ a.name=$('#ae-n').value.trim()||a.name;a.role=r;a.on=on;closeSheet();render();toast('Đã lưu tài khoản')}
+function delAcct(id){const a=S.accts.find(x=>x.id===id);if(a.role==='owner'&&me().role!=='owner'){toast('Không thể xóa tài khoản Chủ quán','err');return}
+ if(S.cd!=='a'+id){S.cd='a'+id;toast('Bấm ✕ lần nữa để xóa '+a.name+' (nên dùng Khóa thay vì xóa)','err');return}S.accts=S.accts.filter(x=>x.id!==id);logA('Xóa tài khoản '+a.name);S.cd=null;render()}
+function fakeOnline(){const o=newOrder('online',{cust:{name:'Khách online',phone:'0933 777 888',addr:'Cổng ĐH Quốc gia, Hòa Lạc'},ship:{km:2.2,fee:shipFee(2.2),pay:'bank'}});o.lines=[mkLine(1,1,'new'),mkLine(16,1,'new')];render();toast('Giả lập: có 1 đơn khách tự đặt — xem ở mục Giao hàng')}
 
 buildPos();render(false);
 </script>
