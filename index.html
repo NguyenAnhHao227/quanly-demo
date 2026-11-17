@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<script>
+window.__err=[];window.addEventListener('error',function(e){window.__err.push((e.message||'Lỗi')+(e.lineno?' (dòng '+e.lineno+')':''))});
+window.addEventListener('load',function(){if(window.__ok)return;var d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:999;background:#fff;color:#0f172a;padding:24px;font:16px/1.5 system-ui,sans-serif';
+d.innerHTML='<b style="font-size:19px">Trình duyệt này chưa chạy được bản demo</b><p style="margin-top:8px">Hãy mở bằng Chrome hoặc Safari bản mới (không mở trong Zalo / Facebook), hoặc cập nhật trình duyệt.</p><p style="margin-top:12px;color:#b91c1c;font-size:13px">'+(window.__err.join('<br>')||'Không rõ lỗi')+'</p><p style="margin-top:8px;color:#64748b;font-size:13px">'+navigator.userAgent+'</p>';document.body.appendChild(d)});
+</script>
+
 <title>Ăn Ngon Hoà Lạc – Bản demo quản lý</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +22,7 @@
   --green:#059669;--green-soft:#e6f7f0;--red:#e11d48;--red-soft:#fff0f3;--amber:#b45309;--amber-soft:#fff5dc;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;background:#e2e8f0;color-scheme:light}
 body{font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;background:#e2e8f0;color:var(--ink);font-size:16px;line-height:1.45}
 button{font:inherit;cursor:pointer;color:inherit;border:0;background:none}
 input,select{font:inherit;font-size:16px;color:inherit}
@@ -415,7 +422,7 @@ const ic=(n,s=20)=>`<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 2
 
 /* ===== helpers ===== */
 const $=s=>document.querySelector(s);
-const unm=v=>String(v??'').replace(/\D/g,'');
+const unm=v=>String(v==null?'':v).replace(/\D/g,'');
 const fmtIn=v=>{const d=unm(v);return d?d.replace(/\B(?=(\d{3})+(?!\d))/g,'.'):''};
 document.addEventListener('input',e=>{const t=e.target;if(!t.classList||!t.classList.contains('mny'))return;
  const pos=t.selectionStart,before=unm(String(t.value).slice(0,pos)).length,f=fmtIn(t.value);
@@ -525,7 +532,7 @@ function vHome(){
  const d=new Date(),h=d.getHours(),hi=h<11?'Chào buổi sáng':h<14?'Chào buổi trưa':h<18?'Chào buổi chiều':'Chào buổi tối';
  const need=needList(),spent=S.buys.filter(b=>isToday(b.t)).reduce((a,b)=>a+b.money,0),debt=S.sups.reduce((a,s)=>a+s.debt,0);
  const autos=S.items.filter(i=>i.auto);
- if(!S.simItem||!autos.some(i=>i.id===S.simItem))S.simItem=autos[0]?.id||null;
+ if(!S.simItem||!autos.some(i=>i.id===S.simItem))S.simItem=(autos[0]?autos[0].id:null);
  return `
  <div class="hello"><p>${DOW[d.getDay()]}, ${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}</p></div>
  <div class="demo">BẢN DEMO v2 · dữ liệu mẫu, bấm thử thoải mái</div>
@@ -564,7 +571,7 @@ function stockList(){$('#stock-list').innerHTML=stockHTML(filtered())}
 
 /* sửa món — có công tắc tự trừ */
 function openItem(id){const i=it(id);
- S.tmp={id,auto:!!i.auto,lv:i.lv,name:i.name,g:i.g,sup:i.sup,usual:i.usual??'',amt:i.amt??'',unit:i.unit,min:i.min??'',pu:i.pack?.unit||'thùng',pn:i.pack?.n||''};renderItem()}
+ S.tmp={id,auto:!!i.auto,lv:i.lv,name:i.name,g:i.g,sup:i.sup,usual:i.usual==null?'':i.usual,amt:i.amt==null?'':i.amt,unit:i.unit,min:i.min==null?'':i.min,pu:i.pack?i.pack.unit:'thùng',pn:i.pack?i.pack.n:''};renderItem()}
 function syncTmp(){const t=S.tmp,g=id=>document.getElementById(id);
  [['e-name','name'],['e-g','g'],['e-sup','sup'],['e-usual','usual'],['e-amt','amt'],['e-unit','unit'],['e-min','min'],['e-pu','pu'],['e-pn','pn']].forEach(([e,k])=>{const x=g(e);if(x)t[k]=k==='sup'?+x.value:x.value})}
 function renderItem(){const t=S.tmp,i=it(t.id);
@@ -598,7 +605,7 @@ function openAdd(){
  sheet(`<h3>Thêm món vào kho</h3><p class="sub">Chỉ cần tên và đơn vị, còn lại sửa sau cũng được</p>
  <label class="l" for="a-name">Tên món</label><input id="a-name" class="in" placeholder="VD: Mực ống">
  <div class="frow"><div><label class="l" for="a-unit">Đơn vị</label><select id="a-unit" class="in">${unitOpts('ký')}</select></div><div><label class="l" for="a-g">Nhóm</label><select id="a-g" class="in">${Object.entries(GROUPS).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div></div>
- <label class="l" for="a-sup">Nhà cung cấp</label><select id="a-sup" class="in">${supOpts(S.sups[0]?.id)}</select>
+ <label class="l" for="a-sup">Nhà cung cấp</label><select id="a-sup" class="in">${supOpts(S.sups[0]?S.sups[0].id:null)}</select>
  <div class="acts"><button class="btn btn-blue" onclick="addItem()">${ic('plus',18)} Thêm</button><button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
 function addItem(){const name=$('#a-name').value.trim();if(!name){toast('Nhập tên món','err');return}
  if(S.items.some(i=>i.name.toLowerCase()===name.toLowerCase())){toast('Món này đã có trong kho','err');return}
@@ -614,14 +621,14 @@ function vNeed(){
  return Object.entries(by).map(([sid,arr])=>{const s=sp(+sid);
   return `<div class="group"><h4>${esc(s.name)}<small>${s.phone}</small></h4>
   <div class="list">${arr.map(i=>`<div class="row" style="flex-wrap:wrap"><div class="tx" style="min-width:140px"><b>${esc(i.name)}</b><span>${chip(i)} ${i.lv==='out'?'':amtText(i)}</span></div>
-   <div class="qin"><input type="number" inputmode="decimal" min="0" step="any" aria-label="Số lượng đặt ${esc(i.name)}" value="${i.usual??''}" placeholder="?" oninput="it(${i.id}).usual=this.value===''?null:+this.value"><span>${esc(uUnit(i))}</span></div>
+   <div class="qin"><input type="number" inputmode="decimal" min="0" step="any" aria-label="Số lượng đặt ${esc(i.name)}" value="${i.usual==null?'':i.usual}" placeholder="?" oninput="it(${i.id}).usual=this.value===''?null:+this.value"><span>${esc(uUnit(i))}</span></div>
    <button class="btn btn-ghost btn-sm" onclick="arrived(${i.id})">Về rồi</button></div>`).join('')}</div>
   <div class="two" style="margin-top:10px"><button class="btn btn-ghost" onclick="copyMsg(${s.id})">${ic('copy',18)} Sao chép Zalo</button><a class="btn btn-blue" style="text-decoration:none" href="tel:${s.phone.replace(/\s/g,'')}">${ic('phone',18)} Gọi ${esc(s.short)}</a></div></div>`}).join('')}
 function zaloMsg(sid){const d=new Date();return `Ngày ${pad(d.getDate())}/${pad(d.getMonth()+1)}:\n`+needList().filter(i=>i.sup===sid).map(i=>`- ${i.name}${i.usual?': '+num(i.usual)+' '+uUnit(i):''}`).join('\n')}
 function copyMsg(sid){const t=zaloMsg(sid),done=()=>toast('Đã sao chép — dán vào Zalo gửi nhà cung cấp');
  const fb=()=>{const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();done()};
  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(done,fb);else fb()}
-function arrived(id){const i=it(id);S.buyD={name:i.name,qty:i.usual??'',unit:uUnit(i),money:'',sup:i.sup,paid:true};S.seg='in';setTab('buy')}
+function arrived(id){const i=it(id);S.buyD={name:i.name,qty:i.usual==null?'':i.usual,unit:uUnit(i),money:'',sup:i.sup,paid:true};S.seg='in';setTab('buy')}
 function arrivedBlank(){resetBuy();S.seg='in';setTab('buy')}
 function buyItem(){return S.items.find(i=>i.name.toLowerCase()===S.buyD.name.trim().toLowerCase())}
 function buyFactor(m){return(m.pack&&S.buyD.unit===m.pack.unit)?m.pack.n:1}
@@ -704,7 +711,7 @@ function vUnits(){return `<p class="hint">Quán hay đếm bằng gì thì thêm
  <div class="unitchips">${S.units.map((u,k)=>`<span class="u">${esc(u)}<button onclick="delUnit(${k})" aria-label="Xóa ${esc(u)}">${ic('x',14)}</button></span>`).join('')}</div>
  <div class="card"><label class="l" style="margin-top:0" for="u-new">Thêm đơn vị mới</label><div style="display:flex;gap:10px"><input id="u-new" class="in" placeholder="VD: nải, mớ, rổ…" onkeydown="if(event.key==='Enter')addUnit()"><button class="btn btn-blue" style="width:auto" onclick="addUnit()">Thêm</button></div></div>`}
 function addUnit(){const v=$('#u-new').value.trim().toLowerCase();if(!v){toast('Gõ tên đơn vị','err');return}if(S.units.includes(v)){toast('Đơn vị này đã có','err');return}S.units.push(v);render();toast(`Đã thêm đơn vị “${v}”`)}
-function delUnit(k){const u=S.units[k],used=S.items.filter(i=>i.unit===u||i.pack?.unit===u);if(used.length){toast(`Đang dùng cho ${used[0].name}${used.length>1?' và '+(used.length-1)+' món khác':''}, chưa xóa được`,'err');return}S.units.splice(k,1);render()}
+function delUnit(k){const u=S.units[k],used=S.items.filter(i=>i.unit===u||(i.pack&&i.pack.unit===u));if(used.length){toast(`Đang dùng cho ${used[0].name}${used.length>1?' và '+(used.length-1)+' món khác':''}, chưa xóa được`,'err');return}S.units.splice(k,1);render()}
 
 function vHist(){const g={};S.buys.forEach(b=>{const k=dayLabel(b.t);(g[k]=g[k]||[]).push(b)});
  return Object.entries(g).map(([d,arr])=>`<div><div class="daytitle"><span>${d}</span><span>${money(arr.reduce((a,b)=>a+b.money,0))}</span></div><div class="list">${arr.map(buyRow).join('')}</div></div>`).join('')||'<div class="card empty">Chưa có lịch sử</div>'}
@@ -1390,7 +1397,7 @@ function delAcct(id){const a=S.accts.find(x=>x.id===id);if(a.role==='owner'&&me(
  if(S.cd!=='a'+id){S.cd='a'+id;toast('Bấm ✕ lần nữa để xóa '+a.name+' (nên dùng Khóa thay vì xóa)','err');return}S.accts=S.accts.filter(x=>x.id!==id);logA('Xóa tài khoản '+a.name);S.cd=null;render()}
 function fakeOnline(){const o=newOrder('online',{cust:{name:'Khách online',phone:'0933 777 888',addr:'Cổng ĐH Quốc gia, Hòa Lạc'},ship:{km:2.2,fee:shipFee(2.2),pay:'bank'}});o.lines=[mkLine(1,1,'new'),mkLine(16,1,'new')];render();toast('Giả lập: có 1 đơn khách tự đặt — xem ở mục Giao hàng')}
 
-buildPos();render(false);
+buildPos();render(false);window.__ok=true;
 </script>
 </body>
 </html>
