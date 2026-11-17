@@ -369,9 +369,46 @@ label.l{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:1
 .shiftbar.off{background:var(--amber-soft);border-color:#fde68a}
 .shiftbar b{display:block;font-size:14.5px}.shiftbar small{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
 .shiftbar .btn{flex:none}
+
+/* ===== bìa ngoài: khách đặt hàng / nhân viên ===== */
+body.gate .phone{display:none}
+body:not(.gate) #gate{display:none}
+.g-cover{max-width:480px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:space-between;gap:22px;padding:calc(40px + env(safe-area-inset-top)) 22px calc(18px + env(safe-area-inset-bottom));background:linear-gradient(165deg,#ff8a1f 0%,#f2491c 48%,#b91c3c 100%);color:#fff;position:relative;overflow:hidden;box-shadow:0 0 40px rgba(15,23,42,.12)}
+.g-cover:before,.g-cover:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.09);pointer-events:none}
+.g-cover:before{width:320px;height:320px;top:-120px;right:-110px}
+.g-cover:after{width:260px;height:260px;bottom:-90px;left:-100px}
+.g-cover>*{position:relative;z-index:1}
+.g-top{text-align:center}
+.g-logo{width:84px;height:84px;border-radius:26px;background:#fff;display:grid;place-items:center;font-size:46px;margin:0 auto 14px;box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.g-top h1{font-size:28px;font-weight:800;letter-spacing:-.5px;line-height:1.15}
+.g-top p{margin-top:6px;font-size:15px;opacity:.95}
+.g-big{width:100%;background:#fff;color:var(--ink);border-radius:30px;padding:28px 22px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:250px;text-align:center;box-shadow:0 20px 44px rgba(0,0,0,.3);transition:transform .1s}
+.g-big:active{transform:scale(.975)}
+.g-bi{font-size:62px;line-height:1}
+.g-big b{font-size:30px;font-weight:800;color:var(--orange);letter-spacing:-.5px;line-height:1.1;margin-top:4px}
+.g-bs{color:var(--muted);font-size:15.5px}
+.g-go{margin-top:10px;background:var(--orange);color:#fff;width:54px;height:54px;border-radius:99px;display:grid;place-items:center;box-shadow:0 8px 18px rgba(255,77,0,.35)}
+.g-bot{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.g-phone{color:#fff;font-weight:600;font-size:14.5px;text-decoration:none;display:inline-flex;gap:6px;align-items:center;min-height:40px}
+.g-staff{color:#fff;font-size:14px;text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:0 14px}
+.g-page{max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);box-shadow:0 0 40px rgba(15,23,42,.12)}
+.g-bar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:8px 12px calc(8px)}
+.g-bar>b{font-size:16.5px}
+.g-title b{display:block;font-size:16px;line-height:1.2}.g-title small{display:block;color:var(--muted);font-size:12.5px}
+.g-body{padding:12px 12px 24px;flex:1}
+.g-barb{position:sticky;bottom:0;z-index:15;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(rgba(241,245,249,0),var(--bg) 35%)}
+.g-barb:empty{display:none}
+.g-cartbtn{justify-content:space-between;box-shadow:0 10px 24px rgba(255,77,0,.35)}
+.g-cn{background:#fff;color:var(--orange);border-radius:99px;min-width:28px;height:28px;display:grid;place-items:center;font-weight:800;font-size:14px;padding:0 8px}
+.ml.off{opacity:.55}
+.g-st{display:flex;gap:12px;align-items:center;padding:9px 0;color:var(--muted);font-weight:600}
+.g-st i{width:28px;height:28px;border-radius:99px;border:2px solid var(--line);display:grid;place-items:center;flex:none;font-style:normal;font-size:13px;font-weight:800}
+.g-st.done{color:var(--ink)}.g-st.done i{background:var(--green);border-color:var(--green);color:#fff}
+.g-st.now{color:var(--orange);font-weight:800}.g-st.now i{border-color:var(--orange);color:var(--orange)}
 </style>
 </head>
-<body>
+<body class="gate">
+<div id="gate"></div>
 <div class="phone">
   <header class="pos" id="pos"></header>
   <div class="ktitle" id="ktitle"></div>
@@ -1233,7 +1270,8 @@ function render(keep=true){
 function openMe(){const u=me();
  sheet(`<h3>${esc(u.name)}</h3><p class="sub">@${esc(u.user)} · ${ROLES[u.role]}</p>
  ${clockCard()}<div class="acts" style="margin-top:14px"><button class="btn btn-blue" onclick="doiCa()">${ic('logout',18)} Đổi ca (chốt ca & mở ca mới)</button>
- <button class="btn btn-ghost" onclick="closeSheet();toast('Quét mã QR trong Cài đặt để cài app lên điện thoại')">📱 Cài App</button></div>
+ <button class="btn btn-ghost" onclick="closeSheet();toast('Quét mã QR trong Cài đặt để cài app lên điện thoại')">📱 Cài App</button>
+ <button class="btn btn-ghost" onclick="logout()">${ic('logout',18)} Đăng xuất</button></div>
  ${`<div class="demobox"><b>🧪 Chỉ dùng khi demo</b><p>Đưa toàn bộ về dữ liệu mẫu ban đầu để thử lại từ đầu. <b>Đây không phải tính năng chính thức</b>, app thật sẽ không có nút này.</p><button class="btn btn-sm" onclick="askReset()">↺ Reset dữ liệu mẫu</button></div>`}
  <p class="gtitle">Thử đăng nhập vai trò khác ${NW}</p><p class="sub" style="margin:-4px 0 8px">Chỉ có trong bản demo, để chủ thấy mỗi vai trò nhìn thấy gì.</p>
  <div class="list">${S.accts.filter(a=>a.on).map(a=>`<button class="row" onclick="switchMe(${a.id})"><div class="tx"><b>${esc(a.name)}</b><span>${ROLES[a.role]}</span></div>${a.id===S.me?'<span class="chip ok">Đang dùng</span>':ic('chev',18)}</button>`).join('')}</div>`)}
@@ -1587,7 +1625,101 @@ function delAcct(id){const a=S.accts.find(x=>x.id===id);if(a.role==='owner'&&me(
  if(S.cd!=='a'+id){S.cd='a'+id;toast('Bấm ✕ lần nữa để xóa '+a.name+' (nên dùng Khóa thay vì xóa)','err');return}S.accts=S.accts.filter(x=>x.id!==id);logA('Xóa tài khoản '+a.name);S.cd=null;render()}
 function fakeOnline(){const o=newOrder('online',{cust:{name:'Khách online',phone:'0933 777 888',addr:'Cổng ĐH Quốc gia, Hòa Lạc'},ship:{km:2.2,fee:shipFee(2.2),pay:'bank'}});o.lines=[mkLine(1,1,'new'),mkLine(16,1,'new')];render();toast('Giả lập: có 1 đơn khách tự đặt — xem ở mục Giao hàng')}
 
-buildPos();render(false);window.__ok=true;
+/* ---------- bìa ngoài: khách đặt hàng / nhân viên đăng nhập ---------- */
+const G={scr:'cover',q:'',cat:'Tất cả',cart:{},last:null,f:{name:'',phone:'',addr:'',note:'',km:2,pay:'cod'}};
+const gNrm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d');
+function gateTo(s){G.scr=s;document.body.classList.add('gate');closeSheet();
+ $('#gate').innerHTML=({cover:gCover,login:gLoginPage,cust:gCust,pay:gCheckout,done:gDone})[s]();window.scrollTo(0,0)}
+function gCover(){const c=S.cfg;
+ return `<div class="g-cover"><div class="g-top"><div class="g-logo">🍖</div><h1>${esc(c.name)}</h1><p>${esc(c.addr)}</p></div>
+ <button class="g-big" onclick="gateTo('cust')"><span class="g-bi">🛵</span><b>Khách đặt hàng</b><span class="g-bs">Chọn món ngay, quán giao tận nơi</span><span class="g-go">${ic('arrowr',26)}</span></button>
+ <div class="g-bot"><a class="g-phone" href="tel:${unm(c.phone)}">${ic('phone',16)} Gọi quán: ${esc(c.phone)}</a><button class="g-staff" onclick="gateTo('login')">Nhân viên của quán? Đăng nhập</button></div></div>`}
+
+/* ----- nhân viên đăng nhập ----- */
+function gLoginPage(){const L=S.accts.filter(a=>a.on);
+ return `<div class="g-page"><div class="g-bar"><button class="iconbtn" onclick="gateTo('cover')" aria-label="Quay lại">${ic('back',20)}</button><b>Nhân viên đăng nhập</b></div>
+ <div class="g-body"><form class="card" onsubmit="doLogin();return false"><h3>Đăng nhập</h3><p class="sub" style="font-size:13.5px;color:var(--muted)">Tài khoản do chủ quán cấp. Đăng nhập xong, app tự hiện đúng những mục theo vai trò của bạn.</p>
+  <label class="l" for="lg-u" style="margin-top:12px">Tên đăng nhập</label><input id="lg-u" class="in" autocomplete="username" autocapitalize="none" placeholder="VD: thungan">
+  <label class="l" for="lg-p">Mật khẩu</label><input id="lg-p" class="in" type="password" autocomplete="current-password" placeholder="Mật khẩu">
+  <button class="btn btn-blue" type="submit" style="margin-top:14px">Đăng nhập</button></form>
+ <div class="demobox" style="margin-top:14px"><b>🧪 Chỉ có trong bản demo</b><p>Đang test nên không cần gõ gì, <b>bấm vào một tài khoản bên dưới là vào luôn</b>. App thật sẽ bắt nhập tên đăng nhập và mật khẩu.</p></div>
+ <p class="gtitle" style="margin:14px 2px 6px">Chọn tài khoản để vào ${NW}</p>
+ <div class="list">${L.map(a=>`<button class="row" onclick="loginAs(${a.id})"><div class="tx"><b>${esc(a.name)}</b><span>${ROLES[a.role]} · @${esc(a.user)}</span></div>${ic('chev',18)}</button>`).join('')}</div></div></div>`}
+function doLogin(){const u=$('#lg-u').value.trim().toLowerCase();if(!u){toast('Nhập tên đăng nhập','err');return}
+ const a=S.accts.find(x=>x.user.toLowerCase()===u);if(!a){toast('Không có tên đăng nhập này','err');return}
+ if(!a.on){toast('Tài khoản này đang bị khóa, hỏi chủ quán','err');return}loginAs(a.id)}
+function loginAs(id){const a=S.accts.find(x=>x.id===id);if(!a||!a.on){toast('Tài khoản đang bị khóa','err');return}
+ S.me=id;S.ord=null;S.cd=null;S.mod=NAV.map(n=>n[0]).find(allowed)||'none';
+ document.body.classList.remove('gate');$('#gate').innerHTML='';G.scr='app';render(false);window.scrollTo(0,0);toast('Xin chào '+a.name+' · '+ROLES[a.role])}
+function logout(){closeSheet();S.ord=null;gateTo('cover');toast('Đã đăng xuất')}
+
+/* ----- khách đặt hàng ----- */
+const gCount=()=>sumA(Object.keys(G.cart).filter(id=>mById(+id)).map(id=>G.cart[id]));
+const gSub=()=>sumA(Object.keys(G.cart).filter(id=>mById(+id)).map(id=>mById(+id).price*G.cart[id]));
+function gRows(){const q=gNrm(G.q.trim());
+ const L=S.menu.filter(m=>(G.cat==='Tất cả'||m.cat===G.cat)&&(!q||gNrm(m.name).includes(q)));
+ return L.map(m=>{const n=G.cart[m.id]||0;
+  const ctl=!m.on?'<span class="chip out">Hết món</span>':n?`<div class="mini"><button onclick="gQ(${m.id},-1)" aria-label="Bớt">−</button><span>${n}</span><button onclick="gQ(${m.id},1)" aria-label="Thêm">+</button></div>`:`<button class="plusb" onclick="gQ(${m.id},1)" aria-label="Thêm ${esc(m.name)}">${ic('plus',18)}</button>`;
+  return `<div class="ml ${m.on?'':'off'}"><span class="em">${m.em}</span><div class="tx"><b>${esc(m.name)}</b><span>${money(m.price)} <small class="muted" style="font-weight:500">/ ${esc(m.unit)}</small></span></div>${ctl}</div>`}).join('')||'<div class="empty">Không tìm thấy món nào</div>'}
+function gPills(){return ['Tất cả'].concat(S.cats).map((c,k)=>`<button class="pill ${G.cat===c?'on':''}" onclick="G.cat=['Tất cả'].concat(S.cats)[${k}];gListUI()">${esc(c)}</button>`).join('')}
+function gBar(){const n=gCount();return n?`<button class="btn btn-orange g-cartbtn" onclick="gateTo('pay')"><span class="g-cn">${n}</span><b>Xem giỏ hàng</b><span>${money(gSub())}</span></button>`:''}
+function gListUI(){const a=$('#g-list'),b=$('#g-bar'),p=$('#g-pills');if(a)a.innerHTML=gRows();if(b)b.innerHTML=gBar();if(p)p.innerHTML=gPills()}
+function gCust(){const c=S.cfg;
+ return `<div class="g-page"><div class="g-bar"><button class="iconbtn" onclick="gateTo('cover')" aria-label="Về trang đầu">${ic('back',20)}</button><div class="g-title"><b>${esc(c.name)}</b><small>Đặt hàng online · quán giao tận nơi</small></div></div>
+ <div class="g-body"><div class="search">${ic('search',18)}<input placeholder="Tìm món ăn, đồ uống…" value="${esc(G.q)}" oninput="G.q=this.value;gListUI()" aria-label="Tìm món"></div>
+ <div class="pills" id="g-pills" style="margin:10px 0">${gPills()}</div>
+ <div class="card" id="g-list" style="padding:4px 14px">${gRows()}</div></div>
+ <div class="g-barb" id="g-bar">${gBar()}</div></div>`}
+function gQ(mid,d){const m=mById(mid);if(!m||!m.on){toast('Món này đã hết','err');return}
+ const n=Math.max(0,(G.cart[mid]||0)+d);if(n)G.cart[mid]=n;else delete G.cart[mid];
+ if(G.scr==='pay'){if(!gCount()){toast('Giỏ hàng đang trống');gateTo('cust');return}gPayUI()}else gListUI()}
+
+function gFee(){return shipFee(G.f.km)}
+function gLinesHTML(){const ids=Object.keys(G.cart).filter(id=>mById(+id));
+ return ids.map(id=>{const m=mById(+id),n=G.cart[id];return `<div class="ml"><span class="em">${m.em}</span><div class="tx"><b>${esc(m.name)}</b><span>${money(m.price*n)}</span></div><div class="mini"><button onclick="gQ(${m.id},-1)" aria-label="Bớt">−</button><span>${n}</span><button onclick="gQ(${m.id},1)" aria-label="Thêm">+</button></div></div>`}).join('')}
+function gTotHTML(){const sub=gSub(),fee=gFee();
+ return `<div class="pl"><span>Tiền món</span><b>${money(sub)}</b></div><div class="pl"><span>Phí ship (tạm tính)</span><b>${money(fee)}</b></div>
+ <div class="pl tot"><span>Tổng thanh toán</span><span style="color:var(--orange)">${money(sub+fee)}</span></div>
+ <button class="btn btn-orange" style="margin-top:10px" onclick="gSend()">${ic('check',18)} Đặt hàng</button>
+ <p class="rmuted" style="font-size:13px;text-align:center;margin-top:8px">Quán sẽ gọi điện xác nhận đơn trước khi làm món.</p>`}
+function gPayBtns(){const p=G.f.pay;return `<div class="seg"><button class="sg ${p==='cod'?'on plain':''}" onclick="gPay('cod')">Tiền mặt khi nhận</button><button class="sg ${p==='bank'?'on plain':''}" onclick="gPay('bank')">Chuyển khoản</button></div>${p==='bank'?'<p class="hint" style="margin-top:8px">Quán sẽ gửi mã VietQR cho bạn sau khi xác nhận đơn.</p>':''}`}
+function gPay(p){G.f.pay=p;$('#g-pay').innerHTML=gPayBtns()}
+function gPayUI(){$('#g-lines').innerHTML=gLinesHTML();$('#g-tot').innerHTML=gTotHTML()}
+function gCheckout(){const f=G.f;
+ if(!gCount()){return gCust()}
+ return `<div class="g-page"><div class="g-bar"><button class="iconbtn" onclick="gateTo('cust')" aria-label="Quay lại chọn món">${ic('back',20)}</button><b>Giỏ hàng & thông tin nhận hàng</b></div>
+ <div class="g-body"><div class="card"><h3>🛍 Món đã chọn</h3><div id="g-lines">${gLinesHTML()}</div>
+  <button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="gateTo('cust')">${ic('plus',16)} Thêm món</button></div>
+ <div class="card" style="margin-top:12px"><h3>${ic('truck',17)} Thông tin nhận hàng</h3>
+  <label class="l" for="g-n">Tên của bạn *</label><input id="g-n" class="in" autocomplete="name" placeholder="VD: Anh Nam" value="${esc(f.name)}" oninput="G.f.name=this.value">
+  <label class="l" for="g-p">Số điện thoại *</label><input id="g-p" class="in" inputmode="tel" autocomplete="tel" placeholder="09xxxxxxxx" value="${esc(f.phone)}" oninput="G.f.phone=this.value">
+  <label class="l" for="g-a">Địa chỉ nhận hàng *</label><input id="g-a" class="in" autocomplete="street-address" placeholder="VD: KTX ĐH FPT, Dom A" value="${esc(f.addr)}" oninput="G.f.addr=this.value">
+  <label class="l" for="g-k">Từ quán đến chỗ bạn khoảng</label><select id="g-k" class="in" onchange="G.f.km=+this.value;gPayUI()">${[1,2,3,4,5].map(k=>`<option value="${k}" ${+f.km===k?'selected':''}>${k===1?'Dưới 1 km':'Khoảng '+k+' km'}</option>`).join('')}</select>
+  <p class="rmuted" style="font-size:12.5px;margin-top:4px">Bản thật sẽ tự đo khoảng cách theo địa chỉ. Phí ship ${S.cfg.km0} km đầu ${money(S.cfg.fee0)}, mỗi km thêm ${money(S.cfg.feeKm)}.</p>
+  <label class="l" for="g-no">Ghi chú (nếu có)</label><input id="g-no" class="in" placeholder="VD: ít cay, không hành, gọi trước khi đến" value="${esc(f.note)}" oninput="G.f.note=this.value">
+  <label class="l">Cách thanh toán</label><div id="g-pay">${gPayBtns()}</div></div>
+ <div class="card" style="margin-top:12px" id="g-tot">${gTotHTML()}</div></div></div>`}
+function gSend(){const f=G.f,ids=Object.keys(G.cart).filter(id=>mById(+id)&&mById(+id).on);
+ f.name=$('#g-n').value.trim();f.phone=$('#g-p').value.trim();f.addr=$('#g-a').value.trim();f.note=$('#g-no').value.trim();
+ if(!ids.length){toast('Giỏ hàng đang trống','err');return}
+ if(!f.name){toast('Nhập tên của bạn','err');$('#g-n').focus();return}
+ if(f.phone.replace(/\D/g,'').length<9){toast('Nhập số điện thoại để quán gọi xác nhận','err');$('#g-p').focus();return}
+ if(!f.addr){toast('Nhập địa chỉ nhận hàng','err');$('#g-a').focus();return}
+ const o=newOrder('online',{by:'Khách online',cust:{name:f.name,phone:f.phone,addr:f.addr},ship:{km:+f.km,fee:shipFee(f.km),pay:f.pay},note:f.note});
+ o.lines=ids.map(id=>mkLine(+id,G.cart[id],'new'));G.cart={};G.last=o.id;f.note='';gateTo('done');toast('Đã gửi đơn '+o.code)}
+function gDone(){const o=G.last&&oById(G.last);if(!o)return gCover();
+ const steps=['Chờ quán xác nhận','Quán đang làm món','Đang giao đến bạn','Đã giao xong'],at={new:0,cook:1,ready:1,ship:2,done:3}[o.status],fee=o.ship?o.ship.fee:0;
+ return `<div class="g-page"><div class="g-bar"><button class="iconbtn" onclick="gateTo('cover')" aria-label="Về trang đầu">${ic('back',20)}</button><b>Đơn của bạn</b></div>
+ <div class="g-body"><div class="card" style="text-align:center"><div style="font-size:44px">${o.status==='cancel'?'😔':'✅'}</div><h3 style="font-size:20px;margin-top:4px">${o.status==='cancel'?'Quán chưa nhận được đơn này':'Đặt hàng thành công'}</h3>
+  <p class="rsub">Mã đơn <b>${esc(o.code)}</b>${o.status==='cancel'?'<br>Quán sẽ liên hệ lại với bạn.':'<br>Quán sẽ gọi số <b>'+esc(o.cust.phone)+'</b> để xác nhận.'}</p></div>
+ ${o.status==='cancel'?'':`<div class="card" style="margin-top:12px"><h3>Tình trạng đơn</h3><div style="margin-top:6px">${steps.map((t,k)=>`<div class="g-st ${k<at||at===3&&k===3?'done':k===at?'now':''}"><i>${k<at||at===3&&k===3?'✓':k+1}</i>${t}</div>`).join('')}</div></div>`}
+ <div class="card" style="margin-top:12px"><h3>Món đã đặt</h3>${o.lines.map(l=>`<div class="pl"><span>${l.qty} × ${esc(l.name)}</span><b>${money(l.price*l.qty)}</b></div>`).join('')}
+  <div class="pl"><span>Phí ship</span><b>${money(fee)}</b></div><div class="pl tot"><span>Tổng</span><span style="color:var(--orange)">${money(oNet(o)+fee)}</span></div>
+  <p class="rmuted" style="font-size:13px;margin-top:6px">${esc(o.cust.name)} · ${esc(o.cust.addr)} · ${o.ship.pay==='cod'?'Trả tiền mặt khi nhận':'Chuyển khoản'}</p></div>
+ <div class="demobox" style="margin-top:12px"><b>🧪 Chỉ có trong bản demo</b><p>Đơn đã sang hệ thống của quán. Nhân viên đăng nhập, vào mục <b>Giao hàng</b> sẽ thấy đơn này đang “Chờ quản lý xác nhận”. Xác nhận xong, bấm “Cập nhật trạng thái” ở đây để xem đổi theo.</p></div>
+ <div class="acts" style="display:grid;gap:10px;margin-top:14px"><button class="btn btn-orange" onclick="gateTo('done')">↻ Cập nhật trạng thái</button><button class="btn btn-ghost" onclick="gateTo('cust')">Đặt thêm món</button><button class="btn btn-ghost" onclick="gateTo('cover')">Về trang đầu</button></div></div></div>`}
+
+buildPos();render(false);gateTo('cover');window.__ok=true;
 </script>
 </body>
 </html>
