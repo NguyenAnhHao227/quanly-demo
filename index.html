@@ -362,6 +362,9 @@ label.l{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:1
 .logr:last-child{border-bottom:0}
 .logr small{display:block;color:var(--muted);font-size:12px}
 .card .two .l{margin-top:10px}
+.demobox{border:2px dashed #f6c25b;background:var(--amber-soft);border-radius:16px;padding:14px;margin-top:14px}
+.demobox b{color:var(--amber)}.demobox p{font-size:13.5px;color:var(--ink2);margin:4px 0 10px}
+.demobox .btn{background:#fff;border:1.5px solid #f6c25b;color:var(--amber)}
 </style>
 </head>
 <body>
@@ -1051,6 +1054,7 @@ function openMe(){const u=me();
  sheet(`<h3>${esc(u.name)}</h3><p class="sub">@${esc(u.user)} · ${ROLES[u.role]}</p>
  <div class="acts" style="margin-top:14px"><button class="btn btn-blue" onclick="doiCa()">${ic('logout',18)} Đổi ca (chốt tiền trước khi đổi)</button>
  <button class="btn btn-ghost" onclick="closeSheet();toast('Quét mã QR trong Cài đặt để cài app lên điện thoại')">📱 Cài App</button></div>
+ ${`<div class="demobox"><b>🧪 Chỉ dùng khi demo</b><p>Đưa toàn bộ về dữ liệu mẫu ban đầu để thử lại từ đầu. <b>Đây không phải tính năng chính thức</b>, app thật sẽ không có nút này.</p><button class="btn btn-sm" onclick="askReset()">↺ Reset dữ liệu mẫu</button></div>`}
  <p class="gtitle">Thử đăng nhập vai trò khác ${NW}</p><p class="sub" style="margin:-4px 0 8px">Chỉ có trong bản demo, để chủ thấy mỗi vai trò nhìn thấy gì.</p>
  <div class="list">${S.accts.filter(a=>a.on).map(a=>`<button class="row" onclick="switchMe(${a.id})"><div class="tx"><b>${esc(a.name)}</b><span>${ROLES[a.role]}</span></div>${a.id===S.me?'<span class="chip ok">Đang dùng</span>':ic('chev',18)}</button>`).join('')}</div>`)}
 function switchMe(id){S.me=id;S.ord=null;closeSheet();const m=NAV.map(n=>n[0]).find(allowed);if(!allowed(S.mod))S.mod=m;render(false);window.scrollTo(0,0);toast('Đang xem với vai trò '+ROLES[me().role])}
@@ -1365,7 +1369,11 @@ function vSet(){const c=S.cfg,cb=can('bank'),cs=can('staff'),isOwner=me().role==
   ${S.log.slice(0,12).map(l=>`<div class="logr"><b>${esc(l.who)}</b> · ${esc(l.txt)}<small>${dayLabel(l.t)} ${pad(new Date(l.t).getHours())}:${pad(new Date(l.t).getMinutes())}</small></div>`).join('')}</div>
  <div class="card"><div class="hd2"><h3>🔑 Đổi mật khẩu tài khoản</h3><span class="tagu">@${esc(me().user)}</span></div>
   <input class="in" type="password" placeholder="Mật khẩu hiện tại" style="margin-top:10px" autocomplete="off"><input class="in" type="password" placeholder="Mật khẩu mới (≥ 4 ký tự)" style="margin-top:8px" autocomplete="off"><input class="in" type="password" placeholder="Nhập lại mật khẩu mới" style="margin-top:8px" autocomplete="off">
-  <button class="btn btn-blue" style="margin-top:10px" onclick="toast('Bản demo: không đổi mật khẩu thật')">Cập nhật mật khẩu</button></div>`}
+  <button class="btn btn-blue" style="margin-top:10px" onclick="toast('Bản demo: không đổi mật khẩu thật')">Cập nhật mật khẩu</button></div>
+ <div class="demobox"><b>🧪 Chỉ dùng khi demo</b><p>Đưa toàn bộ về dữ liệu mẫu ban đầu để thử lại từ đầu. <b>Đây không phải tính năng chính thức</b>, app thật sẽ không có nút này.</p><button class="btn btn-sm" onclick="askReset()">↺ Reset dữ liệu mẫu</button></div>`}
+function askReset(){sheet(`<h3>Reset dữ liệu mẫu?</h3><p class="sub">Mọi đơn, món, cài đặt bạn vừa bấm thử sẽ mất, app quay về như lúc mới mở.</p>
+ <p class="lock">🧪 Nút này chỉ có trong bản demo để test nhiều lần, không phải tính năng chính thức.</p>
+ <div class="acts"><button class="btn btn-danger" onclick="location.reload()">↺ Reset ngay</button><button class="btn btn-ghost" onclick="closeSheet()">Thôi</button></div>`)}
 function vAccts(isOwner){
  return `<div class="card"><h3>👥 Quản lý tài khoản nhân viên & phân quyền</h3>
   <div class="two" style="margin-top:10px"><input id="ac-n" class="in" placeholder="Họ tên (VD: Minh)"><input id="ac-u" class="in" placeholder="Tài khoản (VD: minh.nv)" autocomplete="off"><input id="ac-p" class="in" type="password" placeholder="Mật khẩu (≥ 4 ký tự)" autocomplete="new-password"><select id="ac-r" class="in">${Object.entries(ROLES).filter(([k])=>k!=='owner'||isOwner).map(([k,v])=>`<option value="${k}" ${k==='srv'?'selected':''}>${v}</option>`).join('')}</select></div>
