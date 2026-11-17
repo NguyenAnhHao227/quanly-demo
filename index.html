@@ -26,18 +26,76 @@ input,select{font:inherit;font-size:16px;color:inherit}
 
 /* ===== thanh trên cùng giống app POS ===== */
 .pos{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
-.pos .r1{display:flex;align-items:center;gap:8px;padding:10px 12px}
-.logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#f59e0b,#ef4444);display:grid;place-items:center;font-size:22px;flex:none}
+.pos .r1{display:flex;align-items:center;gap:7px;padding:6px 10px}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#f59e0b,#ef4444);display:grid;place-items:center;font-size:19px;flex:none}
 .pos .t{flex:1;min-width:0}
-.pos .t b{display:block;font-size:15px;line-height:1.15}
-.pos .t small{color:var(--green);font-size:11.5px;font-weight:500;display:flex;gap:4px;align-items:center;white-space:nowrap}
-.notify{background:#ffb48a;color:#fff;border-radius:99px;padding:0 11px;min-height:38px;font-weight:800;font-size:12.5px;display:flex;gap:5px;align-items:center;flex:none}
+.pos .t b{display:block;font-size:14.5px;line-height:1.15}
+.pos .t small{color:var(--green);font-size:11px;font-weight:500;display:flex;gap:4px;align-items:center;white-space:nowrap}
+.notify{background:#ffb48a;color:#fff;border-radius:99px;padding:0 10px;min-height:32px;font-weight:800;font-size:12px;display:flex;gap:4px;align-items:center;flex:none}
 .iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:#eef2f7;display:grid;place-items:center;flex:none;color:var(--ink2)}
-.pos .r1 .iconbtn{width:38px;height:38px}
-.pos .nav{display:flex;overflow-x:auto;scrollbar-width:none;padding:8px 8px 10px;gap:2px;border-top:1px solid #f1f5f9}
+.pos .r1 .iconbtn{width:32px;height:32px;border-radius:10px}
+.pos .nav{display:flex;overflow-x:auto;scrollbar-width:none;padding:3px 6px 5px;gap:0;border-top:1px solid #f1f5f9}
 .pos .nav::-webkit-scrollbar{display:none}
-.pos .nav button{flex:none;min-width:86px;padding:9px 10px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:13.5px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.pos .nav button{flex:none;padding:4px 9px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:1px;font-size:12px;font-weight:600;color:var(--ink2);white-space:nowrap;line-height:1.25}
 .pos .nav button.on{background:var(--blue-soft);color:var(--blue);font-weight:700}
+.rep .page{padding:12px 12px 40px}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px}
+.rcard h2{font-size:21px;letter-spacing:-.3px}
+.rcard h3{font-size:17px;font-weight:800}
+.rsub{color:var(--muted);font-size:14.5px;margin-top:4px}
+.rpills{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.rp{background:#eef2f7;border-radius:99px;padding:9px 16px;font-weight:600;font-size:14.5px;color:var(--ink2)}
+.rp.on{background:var(--blue-soft);color:var(--blue);font-weight:700}
+.rdate{display:flex;align-items:center;gap:8px;background:#eef2f7;border-radius:99px;padding:10px 14px;margin-top:12px;font-size:14.5px;color:var(--ink2);flex-wrap:wrap}
+.rkpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rk{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;min-height:108px;min-width:0}
+.rk .l{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;color:var(--muted);font-size:14px}
+.rk .v{font-size:clamp(19px,5.6vw,27px);font-weight:800;margin:6px 0 2px;letter-spacing:-.5px;white-space:nowrap}
+.rk .s{color:var(--muted);font-size:13.5px}
+.rtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rt{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:12px 6px;font-weight:700;font-size:14px;text-align:center;position:relative;line-height:1.25;min-height:54px;display:flex;align-items:center;justify-content:center}
+.rt.on{background:#111c33;color:#fff;border-color:#111c33}
+.rt .nw{position:absolute;top:-7px;right:6px;background:var(--orange);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:99px}
+.rmuted{color:var(--muted);font-size:14.5px}
+.mrow{padding:10px 0;border-bottom:1px solid #eef2f6}
+.mrow:last-child{border-bottom:0}
+.mrow .top{display:flex;justify-content:space-between;font-weight:700;margin-bottom:6px}
+.bar{height:8px;background:#e8edf3;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:var(--blue)}
+.hrs{display:flex;gap:3px;align-items:flex-end;height:130px;margin-top:12px}
+.hrs i{display:block;flex:1;background:#4f8df5;border-radius:4px;min-height:3px}
+.hlab{display:grid;grid-template-columns:repeat(16,1fr);gap:3px;font-size:11px;color:var(--muted);margin-top:6px}
+.hlab span{text-align:center;white-space:nowrap}
+.rank{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #eef2f6}
+.rank:last-child{border-bottom:0}
+.rank .no{width:28px;height:28px;border-radius:9px;background:#eef2f7;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.rank .tx{flex:1;min-width:0}
+.rank .tx b{display:block;font-size:15px}
+.rank .tx span{font-size:13px;color:var(--muted)}
+.dchips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0}
+.dchips::-webkit-scrollbar{display:none}
+.dchip{flex:none;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:8px 12px;font-weight:700;font-size:13.5px;display:flex;gap:6px;align-items:center;white-space:nowrap}
+.dchip.on{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.dot{width:9px;height:9px;border-radius:50%;background:#cbd5e1;flex:none}
+.dot.ok{background:var(--green)}.dot.bad{background:var(--red)}
+.rrow{padding:14px 0;border-bottom:1px solid #eef2f6}
+.rrow:last-of-type{border-bottom:0}
+.rrow b{font-size:16px}
+.rrow small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.rrow .inl{display:flex;gap:10px;align-items:center;margin-top:8px}
+.rrow .inl .in{flex:1}
+.pl{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eef2f6}
+.pl.tot{font-weight:800;font-size:17px}
+.pl small{display:block;color:var(--muted);font-size:12.5px;font-weight:500}
+.stack{display:flex;height:16px;border-radius:99px;overflow:hidden;background:#eef2f7;margin:12px 0 8px}
+.stack i{display:block;height:100%}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2)}
+.legend span{display:flex;gap:5px;align-items:center}
+.legend em{width:10px;height:10px;border-radius:3px;display:inline-block}
+.sday{display:grid;grid-template-columns:1fr 78px 86px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #eef2f6}
+.sday:last-child{border-bottom:0}
+.sday .in{min-height:42px;text-align:center;padding:0 6px}
+.phone.rep .tabbar:empty,.tabbar:empty{display:none}
 .ktitle{display:flex;align-items:center;gap:10px;padding:12px 16px 0}
 .ktitle:empty{display:none}
 .ktitle b{font-size:21px;letter-spacing:-.3px;flex:1}
@@ -204,6 +262,13 @@ const ICONS={
  back:'<path d="m15 18-6-6 6-6"/>',
  wallet:'<path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>',
  down:'<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>',
+ cal:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+ chevd:'<path d="m6 9 6 6 6-6"/>',
+ arrowr:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+ dollar:'<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+ trend:'<path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>',
+ receipt:'<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/>',
+ alertc:'<circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>',
  edit:'<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
  bolt:'<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
  /* thanh POS */
@@ -269,14 +334,35 @@ const S={
   {id:22,name:'Hộp mang về',g:'other',unit:'cái',lv:'ok',amt:300,sup:5,usual:500},
   {id:23,name:'Khăn giấy',g:'other',unit:'gói',lv:'ok',amt:40,sup:5,usual:30}
  ],
- buys:[
-  {id:1,t:ago(1560),name:'Bia Hà Nội',qty:10,unit:'thùng',money:2900000,sup:4,paid:true},
-  {id:2,t:ago(300),name:'Thịt bò',qty:10,unit:'ký',money:2850000,sup:3,paid:false},
-  {id:3,t:ago(240),name:'Rau muống',qty:15,unit:'bó',money:375000,sup:1,paid:true},
-  {id:4,t:ago(235),name:'Bắp cải',qty:8,unit:'bắp',money:120000,sup:1,paid:true}
+ buys:[],
+ buyD:null,tmp:null,
+ /* báo cáo */
+ mod:'kho',rtab:'over',per:'today',recDay:0,rec:{},
+ other:{today:300000,yday:300000,w7:2100000},
+ staff:[
+  {id:1,name:'Anh Nam',role:'Bếp trưởng',rate:450000},
+  {id:2,name:'Chị Mai',role:'Phụ bếp',rate:300000},
+  {id:3,name:'Em Tuấn',role:'Phụ bếp',rate:300000},
+  {id:4,name:'Em Lan',role:'Phục vụ',rate:250000},
+  {id:5,name:'Em Hà',role:'Phục vụ',rate:250000},
+  {id:6,name:'Chị Thu',role:'Thu ngân',rate:280000}
  ],
- buyD:null,tmp:null
+ sdays:{today:{1:1,2:1,3:1,4:1,5:1,6:1},yday:{1:1,2:1,3:1,4:1,5:0.5,6:1},w7:{1:7,2:6,3:6.5,4:7,5:6,6:7}}
 };
+/* ngày trong demo tính theo giờ máy: 0 = hôm nay, 1 = hôm qua… */
+const dayStart=d=>{const x=new Date();x.setHours(0,0,0,0);return x.getTime()-d*864e5};
+const dayAt=(d,h)=>dayStart(d)+h*36e5;
+const dayOff=t=>Math.round((dayStart(0)-new Date(t).setHours(0,0,0,0))/864e5);
+(function seedBuys(){let id=0;const B=(t,name,qty,unit,money,sup,paid)=>S.buys.push({id:++id,t,name,qty,unit,money,sup,paid});
+ const t0=dayStart(0);
+ B(t0+6e4,'Thịt bò',10,'ký',2850000,3,false);B(t0+12e4,'Rau muống',15,'bó',375000,1,true);B(t0+18e4,'Bắp cải',8,'bắp',120000,1,true);
+ B(dayAt(1,9),'Bia Hà Nội',10,'thùng',2900000,4,true);
+ B(dayAt(2,9),'Thịt bò',8,'ký',2280000,3,true);B(dayAt(2,10),'Rau muống',15,'bó',375000,1,true);
+ B(dayAt(3,9),'Gà ta',10,'con',1400000,3,false);B(dayAt(3,10),'Tôm sú',5,'ký',1600000,2,true);
+ B(dayAt(4,9),'Bia Tiger',8,'thùng',3040000,4,true);
+ B(dayAt(5,9),'Sườn heo',8,'ký',1040000,3,true);B(dayAt(5,10),'Cá chép',10,'ký',950000,1,true);
+ B(dayAt(6,9),'Thịt bò',10,'ký',2850000,3,true);B(dayAt(6,10),'Gạo',50,'ký',1100000,5,true);
+ S.buys.sort((a,b)=>b.t-a.t);S.lid=Math.max(S.lid,id+1)})();
 const it=id=>S.items.find(x=>x.id===id);
 const sp=id=>S.sups.find(x=>x.id===id)||{short:'(đã xóa)',name:'(đã xóa)',phone:'',debt:0};
 const calcLv=i=>i.amt<=0?'out':(i.amt<=(i.min||0)?'low':'ok');
@@ -302,17 +388,21 @@ const seg=(sel,fn)=>`<div class="seg">${['ok','low','out'].map(k=>`<button class
 /* thanh POS giống app của chủ: Kho nằm giữa Thực đơn và Báo cáo */
 function buildPos(){
  const nav=[['grid','Phòng bàn'],['clip','Lên đơn CTV'],['truck','Giao hàng'],['chef','Bếp / Bar'],['utensils','Thực đơn'],['warehouse','Kho',1],['chart','Báo cáo'],['gear','Cài đặt']];
- $('#pos').innerHTML=`<div class="r1"><div class="logo">🍖</div><div class="t"><b>Ăn Ngon Hoà Lạc</b><small>${ic('wifi',14)} Đồng bộ trực tuyến</small></div>
-  <button class="notify" onclick="posToast()">${ic('bell',16)} Bật TB</button>
-  <button class="iconbtn" onclick="posToast()" aria-label="Thông báo">${ic('bell',20)}</button>
-  <button class="iconbtn" onclick="posToast()" aria-label="Đổi ca">${ic('logout',20)}</button></div>
-  <div class="nav" role="tablist">${nav.map(n=>`<button class="${n[2]?'on':''}" ${n[2]?'aria-current="page"':'onclick="posToast()"'}>${ic(n[0],22)}${n[1]}</button>`).join('')}</div>`;
- try{$('#pos .nav .on').scrollIntoView({inline:'center',block:'nearest'})}catch(e){}
+ $('#pos').innerHTML=`<div class="r1"><div class="logo">🍖</div><div class="t"><b>Ăn Ngon Hoà Lạc</b><small>${ic('wifi',12)} Đồng bộ trực tuyến</small></div>
+  <button class="notify" onclick="posToast()">${ic('bell',13)} Bật TB</button>
+  <button class="iconbtn" onclick="posToast()" aria-label="Thông báo">${ic('bell',17)}</button>
+  <button class="iconbtn" onclick="posToast()" aria-label="Đổi ca">${ic('logout',17)}</button></div>
+  <div class="nav" role="tablist">${nav.map(n=>{const mod=n[1]==='Kho'?'kho':n[1]==='Báo cáo'?'report':null,on=mod&&S.mod===mod;
+   return `<button class="${on?'on':''}" ${on?'aria-current="page"':`onclick="${mod?`setMod('${mod}')`:'posToast()'}"`}>${ic(n[0],19)}${n[1]}</button>`}).join('')}</div>`;
+ try{const a=$('#pos .nav .on'),nv=$('#pos .nav');nv.scrollLeft=a.offsetLeft-nv.clientWidth/2+a.clientWidth/2}catch(e){}
 }
+function setMod(m){S.mod=m;buildPos();render(false);window.scrollTo(0,0)}
 function posToast(){toast('Màn hình này giữ nguyên như app hiện tại — bản demo chỉ có mục Kho')}
 
 function render(keep=true){
  const y=window.scrollY,nd=needList().length;
+ document.querySelector('.phone').classList.toggle('rep',S.mod==='report');
+ if(S.mod==='report'){$('#ktitle').innerHTML='';$('#tabbar').innerHTML='';$('#view').innerHTML=vReport();if(keep)window.scrollTo(0,y);return}
  const TITLES={sup:'Nhà cung cấp',auto:'Hàng bán lẻ (tự trừ)',units:'Đơn vị tính',hist:'Lịch sử mua hàng',count:'Kiểm nhanh kho'};
  const back=S.tab==='more'&&S.sub!=='menu';
  $('#ktitle').innerHTML=back?`<button class="iconbtn" style="background:#fff" onclick="setTab('more')" aria-label="Quay lại">${ic('back',20)}</button><b>${TITLES[S.sub]}</b>`
@@ -516,6 +606,131 @@ function vCount(){
  <button class="btn btn-blue" onclick="setTab('home');toast('Kiểm xong — còn '+needList().length+' món cần mua')">${ic('check',18)} Xong kiểm kho</button>`}
 function cntSet(id,k){const i=it(id);i.lv=k;if(k==='out')i.amt=null;render()}
 function cntNum(id,v){const i=it(id);i.amt=Math.max(0,+v||0);refresh(i);render()}
+
+/* ================= BÁO CÁO ================= */
+function rng(seed){let s=seed;return()=>(s=(s*1664525+1013904223)%4294967296)/4294967296}
+const MENU=[['Gà ta nướng mật ong',420000],['Lẩu bò nhúng dấm',399000],['Cá chép rán giòn',280000],['Tôm sú rang muối',290000],['Sườn nướng BBQ',180000],['Rau muống xào tỏi',60000],['Cơm chiên trứng',55000],['Bia Hà Nội',30000],['Bia Tiger',36000],['Coca-Cola',20000],['Nước suối',10000]];
+const TABLES=['Bàn 01','Bàn 02','Bàn 03','Bàn 04','Bàn 05','Bàn 06','Bàn 07','Bàn 08','Bàn 09','Bàn 10','Sân 1','Sân 2','Sân 3','Sân 4','Mang về'];
+const METHODS={cash:'Tiền mặt',bank:'Chuyển khoản',wallet:'Ví điện tử'};
+const INV=[];
+(function(){const r=rng(20261117);
+ for(let d=0;d<7;d++){const n=d===0?13:12+Math.floor(r()*5);
+  for(let k=0;k<n;k++){const lunch=r()<.4,hour=lunch?11+Math.floor(r()*3):17+Math.floor(r()*5),nl=3+Math.floor(r()*3),used=new Set(),lines=[];
+   while(lines.length<nl){const m=Math.floor(r()*MENU.length);if(used.has(m))continue;used.add(m);const p=MENU[m][1];lines.push({name:MENU[m][0],price:p,qty:p>=250000?1:1+Math.floor(r()*4)})}
+   const x=r();INV.push({day:d,hour,min:Math.floor(r()*60),table:TABLES[Math.floor(r()*TABLES.length)],lines,amount:lines.reduce((a,l)=>a+l.price*l.qty,0),method:x<.35?'cash':x<.9?'bank':'wallet'})}}
+ for(let d=0;d<7;d++){const dt=new Date(dayStart(d)),ds=String(dt.getFullYear()).slice(2)+pad(dt.getMonth()+1)+pad(dt.getDate());
+  INV.filter(i=>i.day===d).sort((a,b)=>a.hour*60+a.min-b.hour*60-b.min).forEach((i,k)=>i.code=`HD${ds}-${String(k+1).padStart(3,'0')}`)}
+})();
+const CANC=[{day:0,hour:12,item:'Bia Tiger',qty:2,whole:false,reason:'Khách gọi nhầm',by:'Em Lan'},{day:1,hour:19,item:'Lẩu bò nhúng dấm',qty:1,whole:true,reason:'Khách đổi ý, chưa nấu',by:'Em Hà'},{day:3,hour:20,item:'Cá chép rán giòn',qty:1,whole:false,reason:'Món ra chậm, khách không chờ',by:'Chị Thu'}];
+const PERS={today:[0],yday:[1],w7:[0,1,2,3,4,5,6]},PNAME={today:'Hôm nay',yday:'Hôm qua',w7:'7 ngày'};
+const inP=d=>PERS[S.per].includes(d);
+const sumA=a=>a.reduce((x,y)=>x+y,0);
+const fmtD=d=>{const x=new Date(dayStart(d));return pad(x.getMonth()+1)+'/'+pad(x.getDate())+'/'+x.getFullYear()};
+const dayLabelOff=d=>d===0?'Hôm nay':d===1?'Hôm qua':(x=>pad(x.getDate())+'/'+pad(x.getMonth()+1))(new Date(dayStart(d)));
+const nhapHang=()=>sumA(S.buys.filter(b=>inP(dayOff(b.t))).map(b=>b.money));
+const staffCost=()=>sumA(S.staff.map(s=>s.rate*(S.sdays[S.per][s.id]||0)));
+const hhmm=i=>pad(i.hour)+':'+pad(i.min);
+/* đối soát: dữ liệu mẫu cho các ngày đã chốt */
+(function(){for(let d=1;d<=6;d++){const st=dayStat(d),bad=d===2;S.rec[d]={act:{cash:String(st.cash-(bad?150000:0)),bank:String(st.bank),wallet:String(st.wallet)},out:'0',note:bad?'Thu ngân thối nhầm tiền khách':'',done:{t:dayAt(d,23),by:'mozart227',diff:bad?-150000:0}}}})();
+function dayStat(d){const o={net:0,cash:0,bank:0,wallet:0,n:0};INV.forEach(i=>{if(i.day===d){o.net+=i.amount;o[i.method]+=i.amount;o.n++}});return o}
+
+function vReport(){
+ const inv=INV.filter(i=>inP(i.day)),net=sumA(inv.map(i=>i.amount)),n=inv.length,nh=nhapHang(),gp=net-nh;
+ const cn=CANC.filter(c=>inP(c.day)),co=cn.filter(c=>c.whole).length,ci=sumA(cn.map(c=>c.qty)),days=PERS[S.per];
+ const TB=[['over','Tổng quan & Món bán chạy'],['inv','Lịch sử hóa đơn ('+n+')'],['cancel','Món đã hủy ('+ci+')'],['rec','Đối soát thu tiền',1],['pl','Lãi lỗ',1]];
+ const body={over:()=>vOver(inv,net),inv:()=>vInv(inv),cancel:()=>vCancel(cn),rec:vRec,pl:vPL}[S.rtab]();
+ return `
+ <div class="rcard"><h2>Báo cáo Kinh doanh</h2><p class="rsub">Theo dõi doanh thu, lợi nhuận, món bán chạy và kiểm soát hủy món</p>
+  <div class="rpills">${Object.entries(PNAME).map(([k,v])=>`<button class="rp ${S.per===k?'on':''}" onclick="S.per='${k}';render()">${v}</button>`).join('')}</div>
+  <div class="rdate">${ic('cal',18)} ${fmtD(Math.max(...days))} ${ic('chevd',16)} ${ic('arrowr',16)} ${fmtD(Math.min(...days))} ${ic('chevd',16)}</div></div>
+ <div class="rkpis">
+  <div class="rk"><div class="l">Doanh thu thuần <span style="color:var(--blue)">${ic('dollar',20)}</span></div><div class="v" style="color:var(--blue)">${money(net)}</div><div class="s">Giảm giá: 0đ</div></div>
+  <div class="rk"><div class="l">Lãi gộp ước tính <span style="color:var(--green)">${ic('trend',20)}</span></div><div class="v" style="color:${gp<0?'var(--red)':'var(--green)'}">${money(gp)}</div><div class="s">Nhập hàng: ${money(nh)}</div></div>
+  <div class="rk"><div class="l">Hóa đơn hoàn tất <span style="color:#7c3aed">${ic('receipt',20)}</span></div><div class="v">${n} đơn</div><div class="s">TB/đơn: ${money(n?net/n:0)}</div></div>
+  <div class="rk"><div class="l">Đơn hủy / Món hủy <span style="color:var(--red)">${ic('alertc',20)}</span></div><div class="v" style="color:var(--red)">${co} / ${ci}</div><div class="s">Kiểm soát thất thoát bếp</div></div>
+ </div>
+ <div class="rtabs">${TB.map(([k,l,nw])=>`<button class="rt ${S.rtab===k?'on':''}" onclick="S.rtab='${k}';render()">${nw?'<span class="nw">MỚI</span>':''}${l}</button>`).join('')}</div>
+ ${body}`}
+
+function vOver(inv,net){
+ const pm={cash:0,bank:0,wallet:0};inv.forEach(i=>pm[i.method]+=i.amount);
+ const hr=Array(16).fill(0);inv.forEach(i=>{if(i.hour>=6&&i.hour<=21)hr[i.hour-6]+=i.amount});const mx=Math.max(...hr,1);
+ const agg={};inv.forEach(i=>i.lines.forEach(l=>{const a=agg[l.name]||(agg[l.name]={q:0,m:0});a.q+=l.qty;a.m+=l.qty*l.price}));
+ const top=Object.entries(agg).sort((a,b)=>b[1].m-a[1].m).slice(0,6),tm=top[0]?top[0][1].m:1;
+ return `<div class="rcard"><h3>Theo phương thức thanh toán</h3>
+  ${net?Object.entries(pm).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="mrow"><div class="top"><span>${METHODS[k]}</span><span>${money(v)} · ${Math.round(v/net*100)}%</span></div><div class="bar"><i style="width:${v/net*100}%"></i></div></div>`).join(''):'<p class="rmuted" style="margin-top:8px">Chưa có giao dịch nào.</p>'}
+  <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:14px"><h3 style="display:flex;gap:8px;align-items:center;font-size:16px"><span style="color:var(--blue)">${ic('chart',18)}</span> Doanh thu theo khung giờ</h3>
+   <div class="hrs">${hr.map(v=>`<i style="height:${v?Math.max(4,v/mx*100):3}%;${v?'':'opacity:.4'}" title="${money(v)}"></i>`).join('')}</div>
+   <div class="hlab">${hr.map((_,k)=>`<span>${k%3===0?(6+k)+'h':''}</span>`).join('')}</div></div></div>
+  <div class="rcard"><h3>Top món bán chạy</h3>
+   ${top.length?top.map(([nm,a],k)=>`<div class="rank"><span class="no">${k+1}</span><div class="tx"><b>${esc(nm)}</b><span>${a.q} phần · ${money(a.m)}</span><div class="bar" style="margin-top:6px"><i style="width:${a.m/tm*100}%"></i></div></div></div>`).join(''):'<p class="rmuted" style="margin-top:8px">Chưa có dữ liệu món bán ra.</p>'}</div>`}
+
+function vInv(inv){
+ const rows=[...inv].sort((a,b)=>a.day-b.day||(b.hour*60+b.min)-(a.hour*60+a.min)).slice(0,40);
+ return rows.length?`<div class="list">${rows.map(i=>`<button class="row" onclick="openInv('${i.code}')"><div class="tx"><b>${i.code}</b><span>${dayLabelOff(i.day)} · ${hhmm(i)} · ${esc(i.table)}</span></div><div style="text-align:right"><b>${money(i.amount)}</b><br><span class="chip gray">${METHODS[i.method]}</span></div></button>`).join('')}</div>${inv.length>40?`<p class="hint">Đang hiện 40 hóa đơn gần nhất trong ${inv.length} hóa đơn.</p>`:''}`:'<div class="rcard rmuted">Chưa có hóa đơn nào.</div>'}
+function openInv(code){const i=INV.find(x=>x.code===code);
+ sheet(`<h3>${i.code}</h3><p class="sub">${dayLabelOff(i.day)} · ${hhmm(i)} · ${esc(i.table)}</p>
+ <div class="list" style="margin-top:12px">${i.lines.map(l=>`<div class="row" style="min-height:0;padding:10px 14px"><div class="tx"><b style="font-size:15px">${esc(l.name)}</b><span>${l.qty} × ${money(l.price)}</span></div><b>${money(l.qty*l.price)}</b></div>`).join('')}</div>
+ <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px"><span class="chip gray">${METHODS[i.method]}</span><b style="font-size:20px">${money(i.amount)}</b></div>
+ <div class="acts"><button class="btn btn-ghost" onclick="closeSheet()">Đóng</button></div>`)}
+
+function vCancel(cn){return cn.length?`<div class="list">${cn.sort((a,b)=>a.day-b.day).map(c=>`<div class="row"><span class="ico t-red">${ic('alertc',18)}</span><div class="tx"><b>${esc(c.item)} × ${c.qty}${c.whole?' · hủy cả đơn':''}</b><span>${dayLabelOff(c.day)} · ${pad(c.hour)}:00 · ${esc(c.reason)} · ${esc(c.by)}</span></div></div>`).join('')}</div>`:'<div class="rcard rmuted">Chưa có món nào bị hủy trong thời gian này.</div>'}
+
+/* ----- ĐỐI SOÁT: doanh thu phần mềm so với tiền thực nhận ----- */
+const hasV=v=>v!==''&&v!=null&&!isNaN(+v);
+function recOf(d){return S.rec[d]||(S.rec[d]={act:{cash:'',bank:'',wallet:''},out:'',note:'',done:null})}
+function recCalc(d){const st=dayStat(d),r=recOf(d),out=hasV(r.out)?+r.out:0,exp={cash:st.cash-out,bank:st.bank,wallet:st.wallet},res={};let diff=0,complete=true,act=0,need=0;
+ for(const m of ['cash','bank','wallet']){const v=r.act[m],h=hasV(v);if(!h&&exp[m]>0)complete=false;res[m]={exp:exp[m],act:h?+v:null,diff:h?+v-exp[m]:null};need+=exp[m];if(h){diff+=+v-exp[m];act+=+v}}
+ return{st,r,out,res,diff,complete,act,need}}
+function dChip(df){if(df==null)return '<span class="chip gray">Chưa nhập</span>';if(Math.abs(df)<1)return '<span class="chip ok">Khớp</span>';return df<0?`<span class="chip out">Thiếu ${money(-df)}</span>`:`<span class="chip low">Thừa ${money(df)}</span>`}
+function vRec(){
+ const d=S.recDay,c=recCalc(d),r=c.r,done=r.done,dis=done?'disabled':'';
+ const dd=[0,1,2,3,4,5,6],closed=dd.filter(k=>S.rec[k]&&S.rec[k].done),bad=closed.filter(k=>Math.abs(S.rec[k].done.diff)>=1);
+ const M=[['cash','Tiền mặt','Đếm tiền thực tế trong két'],['bank','Chuyển khoản','Xem sao kê tài khoản ngân hàng'],['wallet','Ví điện tử (Momo, ZaloPay…)','Xem số dư / lịch sử ví']];
+ return `<div class="hint"><b>Đối soát</b> = so doanh thu trên phần mềm với tiền thực tế nhận được (tiền mặt trong két, tiền về tài khoản, tiền về ví). Làm theo từng ngày, khớp thì bấm <b>Chốt</b>.</div>
+ <div class="dchips">${dd.map(k=>{const q=S.rec[k]&&S.rec[k].done;return `<button class="dchip ${d===k?'on':''}" onclick="S.recDay=${k};render()"><i class="dot ${q?(Math.abs(q.diff)<1?'ok':'bad'):''}"></i>${dayLabelOff(k)}</button>`}).join('')}</div>
+ <p class="rmuted" style="font-size:13.5px">7 ngày qua: đã chốt ${closed.length}/7 ngày${bad.length?` · <b style="color:var(--red)">${bad.length} ngày lệch</b>`:''}</p>
+ <div class="rcard"><h3>Đối soát ${dayLabelOff(d)} · ${fmtD(d)}</h3><p class="rsub">Phần mềm ghi nhận <b>${money(c.st.net)}</b> từ ${c.st.n} hóa đơn</p>
+  ${done?`<div class="demo" style="margin-top:12px;background:${Math.abs(done.diff)<1?'var(--green-soft)':'var(--red-soft)'};color:${Math.abs(done.diff)<1?'var(--green)':'var(--red)'};border-color:transparent">Đã chốt lúc ${pad(new Date(done.t).getHours())}:${pad(new Date(done.t).getMinutes())} bởi ${esc(done.by)} · ${Math.abs(done.diff)<1?'khớp 100%':(done.diff<0?'thiếu ':'thừa ')+money(Math.abs(done.diff))}</div>`:''}
+  ${M.map(([m,nm,hint])=>`<div class="rrow"><b>${nm}</b><small>${hint}</small><small>Phần mềm ghi: ${money(c.st[m])}${m==='cash'?` · <span id="rx-cash">cần có: ${money(c.res.cash.exp)}</span>`:''}</small>
+   <div class="inl"><input id="ra-${m}" class="in" type="number" inputmode="numeric" min="0" step="1000" placeholder="Số thực nhận" value="${r.act[m]}" ${dis} oninput="recIn(${d},'${m}',this.value)" aria-label="Thực nhận ${nm}"><span id="rd-${m}">${dChip(c.res[m].diff)}</span></div></div>`).join('')}
+  <div class="rrow"><b>Đã chi từ két trong ngày</b><small>Mua hàng lặt vặt, ứng lương… lấy từ tiền mặt. Số này được trừ khỏi tiền mặt cần có.</small>
+   <div class="inl"><input id="ro" class="in" type="number" inputmode="numeric" min="0" step="1000" placeholder="0" value="${r.out}" ${dis} oninput="recOut(${d},this.value)" aria-label="Đã chi từ két"></div></div>
+  <div class="rrow"><b>Ghi chú</b><div class="inl"><input class="in" placeholder="VD: thối nhầm tiền khách" value="${esc(r.note)}" ${dis} oninput="recOf(${d}).note=this.value" aria-label="Ghi chú đối soát"></div></div>
+  <div style="background:#f8fafc;border-radius:14px;padding:12px 14px;margin-top:6px">
+   <div class="pl" style="padding:6px 0;border:0"><span>Tiền cần có</span><b id="rt-need">${money(c.need)}</b></div>
+   <div class="pl" style="padding:6px 0;border:0"><span>Thực nhận</span><b id="rt-act">${money(c.act)}</b></div>
+   <div class="pl" style="padding:6px 0;border:0"><span>Chênh lệch</span><span id="rt-diff">${c.complete?dChip(c.diff):'<span class="chip gray">Chưa nhập đủ</span>'}</span></div></div>
+  <div class="acts" style="margin-top:14px;display:grid;gap:10px">${done?`<button class="btn btn-ghost" onclick="recOpen(${d})">Mở lại để sửa</button>`:`<button class="btn btn-blue" onclick="recClose(${d})">${ic('check',18)} Chốt đối soát</button>`}</div></div>`}
+function recIn(d,m,v){recOf(d).act[m]=v;recUpd(d)}
+function recOut(d,v){recOf(d).out=v;recUpd(d)}
+function recUpd(d){const c=recCalc(d);for(const m of ['cash','bank','wallet']){const e=$('#rd-'+m);if(e)e.innerHTML=dChip(c.res[m].diff)}
+ const x=$('#rx-cash');if(x)x.textContent='cần có: '+money(c.res.cash.exp);
+ $('#rt-need').textContent=money(c.need);$('#rt-act').textContent=money(c.act);$('#rt-diff').innerHTML=c.complete?dChip(c.diff):'<span class="chip gray">Chưa nhập đủ</span>'}
+function recClose(d){const c=recCalc(d);if(!c.complete){toast('Nhập đủ số thực nhận cho từng mục có doanh thu','err');return}
+ c.r.done={t:Date.now(),by:'mozart227',diff:c.diff};render();toast(Math.abs(c.diff)<1?'Đã chốt: khớp 100%':`Đã chốt: ${c.diff<0?'thiếu':'thừa'} ${money(Math.abs(c.diff))}`)}
+function recOpen(d){recOf(d).done=null;render()}
+
+/* ----- LÃI LỖ: doanh thu − nhập hàng − nhân viên ----- */
+function vPL(){
+ const net=sumA(INV.filter(i=>inP(i.day)).map(i=>i.amount)),nh=nhapHang(),sc=staffCost(),ot=S.other[S.per]||0,gp=net-nh,rem=gp-sc-ot;
+ const debt=sumA(S.buys.filter(b=>inP(dayOff(b.t))&&!b.paid).map(b=>b.money)),pc=v=>net?Math.round(v/net*100):0;
+ const seg=[[nh,'#ff7a2f','Nhập hàng'],[sc,'#0a84ff','Nhân viên'],[ot,'#94a3b8','Chi phí khác'],[Math.max(rem,0),'#059669','Còn lại']],tot=Math.max(net,nh+sc+ot,1);
+ const sd=S.sdays[S.per];
+ return `<div class="rcard"><h3>Kết quả kinh doanh · ${PNAME[S.per]}</h3><p class="rsub">Doanh thu trừ nhập hàng và nhân viên, còn lại là tiền lời</p>
+  <div class="stack">${seg.map(([v,c])=>`<i style="width:${v/tot*100}%;background:${c}"></i>`).join('')}</div>
+  <div class="legend">${seg.map(([v,c,l])=>`<span><em style="background:${c}"></em>${l} ${pc(v)}%</span>`).join('')}</div>
+  <div class="pl" style="margin-top:8px"><span>Doanh thu thuần</span><b style="color:var(--blue)">${money(net)}</b></div>
+  <div class="pl"><span>− Nhập hàng<small>Tự lấy từ mục Kho${debt?` · trong đó ghi nợ NCC ${money(debt)}`:''}</small></span><span style="text-align:right"><b>${money(nh)}</b><br><button class="link" style="padding:0;font-size:13px" onclick="setMod('kho');setTab('more','hist')">Xem trong Kho →</button></span></div>
+  <div class="pl tot"><span>= Lãi gộp</span><span style="color:${gp<0?'var(--red)':'var(--green)'}">${money(gp)}</span></div>
+  <div class="pl"><span>− Nhân viên<small>${S.staff.length} người · ngày công ở bên dưới</small></span><b>${money(sc)}</b></div>
+  <div class="pl"><span>− Chi phí khác<small>Điện, nước, mặt bằng… bạn tự nhập</small></span><input class="in" style="width:130px;min-height:42px;text-align:right" type="number" inputmode="numeric" min="0" step="1000" value="${ot}" onchange="S.other[S.per]=Math.max(0,+this.value||0);render()" aria-label="Chi phí khác"></div>
+  <div class="pl tot" style="border-bottom:0"><span>= Còn lại (tiền lời)<small>${pc(rem)}% doanh thu</small></span><span style="color:${rem<0?'var(--red)':'var(--green)'}">${money(rem)}</span></div></div>
+ <div class="rcard"><h3>Nhân viên & ngày công</h3><p class="rsub">Nhập số ngày đi làm trong ${PNAME[S.per].toLowerCase()} (nửa ngày ghi 0,5)</p>
+  <div style="margin-top:8px">${S.staff.map(s=>`<div class="sday"><div><b style="font-size:15px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)} · ${money(s.rate)}/ngày</small></div><input class="in" type="number" inputmode="decimal" min="0" step="0.5" value="${sd[s.id]||0}" onchange="setDays(${s.id},this.value)" aria-label="Ngày công ${esc(s.name)}"><b style="text-align:right;font-size:14px">${money(s.rate*(sd[s.id]||0))}</b></div>`).join('')}
+  <div class="sday" style="border-bottom:0"><b>Tổng</b><span></span><b style="text-align:right;font-size:15px">${money(sc)}</b></div></div></div>
+ <p class="hint">Nhập hàng lấy tự động từ mục Kho (phần Ghi hàng về). Ngày công và chi phí khác bạn nhập tay. Đây là bản demo, số chỉ để minh họa.</p>`}
+function setDays(id,v){S.sdays[S.per][id]=Math.max(0,+v||0);render()}
 
 buildPos();render(false);
 </script>
