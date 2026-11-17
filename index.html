@@ -92,6 +92,13 @@ input,select{font:inherit;font-size:16px;color:inherit}
 .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2)}
 .legend span{display:flex;gap:5px;align-items:center}
 .legend em{width:10px;height:10px;border-radius:3px;display:inline-block}
+.fold-h{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left}
+.fold-h h3{font-size:17px}
+.fsum{display:flex;align-items:center;gap:8px;flex:none}
+.chv{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:#eef2f7;color:var(--ink2);transition:transform .2s}
+.chv.open{transform:rotate(180deg)}
+.fold-b{margin-top:12px}
+.srow .fold-h{padding:2px 0}
 .srow{padding:12px 0;border-bottom:1px solid #eef2f6}
 .srow .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .srow .fl{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
@@ -340,7 +347,7 @@ const S={
  buys:[],
  buyD:null,tmp:null,
  /* báo cáo */
- mod:'kho',rtab:'over',per:'today',recDay:0,rec:{},
+ mod:'kho',rtab:'over',per:'today',recDay:0,rec:{},fold:{},
  exps:[{id:1,name:'Điện nước',type:'month',rate:3000000},{id:2,name:'Mặt bằng',type:'month',rate:6000000}],
  staff:[
   {id:1,name:'Anh Nam',role:'Bếp trưởng',type:'hour',rate:45000},
@@ -657,18 +664,22 @@ function vReport(){
  <div class="rtabs">${TB.map(([k,l,nw])=>`<button class="rt ${S.rtab===k?'on':''}" onclick="S.rtab='${k}';render()">${nw?'<span class="nw">MỚI</span>':''}${l}</button>`).join('')}</div>
  ${body}`}
 
+/* ----- khối bung / gọn dùng chung trong Báo cáo ----- */
+const isOpen=(k,def)=>S.fold[k]===undefined?def:S.fold[k];
+function tgl(k,def){S.fold[k]=!isOpen(k,def);render()}
+function fold(k,def,title,sum,body,sub){const o=isOpen(k,def);
+ return `<div class="rcard fold"><button class="fold-h" onclick="tgl('${k}',${def})" aria-expanded="${o}"><div><h3>${title}</h3>${sub?`<p class="rsub" style="margin-top:2px;font-size:13px">${sub}</p>`:''}</div><span class="fsum">${sum?`<b>${sum}</b>`:''}<i class="chv ${o?'open':''}">${ic('chevd',20)}</i></span></button>${o?`<div class="fold-b">${body}</div>`:''}</div>`}
+function foldStaff(v){S.staff.forEach(s=>S.fold['s'+s.id]=v);render()}
+
 function vOver(inv,net){
  const pm={cash:0,bank:0,wallet:0};inv.forEach(i=>pm[i.method]+=i.amount);
  const hr=Array(16).fill(0);inv.forEach(i=>{if(i.hour>=6&&i.hour<=21)hr[i.hour-6]+=i.amount});const mx=Math.max(...hr,1);
  const agg={};inv.forEach(i=>i.lines.forEach(l=>{const a=agg[l.name]||(agg[l.name]={q:0,m:0});a.q+=l.qty;a.m+=l.qty*l.price}));
  const top=Object.entries(agg).sort((a,b)=>b[1].m-a[1].m).slice(0,6),tm=top[0]?top[0][1].m:1;
- return `<div class="rcard"><h3>Theo phương thức thanh toán</h3>
-  ${net?Object.entries(pm).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="mrow"><div class="top"><span>${METHODS[k]}</span><span>${money(v)} · ${Math.round(v/net*100)}%</span></div><div class="bar"><i style="width:${v/net*100}%"></i></div></div>`).join(''):'<p class="rmuted" style="margin-top:8px">Chưa có giao dịch nào.</p>'}
-  <div style="border-top:1px solid var(--line);margin-top:14px;padding-top:14px"><h3 style="display:flex;gap:8px;align-items:center;font-size:16px"><span style="color:var(--blue)">${ic('chart',18)}</span> Doanh thu theo khung giờ</h3>
-   <div class="hrs">${hr.map(v=>`<i style="height:${v?Math.max(4,v/mx*100):3}%;${v?'':'opacity:.4'}" title="${money(v)}"></i>`).join('')}</div>
-   <div class="hlab">${hr.map((_,k)=>`<span>${k%3===0?(6+k)+'h':''}</span>`).join('')}</div></div></div>
-  <div class="rcard"><h3>Top món bán chạy</h3>
-   ${top.length?top.map(([nm,a],k)=>`<div class="rank"><span class="no">${k+1}</span><div class="tx"><b>${esc(nm)}</b><span>${a.q} phần · ${money(a.m)}</span><div class="bar" style="margin-top:6px"><i style="width:${a.m/tm*100}%"></i></div></div></div>`).join(''):'<p class="rmuted" style="margin-top:8px">Chưa có dữ liệu món bán ra.</p>'}</div>`}
+ const pay=net?Object.entries(pm).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="mrow"><div class="top"><span>${METHODS[k]}</span><span>${money(v)} · ${Math.round(v/net*100)}%</span></div><div class="bar"><i style="width:${v/net*100}%"></i></div></div>`).join(''):'<p class="rmuted">Chưa có giao dịch nào.</p>';
+ const hrs=`<div class="hrs">${hr.map(v=>`<i style="height:${v?Math.max(4,v/mx*100):3}%;${v?'':'opacity:.4'}" title="${money(v)}"></i>`).join('')}</div><div class="hlab">${hr.map((_,k)=>`<span>${k%3===0?(6+k)+'h':''}</span>`).join('')}</div>`;
+ const tp=top.length?top.map(([nm,a],k)=>`<div class="rank"><span class="no">${k+1}</span><div class="tx"><b>${esc(nm)}</b><span>${a.q} phần · ${money(a.m)}</span><div class="bar" style="margin-top:6px"><i style="width:${a.m/tm*100}%"></i></div></div></div>`).join(''):'<p class="rmuted">Chưa có dữ liệu món bán ra.</p>';
+ return fold('pay',true,'Theo phương thức thanh toán','',pay)+fold('hrs',false,'Doanh thu theo khung giờ','',hrs)+fold('top',true,'Top món bán chạy','',tp)}
 
 function vInv(inv){
  const rows=[...inv].sort((a,b)=>a.day-b.day||(b.hour*60+b.min)-(a.hour*60+a.min)).slice(0,40);
@@ -730,28 +741,29 @@ function vPL(){
  const debt=sumA(S.buys.filter(b=>inP(dayOff(b.t))&&!b.paid).map(b=>b.money)),pc=v=>net?Math.round(v/net*100):0;
  const seg=[[nh,'#ff7a2f','Nhập hàng'],[sc,'#0a84ff','Nhân viên'],[ot,'#94a3b8','Chi phí khác'],[Math.max(rem,0),'#059669','Còn lại']],tot=Math.max(net,nh+sc+ot,1);
  const per=PNAME[S.per].toLowerCase();
+ const person=s=>{const q=S.sdays[S.per][s.id]||0,L=PAYL[s.type],o=isOpen('s'+s.id,false);
+  return `<div class="srow"><button class="fold-h" onclick="tgl('s${s.id}',false)" aria-expanded="${o}"><div><b style="font-size:15.5px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)} · ${PAYT[s.type].toLowerCase()}</small></div><span class="fsum"><b style="font-size:15px">${money(staffPay(s))}</b><i class="chv ${o?'open':''}">${ic('chevd',18)}</i></span></button>
+  ${o?`<div class="two" style="gap:8px;margin-top:10px"><div><span class="fl">${L[0]}</span><input class="in" style="min-height:44px" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}" onchange="setRate(${s.id},this.value)" aria-label="${L[0]} ${esc(s.name)}"></div>
+  <div><span class="fl">${L[1]}</span>${s.type==='month'?`<input class="in" style="min-height:44px" value="${PDAYS()} (tự tính)" disabled aria-label="Số ngày tự tính">`:`<input class="in" style="min-height:44px" type="number" inputmode="decimal" min="0" step="0.5" value="${q}" onchange="setHours(${s.id},this.value)" aria-label="${L[1]} ${esc(s.name)}">`}</div></div>
+  <button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="openStaff(${s.id})">${ic('edit',14)} Sửa lương / thông tin</button>`:''}</div>`};
+ const staffBody=`<p class="rsub" style="margin:0 0 6px;font-size:13.5px">Mỗi người tự chọn cách tính lương: theo giờ, theo ngày hoặc theo tháng. Bấm vào tên để nhập số giờ / ngày làm trong ${per}.</p>
+  <div style="display:flex;gap:16px;margin:4px 0"><button class="link" onclick="foldStaff(true)">Mở hết</button><button class="link" onclick="foldStaff(false)">Gọn hết</button></div>
+  ${S.staff.map(person).join('')}
+  <div style="margin-top:12px"><button class="btn btn-ghost" onclick="openStaff(null)">${ic('plus',18)} Thêm nhân viên</button></div>`;
+ const expBody=`<p class="rsub" style="margin:0 0 4px;font-size:13.5px">Điện, nước, mặt bằng, internet… Thêm bao nhiêu khoản cũng được, mỗi khoản tính theo tháng hoặc theo ngày.</p>
+  ${S.exps.length?S.exps.map(e=>`<div class="pl"><span><b>${esc(e.name)}</b><small>${money(e.rate)} ${EXPT[e.type]} · ${per} ≈ ${money(expPay(e))}</small></span><button class="btn btn-ghost btn-sm" onclick="openExp(${e.id})">${ic('edit',14)} Sửa</button></div>`).join(''):'<p class="rmuted" style="margin-top:10px">Chưa có khoản nào.</p>'}
+  <div style="margin-top:12px"><button class="btn btn-ghost" onclick="openExp(null)">${ic('plus',18)} Thêm khoản chi</button></div>`;
  return `<div class="rcard"><h3>Kết quả kinh doanh · ${PNAME[S.per]}</h3><p class="rsub">Doanh thu trừ nhập hàng, nhân viên và chi phí khác, còn lại là tiền lời</p>
   <div class="stack">${seg.map(([v,c])=>`<i style="width:${v/tot*100}%;background:${c}"></i>`).join('')}</div>
   <div class="legend">${seg.map(([v,c,l])=>`<span><em style="background:${c}"></em>${l} ${pc(v)}%</span>`).join('')}</div>
   <div class="pl" style="margin-top:8px"><span>Doanh thu thuần</span><b style="color:var(--blue)">${money(net)}</b></div>
   <div class="pl"><span>− Nhập hàng<small>Tự lấy từ mục Kho${debt?` · trong đó ghi nợ NCC ${money(debt)}`:''}</small></span><span style="text-align:right"><b>${money(nh)}</b><br><button class="link" style="padding:0;font-size:13px" onclick="setMod('kho');setTab('more','hist')">Xem trong Kho →</button></span></div>
   <div class="pl tot"><span>= Lãi gộp</span><span style="color:${gp<0?'var(--red)':'var(--green)'}">${money(gp)}</span></div>
-  <div class="pl"><span>− Nhân viên<small>${S.staff.length} người · chỉnh ở phần bên dưới</small></span><b>${money(sc)}</b></div>
-  <div class="pl"><span>− Chi phí khác<small>${S.exps.length} khoản · chỉnh ở phần bên dưới</small></span><b>${money(ot)}</b></div>
+  <div class="pl"><span>− Nhân viên<small>${S.staff.length} người · bấm phần bên dưới để chỉnh</small></span><b>${money(sc)}</b></div>
+  <div class="pl"><span>− Chi phí khác<small>${S.exps.length} khoản · bấm phần bên dưới để chỉnh</small></span><b>${money(ot)}</b></div>
   <div class="pl tot" style="border-bottom:0"><span>= Còn lại (tiền lời)<small>${pc(rem)}% doanh thu</small></span><span style="color:${rem<0?'var(--red)':'var(--green)'}">${money(rem)}</span></div></div>
-
- <div class="rcard"><h3>Nhân viên & lương</h3><p class="rsub">Mỗi người tự chọn cách tính lương: <b>theo giờ, theo ngày hoặc theo tháng</b>. Nhập số giờ / ngày làm trong ${per}.</p>
-  <div style="margin-top:6px">${S.staff.map(s=>{const q=S.sdays[S.per][s.id]||0,L=PAYL[s.type];
-   return `<div class="srow"><div class="top"><div><b style="font-size:15.5px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)} · ${PAYT[s.type].toLowerCase()}</small></div><b style="font-size:15px">${money(staffPay(s))}</b></div>
-   <div class="two" style="gap:8px;margin-top:8px"><div><span class="fl">${L[0]}</span><input class="in" style="min-height:44px" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}" onchange="setRate(${s.id},this.value)" aria-label="${L[0]} ${esc(s.name)}"></div>
-   <div><span class="fl">${L[1]}</span>${s.type==='month'?`<input class="in" style="min-height:44px" value="${PDAYS()} (tự tính)" disabled aria-label="Số ngày tự tính">`:`<input class="in" style="min-height:44px" type="number" inputmode="decimal" min="0" step="0.5" value="${q}" onchange="setHours(${s.id},this.value)" aria-label="${L[1]} ${esc(s.name)}">`}</div></div>
-   <button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="openStaff(${s.id})">${ic('edit',14)} Sửa lương / thông tin</button></div>`}).join('')}
-  <div class="pl tot" style="border-bottom:0"><span>Tổng lương ${per}<small>${S.staff.length} người</small></span><span>${money(sc)}</span></div>
-  <button class="btn btn-ghost" onclick="openStaff(null)">${ic('plus',18)} Thêm nhân viên</button></div></div>
-
- <div class="rcard"><h3>Chi phí khác</h3><p class="rsub">Điện, nước, mặt bằng, internet… Thêm bao nhiêu khoản cũng được, mỗi khoản tính theo tháng hoặc theo ngày.</p>
-  <div style="margin-top:4px">${S.exps.length?S.exps.map(e=>`<div class="pl"><span><b>${esc(e.name)}</b><small>${money(e.rate)} ${EXPT[e.type]} · ${per} ≈ ${money(expPay(e))}</small></span><button class="btn btn-ghost btn-sm" onclick="openExp(${e.id})">${ic('edit',14)} Sửa</button></div>`).join(''):'<p class="rmuted" style="margin-top:10px">Chưa có khoản nào.</p>'}</div>
-  <div style="margin-top:12px"><button class="btn btn-ghost" onclick="openExp(null)">${ic('plus',18)} Thêm khoản chi</button></div></div>
+ ${fold('staff',false,'Nhân viên & lương',money(sc),staffBody,S.staff.length+' người · bấm để bung ra')}
+ ${fold('exp',false,'Chi phí khác',money(ot),expBody,S.exps.length+' khoản · bấm để bung ra')}
  <p class="hint">Nhập hàng lấy tự động từ mục Kho (phần Ghi hàng về). Lương, chi phí khác bạn tự đặt và sửa bất cứ lúc nào. Đây là bản demo, số chỉ để minh họa.</p>`}
 function setHours(id,v){S.sdays[S.per][id]=Math.max(0,+v||0);render()}
 function setRate(id,v){S.staff.find(s=>s.id===id).rate=Math.max(0,+v||0);render()}
