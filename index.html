@@ -92,6 +92,9 @@ input,select{font:inherit;font-size:16px;color:inherit}
 .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2)}
 .legend span{display:flex;gap:5px;align-items:center}
 .legend em{width:10px;height:10px;border-radius:3px;display:inline-block}
+.srow{padding:12px 0;border-bottom:1px solid #eef2f6}
+.srow .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.srow .fl{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
 .sday{display:grid;grid-template-columns:1fr 78px 86px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #eef2f6}
 .sday:last-child{border-bottom:0}
 .sday .in{min-height:42px;text-align:center;padding:0 6px}
@@ -340,14 +343,15 @@ const S={
  mod:'kho',rtab:'over',per:'today',recDay:0,rec:{},
  other:{today:300000,yday:300000,w7:2100000},
  staff:[
-  {id:1,name:'Anh Nam',role:'Bếp trưởng',rate:450000},
-  {id:2,name:'Chị Mai',role:'Phụ bếp',rate:300000},
-  {id:3,name:'Em Tuấn',role:'Phụ bếp',rate:300000},
-  {id:4,name:'Em Lan',role:'Phục vụ',rate:250000},
-  {id:5,name:'Em Hà',role:'Phục vụ',rate:250000},
-  {id:6,name:'Chị Thu',role:'Thu ngân',rate:280000}
+  {id:1,name:'Anh Nam',role:'Bếp trưởng',rate:45000},
+  {id:2,name:'Chị Mai',role:'Phụ bếp',rate:30000},
+  {id:3,name:'Em Tuấn',role:'Phụ bếp',rate:30000},
+  {id:4,name:'Em Lan',role:'Phục vụ',rate:25000},
+  {id:5,name:'Em Hà',role:'Phục vụ',rate:25000},
+  {id:6,name:'Chị Thu',role:'Thu ngân',rate:28000}
  ],
- sdays:{today:{1:1,2:1,3:1,4:1,5:1,6:1},yday:{1:1,2:1,3:1,4:1,5:0.5,6:1},w7:{1:7,2:6,3:6.5,4:7,5:6,6:7}}
+ /* số giờ làm của từng người theo kỳ báo cáo */
+ sdays:{today:{1:10,2:9,3:9,4:8,5:8,6:8},yday:{1:10,2:9,3:9,4:8,5:4,6:8},w7:{1:62,2:54,3:56,4:50,5:48,6:52}}
 };
 /* ngày trong demo tính theo giờ máy: 0 = hôm nay, 1 = hôm qua… */
 const dayStart=d=>{const x=new Date();x.setHours(0,0,0,0);return x.getTime()-d*864e5};
@@ -628,7 +632,7 @@ const sumA=a=>a.reduce((x,y)=>x+y,0);
 const fmtD=d=>{const x=new Date(dayStart(d));return pad(x.getMonth()+1)+'/'+pad(x.getDate())+'/'+x.getFullYear()};
 const dayLabelOff=d=>d===0?'Hôm nay':d===1?'Hôm qua':(x=>pad(x.getDate())+'/'+pad(x.getMonth()+1))(new Date(dayStart(d)));
 const nhapHang=()=>sumA(S.buys.filter(b=>inP(dayOff(b.t))).map(b=>b.money));
-const staffCost=()=>sumA(S.staff.map(s=>s.rate*(S.sdays[S.per][s.id]||0)));
+const staffCost=()=>sumA(S.staff.map(s=>s.rate*(S.sdays[S.per][s.id]||0))); /* lương giờ × số giờ làm */
 const hhmm=i=>pad(i.hour)+':'+pad(i.min);
 /* đối soát: dữ liệu mẫu cho các ngày đã chốt */
 (function(){for(let d=1;d<=6;d++){const st=dayStat(d),bad=d===2;S.rec[d]={act:{cash:String(st.cash-(bad?150000:0)),bank:String(st.bank),wallet:String(st.wallet)},out:'0',note:bad?'Thu ngân thối nhầm tiền khách':'',done:{t:dayAt(d,23),by:'mozart227',diff:bad?-150000:0}}}})();
@@ -723,14 +727,31 @@ function vPL(){
   <div class="pl" style="margin-top:8px"><span>Doanh thu thuần</span><b style="color:var(--blue)">${money(net)}</b></div>
   <div class="pl"><span>− Nhập hàng<small>Tự lấy từ mục Kho${debt?` · trong đó ghi nợ NCC ${money(debt)}`:''}</small></span><span style="text-align:right"><b>${money(nh)}</b><br><button class="link" style="padding:0;font-size:13px" onclick="setMod('kho');setTab('more','hist')">Xem trong Kho →</button></span></div>
   <div class="pl tot"><span>= Lãi gộp</span><span style="color:${gp<0?'var(--red)':'var(--green)'}">${money(gp)}</span></div>
-  <div class="pl"><span>− Nhân viên<small>${S.staff.length} người · ngày công ở bên dưới</small></span><b>${money(sc)}</b></div>
+  <div class="pl"><span>− Nhân viên<small>${S.staff.length} người · lương giờ × giờ làm, nhập bên dưới</small></span><b>${money(sc)}</b></div>
   <div class="pl"><span>− Chi phí khác<small>Điện, nước, mặt bằng… bạn tự nhập</small></span><input class="in" style="width:130px;min-height:42px;text-align:right" type="number" inputmode="numeric" min="0" step="1000" value="${ot}" onchange="S.other[S.per]=Math.max(0,+this.value||0);render()" aria-label="Chi phí khác"></div>
   <div class="pl tot" style="border-bottom:0"><span>= Còn lại (tiền lời)<small>${pc(rem)}% doanh thu</small></span><span style="color:${rem<0?'var(--red)':'var(--green)'}">${money(rem)}</span></div></div>
- <div class="rcard"><h3>Nhân viên & ngày công</h3><p class="rsub">Nhập số ngày đi làm trong ${PNAME[S.per].toLowerCase()} (nửa ngày ghi 0,5)</p>
-  <div style="margin-top:8px">${S.staff.map(s=>`<div class="sday"><div><b style="font-size:15px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)} · ${money(s.rate)}/ngày</small></div><input class="in" type="number" inputmode="decimal" min="0" step="0.5" value="${sd[s.id]||0}" onchange="setDays(${s.id},this.value)" aria-label="Ngày công ${esc(s.name)}"><b style="text-align:right;font-size:14px">${money(s.rate*(sd[s.id]||0))}</b></div>`).join('')}
-  <div class="sday" style="border-bottom:0"><b>Tổng</b><span></span><b style="text-align:right;font-size:15px">${money(sc)}</b></div></div></div>
- <p class="hint">Nhập hàng lấy tự động từ mục Kho (phần Ghi hàng về). Ngày công và chi phí khác bạn nhập tay. Đây là bản demo, số chỉ để minh họa.</p>`}
-function setDays(id,v){S.sdays[S.per][id]=Math.max(0,+v||0);render()}
+ <div class="rcard"><h3>Nhân viên & giờ làm</h3><p class="rsub">Lương tính theo giờ: <b>lương mỗi giờ × số giờ làm</b> trong ${PNAME[S.per].toLowerCase()}. Nhập số giờ cho từng người (làm 8 tiếng rưỡi ghi 8,5).</p>
+  <div style="margin-top:6px">${S.staff.map(s=>{const h=sd[s.id]||0;return `<div class="srow"><div class="top"><div><b style="font-size:15.5px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)}</small></div><b style="font-size:15px">${money(s.rate*h)}</b></div>
+   <div class="two" style="gap:8px;margin-top:8px"><div><span class="fl">Lương / giờ (đ)</span><input class="in" style="min-height:44px" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}" onchange="setRate(${s.id},this.value)" aria-label="Lương mỗi giờ ${esc(s.name)}"></div>
+   <div><span class="fl">Giờ làm</span><input class="in" style="min-height:44px" type="number" inputmode="decimal" min="0" step="0.5" value="${h}" onchange="setHours(${s.id},this.value)" aria-label="Số giờ làm ${esc(s.name)}"></div></div>
+   <button class="link" style="padding:6px 0 0;font-size:13px" onclick="openStaff(${s.id})">Sửa tên / xóa</button></div>`}).join('')}
+  <div class="pl tot" style="border-bottom:0"><span>Tổng lương ${PNAME[S.per].toLowerCase()}<small>${money(S.staff.length?sc/Math.max(1,sumA(S.staff.map(s=>sd[s.id]||0))):0)}/giờ trung bình · ${num(sumA(S.staff.map(s=>sd[s.id]||0)))} giờ</small></span><span>${money(sc)}</span></div>
+  <button class="btn btn-ghost" onclick="openStaff(null)">${ic('plus',18)} Thêm nhân viên</button></div></div>
+ <p class="hint">Nhập hàng lấy tự động từ mục Kho (phần Ghi hàng về). Giờ làm và chi phí khác bạn nhập tay. Đây là bản demo, số chỉ để minh họa.</p>`}
+function setHours(id,v){S.sdays[S.per][id]=Math.max(0,+v||0);render()}
+function setRate(id,v){S.staff.find(s=>s.id===id).rate=Math.max(0,+v||0);render()}
+function openStaff(id){const s=id?S.staff.find(x=>x.id===id):{name:'',role:'',rate:25000};
+ sheet(`<h3>${id?'Sửa nhân viên':'Thêm nhân viên'}</h3>
+ <label class="l" for="st-n">Tên</label><input id="st-n" class="in" placeholder="VD: Em Hương" value="${esc(s.name)}">
+ <label class="l" for="st-r">Vị trí</label><input id="st-r" class="in" placeholder="VD: Phục vụ, Phụ bếp…" value="${esc(s.role)}">
+ <label class="l" for="st-p">Lương mỗi giờ (đ)</label><input id="st-p" class="in" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}">
+ <div class="acts"><button class="btn btn-blue" onclick="saveStaff(${id||'null'})">${ic('check',18)} ${id?'Lưu':'Thêm'}</button>${id?`<button class="btn btn-danger" onclick="delStaff(${id})">Xóa nhân viên</button>`:''}<button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
+function saveStaff(id){const n=$('#st-n').value.trim();if(!n){toast('Nhập tên nhân viên','err');return}
+ const v={name:n,role:$('#st-r').value.trim()||'Nhân viên',rate:Math.max(0,+$('#st-p').value||0)};
+ if(id)Object.assign(S.staff.find(s=>s.id===id),v);else{const nid=Math.max(0,...S.staff.map(s=>s.id))+1;S.staff.push({id:nid,...v});Object.values(S.sdays).forEach(o=>o[nid]=0)}
+ closeSheet();render();toast(id?'Đã lưu thay đổi':'Đã thêm nhân viên — nhập số giờ làm bên dưới')}
+function delStaff(id){if(S.cd!=='st'+id){S.cd='st'+id;toast('Bấm “Xóa nhân viên” thêm lần nữa để xác nhận','err');return}
+ S.staff=S.staff.filter(s=>s.id!==id);closeSheet();render();toast('Đã xóa nhân viên')}
 
 buildPos();render(false);
 </script>
