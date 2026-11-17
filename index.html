@@ -752,14 +752,14 @@ S.accts=[
  {id:5,name:'Đầu Bếp Hùng',user:'bep',role:'bep',on:true},{id:6,name:'Shipper Tuấn',user:'shipper',role:'ship',on:true},
  {id:7,name:'CTV Hoa',user:'ctv',role:'ctv',on:true,code:'CTVHOA'},{id:8,name:'Liêm',user:'liem',role:'srv',on:true}];
 S.me=2;
-const PERMS=[['cancel','Hủy món đã báo bếp'],['disc','Giảm giá cho khách'],['inv','Sửa / hủy hóa đơn đã thanh toán'],['rep','Xem báo cáo, lãi lỗ'],['rec','Chốt đối soát tiền'],['menu','Sửa thực đơn và giá'],['kho','Nhập kho, mua hàng'],['staff','Quản lý tài khoản nhân viên'],['bank','Sửa tài khoản ngân hàng nhận tiền']];
+const PERMS=[['confirm','Xác nhận đơn online / ship / CTV (gọi khách)'],['cancel','Hủy món đã báo bếp'],['disc','Giảm giá cho khách'],['inv','Sửa / hủy hóa đơn đã thanh toán'],['rep','Xem báo cáo, lãi lỗ'],['rec','Chốt đối soát tiền'],['menu','Sửa thực đơn và giá'],['kho','Nhập kho, mua hàng'],['staff','Quản lý tài khoản nhân viên'],['bank','Sửa tài khoản ngân hàng nhận tiền']];
 S.perm={
- mgr:{cancel:1,disc:1,inv:0,rep:1,rec:1,menu:1,kho:1,staff:1,bank:0},
- cash:{cancel:0,disc:1,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
- srv:{cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
- bep:{cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:1,staff:0,bank:0},
- ship:{cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
- ctv:{cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0}};
+ mgr:{confirm:1,cancel:1,disc:1,inv:0,rep:1,rec:1,menu:1,kho:1,staff:1,bank:0},
+ cash:{confirm:0,cancel:0,disc:1,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
+ srv:{confirm:0,cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
+ bep:{confirm:0,cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:1,staff:0,bank:0},
+ ship:{confirm:0,cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0},
+ ctv:{confirm:0,cancel:0,disc:0,inv:0,rep:0,rec:0,menu:0,kho:0,staff:0,bank:0}};
 S.cfg={name:'Ăn Ngon Hoà Lạc',phone:'0901 234 567',addr:'Hòa Lạc, Thạch Thất, Hà Nội',wifi:'Wifi: AnNgon_Free | Pass: 12345678',bye:'Cảm ơn quý khách & Hẹn gặp lại!',
  bank:'MBBank (970422)',acc:'0000 1234 5678',accName:'NGUYEN VAN A',lat:'21.0266',lng:'105.5318',km0:2,fee0:15000,feeKm:5000,ctv:10,gt:5,feeTo:'shop'};
 S.custs=[{phone:'0912111222',name:'Chị Hạnh',addr:'Tòa Alpha, ĐH FPT',n:6},{phone:'0987333444',name:'Anh Đức',addr:'KTX ĐH FPT – Dom A',n:3},{phone:'0905555666',name:'Bạn Linh',addr:'Hola Park, Thạch Hòa',n:2}];
@@ -981,7 +981,7 @@ const TYC={table:'t-gray',take:'t-blue',ship:'t-orange',online:'t-amber',ctv:'t-
 const tName=o=>o.type==='table'?(S.tables.find(t=>t.id===o.table)||{name:'Bàn ?'}).name:CHN[o.type];
 const oLabel=o=>o.type==='table'?tName(o):CHN[o.type]+(o.cust&&o.cust.name?' · '+o.cust.name:'');
 function stName(o){if(o.type==='table')return o.lines.some(l=>l.st==='cook')?'Bếp đang làm':o.lines.some(l=>l.st==='new')?'Có món chưa báo bếp':'Đang phục vụ';
- return {new:o.type==='online'?'Chờ quán nhận':'Chưa báo bếp',cook:'Bếp đang làm',ready:isShipT(o)?'Xong · chờ shipper':'Xong · chờ khách lấy',ship:'Đang đi giao',done:'Hoàn tất',cancel:'Đã hủy'}[o.status]}
+ return {new:isShipT(o)?'Chờ quản lý xác nhận':'Chưa báo bếp',cook:'Bếp đang làm',ready:isShipT(o)?'Xong · chờ shipper':'Xong · chờ khách lấy',ship:'Đang đi giao',done:'Hoàn tất',cancel:'Đã hủy'}[o.status]}
 const stCls=o=>({new:'low',cook:'gray',ready:'ok',ship:'auto',done:'ok',cancel:'out',open:'gray'})[o.status]||'gray';
 const shipFee=km=>{km=+km||0;const c=S.cfg;if(km<=0)return 0;if(km<=c.km0)return c.fee0;return Math.ceil((c.fee0+(km-c.km0)*c.feeKm)/1000)*1000};
 let oseq=INV.filter(i=>i.day===0).length;
@@ -1023,8 +1023,8 @@ function allowed(m){const r=me().role;if(r==='owner')return true;
  const base={mgr:['don','ctv','ship','bep','menu','kho','report','set'],cash:['don','ship','bep','report','kho'],srv:['don','bep'],bep:['bep','kho'],ship:['ship'],ctv:['ctv']}[r]||[];
  if(!base.includes(m))return false;
  if(m==='report')return can('rep');if(m==='kho')return can('kho');if(m==='menu')return can('menu');if(m==='set')return can('staff')||can('bank');return true}
-function navBadge(m){if(m==='ship')return S.orders.filter(o=>isShipT(o)&&(o.status==='new'||o.status==='ready')).length;if(m==='bep')return tickets().length;if(m==='don')return S.orders.filter(o=>o.type==='take'&&o.status==='ready').length;return 0}
-function buildPos(){const u=me(),nb=S.orders.filter(o=>o.type==='online'&&o.status==='new').length;
+function navBadge(m){if(m==='ship')return me().role==='ship'?S.orders.filter(o=>o.status==='ship'&&o.shipper===S.me).length:S.orders.filter(o=>isShipT(o)&&((o.status==='new'&&can('confirm'))||o.status==='ready')).length;if(m==='bep')return tickets().length;if(m==='don')return S.orders.filter(o=>o.type==='take'&&o.status==='ready').length;return 0}
+function buildPos(){const u=me(),nb=can('confirm')?S.orders.filter(o=>isShipT(o)&&o.status==='new').length:0;
  $('#pos').innerHTML=`<div class="r1"><div class="logo">🍖</div><div class="t"><b>${esc(S.cfg.name)}</b><small>${ic('wifi',12)} Đồng bộ trực tuyến</small></div>
   <button class="iconbtn" onclick="openNoti()" aria-label="Thông báo">${ic('bell',17)}${nb?'<i class="dotr"></i>':''}</button>
   <button class="ubtn" onclick="openMe()" aria-label="Tài khoản"><b>${esc(u.user)}</b><small>${ROLES[u.role]} ▾</small></button></div>
@@ -1059,10 +1059,10 @@ function openMe(){const u=me();
  <div class="list">${S.accts.filter(a=>a.on).map(a=>`<button class="row" onclick="switchMe(${a.id})"><div class="tx"><b>${esc(a.name)}</b><span>${ROLES[a.role]}</span></div>${a.id===S.me?'<span class="chip ok">Đang dùng</span>':ic('chev',18)}</button>`).join('')}</div>`)}
 function switchMe(id){S.me=id;S.ord=null;closeSheet();const m=NAV.map(n=>n[0]).find(allowed);if(!allowed(S.mod))S.mod=m;render(false);window.scrollTo(0,0);toast('Đang xem với vai trò '+ROLES[me().role])}
 function doiCa(){closeSheet();if(allowed('report')&&can('rec')){S.mod='report';S.rtab='rec';S.recDay=0;S.ord=null;render(false);window.scrollTo(0,0);toast('Đếm két, nhập số thực nhận rồi bấm chốt trước khi đổi ca')}else toast('Báo quản lý chốt tiền ca trước khi đổi ca')}
-function openNoti(){const on=S.orders.filter(o=>o.type==='online'&&o.status==='new'),late=tickets().filter(o=>mins(o.t)>15),low=needList().length,rd=S.orders.filter(o=>o.status==='ready');
+function openNoti(){const on=S.orders.filter(o=>isShipT(o)&&o.status==='new'),late=tickets().filter(o=>mins(o.t)>15),low=needList().length,rd=S.orders.filter(o=>o.status==='ready');
  const row=(i,c,t,s,fn)=>`<button class="row" onclick="closeSheet();${fn}"><span class="ico ${c}">${ic(i,18)}</span><div class="tx"><b>${t}</b><span>${s}</span></div>${ic('chev',18)}</button>`;
  sheet(`<h3>Thông báo</h3><div class="list" style="margin-top:12px">
- ${on.length?row('bell','t-amber',on.length+' đơn online chờ quán nhận','Khách tự đặt qua link Menu Online',"setMod('ship')"):''}
+ ${on.length&&can('confirm')?row('bell','t-amber',on.length+' đơn chờ bạn xác nhận','Gọi khách kiểm tra rồi bấm xác nhận',"setMod('ship')"):''}
  ${rd.length?row('check','t-green',rd.length+' đơn đã xong','Chờ khách lấy hoặc chờ giao shipper',"setMod('don')"):''}
  ${late.length?row('alert','t-red',late.length+' phiếu bếp quá 15 phút','Nhắc bếp làm nhanh',"setMod('bep')"):''}
  ${low&&allowed('kho')?row('pkg','t-orange',low+' món kho cần mua','Sắp hết hoặc đã hết',"setMod('kho')"):''}
@@ -1085,7 +1085,7 @@ function vOrders(open,td){
 function oCard(o){const late=o.status!=='ready'&&o.status!=='ship'&&mins(o.t)>15&&o.lines.some(l=>l.st!=='done');
  let act='';
  if(o.type==='table')act=`<button class="btn btn-blue btn-sm" onclick="openCheckout(${o.id})">Thanh toán</button>`;
- else if(o.status==='new')act=o.type==='online'?`<button class="btn btn-orange btn-sm" onclick="acceptO(${o.id})">Nhận đơn</button>`:`<button class="btn btn-kit btn-sm" onclick="sendK(${o.id})">Báo bếp</button>`;
+ else if(o.status==='new')act=isShipT(o)?(can('confirm')?`<button class="btn btn-orange btn-sm" onclick="openConfirm(${o.id})">📞 Xác nhận đơn</button>`:'<span class="chip low">Chờ quản lý xác nhận</span>'):`<button class="btn btn-kit btn-sm" onclick="sendK(${o.id})">Báo bếp</button>`;
  else if(o.status==='ready')act=isShipT(o)?`<button class="btn btn-orange btn-sm" onclick="openAssign(${o.id})">Giao shipper</button>`:(o.paid?`<button class="btn btn-green btn-sm" onclick="pickedUp(${o.id})">Khách đã lấy</button>`:`<button class="btn btn-blue btn-sm" onclick="openCheckout(${o.id})">Thu tiền</button>`);
  else if(o.status==='ship')act=`<button class="btn btn-green btn-sm" onclick="delivered(${o.id})">Đã giao xong</button>`;
  return `<div class="ocard ${late?'late':''}"><button class="ohead" onclick="openOrd(${o.id})"><span class="tbadge ${TYC[o.type]}">${tName(o)}</span><b>${o.cust&&o.cust.name?esc(o.cust.name):o.code}</b><span class="tm">${late?'⚠ ':''}${ago2(o.t)}</span>${ic('chev',16)}</button>
@@ -1103,9 +1103,20 @@ function openTable(id){const o=newOrder('table',{table:id,guests:1});openOrd(o.i
 function newTake(){const o=newOrder('take');openOrd(o.id)}
 function openOrd(id){S.ord=id;S.oq='';S.ocat='Tất cả';render(false);window.scrollTo(0,0)}
 function closeOrd(){const o=oById(S.ord);if(o&&!o.lines.length&&o.status!=='done'){S.orders=S.orders.filter(x=>x!==o)}S.ord=null;render(false);window.scrollTo(0,0)}
-function sendK(id){const o=oById(id),n=o.lines.filter(l=>l.st==='new');if(!n.length){toast('Không có món mới để báo bếp','err');return}
+function sendK(id){const o=oById(id),n=o.lines.filter(l=>l.st==='new');if(isShipT(o)&&o.status==='new'){if(can('confirm'))openConfirm(id);else toast('Đơn giao hàng phải được quản lý gọi khách xác nhận rồi mới vào bếp','err');return}if(!n.length){toast('Không có món mới để báo bếp','err');return}
  n.forEach(l=>l.st='cook');if(o.status==='new')o.status='cook';render();toast(`Đã báo bếp ${sumA(n.map(l=>l.qty))} món · ${tName(o)} ${o.code}`)}
-function acceptO(id){const o=oById(id);o.lines.forEach(l=>{if(l.st==='new')l.st='cook'});o.status='cook';logA('Nhận đơn online '+o.code);render();toast('Đã nhận đơn và báo bếp')}
+function openConfirm(id){const o=oById(id);if(!can('confirm')){toast('Chỉ quản lý được xác nhận đơn','err');return}const c=o.cust||{};
+ sheet(`<h3>Xác nhận đơn ${CHN[o.type]} #${o.code.slice(-3)}</h3><p class="sub">Gọi cho khách kiểm tra đúng người, đúng số, đúng món rồi mới xác nhận. Xác nhận xong đơn mới vào bếp.</p>
+ <div class="card" style="margin-top:12px;padding:12px 14px"><b style="font-size:16px">${esc(c.name||'Khách')}</b><div class="muted" style="font-size:14px">${esc(c.phone||'Chưa có số')} · ${esc(c.addr||'')}</div>
+ <div style="font-size:14px;margin-top:6px">${o.lines.map(l=>l.qty+' × '+esc(l.name)).join('<br>')}</div>${o.note?`<div style="font-size:13px;color:var(--orange);margin-top:4px">📝 ${esc(o.note)}</div>`:''}
+ <div class="pl" style="border:0;padding-bottom:0"><span>Tổng thu khách${o.type==='ctv'?' · CTV: '+esc(o.by):''}</span><b>${money(oNet(o)+(o.ship?o.ship.fee:0))}</b></div></div>
+ <div class="acts">${c.phone?`<a class="btn btn-ghost" href="tel:${unm(c.phone)}">${ic('phone',18)} Gọi khách ${esc(c.phone)}</a>`:''}
+ <button class="btn btn-orange" onclick="confirmO(${id})">${ic('check',18)} Đã gọi, đúng khách · Gửi bếp</button>
+ <button class="btn btn-danger" onclick="rejectO(${id})">Từ chối đơn (khách không nghe máy, đặt nhầm…)</button></div>`)}
+function confirmO(id){const o=oById(id);o.lines.forEach(l=>{if(l.st==='new')l.st='cook'});o.status='cook';o.okBy=me().name;logA(`Xác nhận đơn ${CHN[o.type]} ${o.code} (đã gọi khách ${o.cust&&o.cust.phone?o.cust.phone:''})`);closeSheet();render();toast('Đã xác nhận, đơn đã vào bếp')}
+function rejectO(id){const o=oById(id);sheet(`<h3>Từ chối đơn #${o.code.slice(-3)}</h3><label class="l" for="rj-r">Lý do</label><input id="rj-r" class="in" placeholder="VD: gọi 3 lần không nghe máy">
+ <div class="acts"><button class="btn btn-danger" onclick="doReject(${id})">Từ chối đơn</button><button class="btn btn-ghost" onclick="openConfirm(${id})">Quay lại</button></div>`)}
+function doReject(id){const o=oById(id),r=$('#rj-r').value.trim();if(!r){toast('Nhập lý do','err');return}o.status='cancel';logA(`Từ chối đơn ${CHN[o.type]} ${o.code} · lý do: ${r}`);closeSheet();render();toast('Đã từ chối đơn')}
 function pickedUp(id){const o=oById(id);o.status='done';render();toast(`Đơn ${o.code} hoàn tất`)}
 
 /* ---------- MÀN HÌNH GỌI MÓN ---------- */
@@ -1226,21 +1237,24 @@ function saveShipNew(){const n=$('#sn-n').value.trim();if(!n){toast('Nhập tên
  const km=+$('#sn-k').value||0,o=newOrder('ship',{cust:{name:n,phone:$('#sn-p').value.trim(),addr:$('#sn-a').value.trim()},ship:{km,fee:+unm($('#sn-f').value)||0,pay:document.querySelector('input[name=sn-pay]:checked').value},note:$('#sn-no').value.trim()});
  closeSheet();openOrd(o.id)}
 function shipDone(id){const o=oById(id);if(!o.lines.length){toast('Chọn món cho đơn trước','err');return}
- o.lines.forEach(l=>{if(l.st==='new')l.st='cook'});if(o.status==='new')o.status='cook';S.ord=null;S.mod='ship';S.sflt='todo';render(false);window.scrollTo(0,0);toast('Đã gửi đơn cho bếp, đơn hiện ở mục Giao hàng')}
+ const ok=can('confirm');if(ok){o.lines.forEach(l=>{if(l.st==='new')l.st='cook'});if(o.status==='new')o.status='cook';o.okBy=me().name;logA('Tạo & xác nhận đơn ship '+o.code)}S.ord=null;S.mod=allowed('ship')?'ship':'don';S.sflt='todo';render(false);window.scrollTo(0,0);toast(ok?'Đã xác nhận, đơn đã vào bếp':'Đã lưu đơn, chờ quản lý gọi khách xác nhận')}
 
 /* ---------- GIAO HÀNG ---------- */
 function vShip(){
- const so=S.orders.filter(isShipT),T=[['todo','Cần xử lý',o=>o.status==='new'||o.status==='cook'],['wait','Chờ nhận',o=>o.status==='ready'],['go','Đang đi giao',o=>o.status==='ship'],['done','Đã giao hôm nay',o=>o.status==='done']];
+ const isShipper=me().role==='ship',so=S.orders.filter(o=>isShipT(o)&&(!isShipper||o.shipper===S.me));
+ let T=[['todo','Cần xử lý',o=>o.status==='new'||o.status==='cook'],['wait','Chờ nhận',o=>o.status==='ready'],['go','Đang đi giao',o=>o.status==='ship'],['done','Đã giao hôm nay',o=>o.status==='done']];
+ if(isShipper){T=T.slice(2);if(S.sflt!=='go'&&S.sflt!=='done')S.sflt='go'}
  const f=T.find(t=>t[0]===S.sflt)||T[0],rows=so.filter(f[2]).sort((a,b)=>a.t-b.t),cnt=k=>so.filter(T.find(t=>t[0]===k)[2]).length;
- const isShipper=me().role==='ship',hold={};so.filter(o=>o.status==='done'&&o.cod&&!o.remit).forEach(o=>{const k=o.shipper||0;(hold[k]=hold[k]||[]).push(o)});
+ const hold={};so.filter(o=>o.status==='done'&&o.cod&&!o.remit).forEach(o=>{const k=o.shipper||0;(hold[k]=hold[k]||[]).push(o)});
  const owe=o=>oNet(o)+(S.cfg.feeTo==='shop'?o.ship.fee:0);
- return `<div class="rcard"><div class="hd2"><div><h3>Điều phối Giao hàng & Đơn Online</h3><p class="rsub" style="font-size:13px">${cnt('wait')} chờ nhận · ${cnt('go')} đang giao · ${cnt('done')} hoàn tất hôm nay</p></div></div>
-  <div class="two" style="margin-top:12px"><button class="btn btn-ghost btn-sm" style="width:100%" onclick="render();toast('Đã làm mới')">↻ Làm mới</button><button class="btn btn-orange btn-sm" style="width:100%" onclick="openShipNew()">${ic('plus',16)} Tạo đơn giao hàng</button></div></div>
+ return `<div class="rcard"><div class="hd2"><div><h3>${isShipper?'Đơn giao của tôi':'Điều phối Giao hàng & Đơn Online'}</h3><p class="rsub" style="font-size:13px">${isShipper?`${cnt('go')} đang giao · ${cnt('done')} đã giao hôm nay · chỉ thấy đơn quán giao cho bạn`:`${cnt('wait')} chờ nhận · ${cnt('go')} đang giao · ${cnt('done')} hoàn tất hôm nay`}</p></div></div>
+  ${isShipper?'':`<div class="two" style="margin-top:12px"><button class="btn btn-ghost btn-sm" style="width:100%" onclick="render();toast('Đã làm mới')">↻ Làm mới</button><button class="btn btn-orange btn-sm" style="width:100%" onclick="openShipNew()">${ic('plus',16)} Tạo đơn giao hàng</button></div>`}</div>
  ${Object.keys(hold).length?`<div class="rcard"><h3>Tiền COD shipper đang giữ ${NW}</h3><p class="rsub" style="font-size:13px">Shipper thu tiền mặt của khách, về quán phải nộp lại. Phí ship đang tính cho: <b>${S.cfg.feeTo==='shop'?'quán':'shipper'}</b> (đổi trong Cài đặt).</p>
   ${Object.entries(hold).map(([k,os])=>{const a=S.accts.find(x=>x.id===+k);return `<div class="pl"><span><b>${esc(a?a.name:'Chưa gán')}</b><small>${os.length} đơn: ${os.map(o=>o.code.slice(-3)).join(', ')}</small></span><span style="text-align:right"><b style="color:var(--orange)">${money(sumA(os.map(owe)))}</b><br>${isShipper?'':`<button class="link" style="padding:0" onclick="remit(${k})">Đã nhận tiền</button>`}</span></div>`}).join('')}</div>`:''}
  <div class="pills">${T.map(([k,l])=>`<button class="pill ${S.sflt===k?'on':''}" onclick="S.sflt='${k}';render()">${l} (${cnt(k)})</button>`).join('')}</div>
  ${rows.length?rows.map(o=>{const sh=S.accts.find(a=>a.id===o.shipper);let act='';
-  if(o.status==='new')act=o.type==='online'?`<button class="btn btn-orange btn-sm" onclick="acceptO(${o.id})">Nhận đơn & báo bếp</button>`:`<button class="btn btn-kit btn-sm" onclick="sendK(${o.id})">Báo bếp</button>`;
+  if(isShipper)act=o.status==='ship'?`<button class="btn btn-green btn-sm" onclick="delivered(${o.id})">Đã giao xong</button>`:(o.cod?(o.remit?'<span class="chip ok">Đã nộp tiền</span>':'<span class="chip low">Chưa nộp tiền</span>'):'<span class="chip ok">Đã chuyển khoản</span>');
+  else if(o.status==='new')act=(can('confirm')?`<button class="btn btn-orange btn-sm" onclick="openConfirm(${o.id})">📞 Xác nhận đơn</button>`:'<span class="chip low">Chờ quản lý xác nhận</span>');
   else if(o.status==='cook')act='<span class="chip gray">Bếp đang làm</span>';
   else if(o.status==='ready')act=`<button class="btn btn-orange btn-sm" onclick="openAssign(${o.id})">Giao shipper</button>`;
   else if(o.status==='ship')act=`<button class="btn btn-green btn-sm" onclick="delivered(${o.id})">Đã giao xong</button>`;
@@ -1282,12 +1296,12 @@ function ctvSumHTML(){const d=S.ctvD,ls=Object.entries(d.lines),sub=sumA(ls.map(
  <div class="pl"><span>Tiền món</span><b>${money(sub)}</b></div><div class="pl"><span>Phí ship</span><b>${money(fee)}</b></div>
  <div class="pl tot"><span>Tổng thu khách</span><span style="color:var(--blue)">${money(sub+fee)}</span></div>
  <div class="pl" style="border:0"><span>Hoa hồng của bạn (${S.cfg.ctv}%) ${NW}</span><b style="color:var(--green)">${money(Math.round(sub*S.cfg.ctv/100))}</b></div>
- <button class="btn" style="background:#10b981;color:#fff;margin-top:8px" onclick="ctvSend()" ${ls.length?'':'disabled'}>${ic('arrowr',18)} Gửi đơn cho Bếp & Shipper</button>`}
+ <button class="btn" style="background:#10b981;color:#fff;margin-top:8px" onclick="ctvSend()" ${ls.length?'':'disabled'}>${ic('arrowr',18)} Gửi đơn (chờ quản lý xác nhận)</button>`}
 function ctvSum(){$('#ct-sum').innerHTML=ctvSumHTML()}
 function ctvSend(){const d=S.ctvD;d.fee=+unm($('#ct-f').value)||0;d.km=$('#ct-k').value;
  if(!d.phone.trim()||!d.addr.trim()){toast('Nhập số điện thoại và địa chỉ khách','err');return}
  const o=newOrder('ctv',{by:me().role==='ctv'?me().name:me().name,cust:{name:d.name||'Khách',phone:d.phone,addr:d.addr},ship:{km:+d.km||0,fee:d.fee,pay:d.pay},note:d.note});
- o.lines=Object.entries(d.lines).map(([id,q])=>mkLine(+id,q,'cook'));o.status='cook';ctvReset();render(false);window.scrollTo(0,0);toast(`Đã gửi đơn ${o.code} cho bếp & shipper`)}
+ o.lines=Object.entries(d.lines).map(([id,q])=>mkLine(+id,q,'new'));ctvReset();render(false);window.scrollTo(0,0);toast(`Đã gửi đơn ${o.code} · chờ quản lý gọi khách xác nhận`)}
 function myCtv(){const u=me(),os=S.orders.filter(o=>o.type==='ctv'&&(u.role!=='ctv'||o.by===u.name)).sort((a,b)=>b.t-a.t);
  sheet(`<h3>Đơn CTV</h3><p class="sub">${os.length} đơn</p><div class="list" style="margin-top:12px">${os.map(o=>`<div class="row"><div class="tx"><b>${o.code.slice(-3)} · ${esc(o.cust.name)}</b><span>${esc(o.by)} · ${stName(o)}</span></div><div style="text-align:right"><b>${money(oNet(o))}</b><br><small style="color:var(--green);font-weight:700">HH ${money(Math.round(oNet(o)*S.cfg.ctv/100))}</small></div></div>`).join('')||'<div class="empty">Chưa có đơn</div>'}</div>
  <div class="acts"><button class="btn btn-ghost" onclick="closeSheet()">Đóng</button></div>`)}
