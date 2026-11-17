@@ -297,6 +297,12 @@ const ic=(n,s=20)=>`<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 2
 
 /* ===== helpers ===== */
 const $=s=>document.querySelector(s);
+const unm=v=>String(v??'').replace(/\D/g,'');
+const fmtIn=v=>{const d=unm(v);return d?d.replace(/\B(?=(\d{3})+(?!\d))/g,'.'):''};
+document.addEventListener('input',e=>{const t=e.target;if(!t.classList||!t.classList.contains('mny'))return;
+ const pos=t.selectionStart,before=unm(String(t.value).slice(0,pos)).length,f=fmtIn(t.value);
+ if(f!==t.value){t.value=f;let n=0,i=0;while(i<f.length&&n<before){if(/\d/.test(f[i]))n++;i++}try{t.setSelectionRange(i,i)}catch(_){}}});
+
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pad=n=>String(n).padStart(2,'0');
 const money=n=>Math.round(n).toLocaleString('vi-VN')+'đ';
@@ -536,7 +542,7 @@ function vIn(){const d=S.buyD,today=S.buys.filter(b=>isToday(b.t)),sum=today.red
   <label class="l" for="b-name">Món</label><input id="b-name" class="in" list="dl" placeholder="Gõ tên hoặc chọn món" autocomplete="off" value="${esc(d.name)}" oninput="buyName(this.value)"><datalist id="dl">${S.items.map(i=>`<option value="${esc(i.name)}">`).join('')}</datalist>
   <label class="l" for="b-qty">Số lượng</label><div class="frow"><input id="b-qty" class="in" type="number" inputmode="decimal" min="0" step="any" placeholder="VD: 10" value="${d.qty}" oninput="S.buyD.qty=this.value;hintUpd()"><select id="b-unit" class="in" onchange="S.buyD.unit=this.value;hintUpd()">${unitOpts(d.unit)}</select></div>
   <div id="b-hint" style="font-size:13px;color:var(--blue);font-weight:600;margin-top:6px">${esc(buyHint())}</div>
-  <label class="l" for="b-money">Tổng tiền (có thể bỏ trống)</label><input id="b-money" class="in" type="number" inputmode="numeric" min="0" step="1000" placeholder="VD: 285000" value="${d.money}" oninput="S.buyD.money=this.value">
+  <label class="l" for="b-money">Tổng tiền (có thể bỏ trống)</label><input id="b-money" class="in mny" type="text" inputmode="numeric" autocomplete="off" placeholder="VD: 285.000" value="${fmtIn(d.money)}" oninput="S.buyD.money=unm(this.value)">
   <label class="l" for="b-sup">Mua của</label><select id="b-sup" class="in" onchange="S.buyD.sup=+this.value">${supOpts(d.sup)}</select>
   <label class="l">Thanh toán</label><div class="radios"><label><input type="radio" name="pd" ${d.paid?'checked':''} onchange="S.buyD.paid=true">Đã trả</label><label><input type="radio" name="pd" ${d.paid?'':'checked'} onchange="S.buyD.paid=false">Ghi nợ</label></div>
   <div style="margin-top:18px"><button class="btn btn-blue" onclick="saveBuy()">${ic('check',18)} Lưu</button></div></div>
@@ -600,9 +606,9 @@ function delSup(id){const s=sp(id),used=S.items.filter(i=>i.sup===id).length;
  if(s.debt>0){toast(`Còn nợ ${money(s.debt)} — trả nợ xong mới xóa được`,'err');return}
  if(S.cd!=='s'+id){S.cd='s'+id;toast('Bấm “Xóa nhà cung cấp” thêm lần nữa để xác nhận','err');return}
  S.sups=S.sups.filter(x=>x.id!==id);closeSheet();render();toast('Đã xóa nhà cung cấp')}
-function openPay(id){const s=sp(id);sheet(`<h3>Trả nợ ${esc(s.short)}</h3><p class="sub">Đang nợ ${money(s.debt)}</p><label class="l" for="p-a">Số tiền trả</label><input id="p-a" class="in" type="number" inputmode="numeric" min="0" step="1000" value="${s.debt}">
+function openPay(id){const s=sp(id);sheet(`<h3>Trả nợ ${esc(s.short)}</h3><p class="sub">Đang nợ ${money(s.debt)}</p><label class="l" for="p-a">Số tiền trả</label><input id="p-a" class="in mny" type="text" inputmode="numeric" autocomplete="off" value="${fmtIn(s.debt)}">
  <div class="acts"><button class="btn btn-orange" onclick="doPay(${id})">Xác nhận trả</button><button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
-function doPay(id){const s=sp(id),a=+$('#p-a').value;if(!(a>0)||a>s.debt){toast('Số tiền phải lớn hơn 0 và không quá số đang nợ','err');return}s.debt-=a;closeSheet();render();toast(`Đã trả ${money(a)} cho ${s.short}${s.debt?' · còn nợ '+money(s.debt):' · hết nợ'}`)}
+function doPay(id){const s=sp(id),a=+unm($('#p-a').value);if(!(a>0)||a>s.debt){toast('Số tiền phải lớn hơn 0 và không quá số đang nợ','err');return}s.debt-=a;closeSheet();render();toast(`Đã trả ${money(a)} cho ${s.short}${s.debt?' · còn nợ '+money(s.debt):' · hết nợ'}`)}
 
 function vUnits(){return `<p class="hint">Quán hay đếm bằng gì thì thêm vào đó. Ví dụ: <b>ký, bó, bắp, con, thùng</b>. Khi ghi hàng về, chọn đơn vị ngay trong danh sách này.</p>
  <div class="unitchips">${S.units.map((u,k)=>`<span class="u">${esc(u)}<button onclick="delUnit(${k})" aria-label="Xóa ${esc(u)}">${ic('x',14)}</button></span>`).join('')}</div>
@@ -709,9 +715,9 @@ function vRec(){
  <div class="rcard"><h3>Đối soát ${dayLabelOff(d)} · ${fmtD(d)}</h3><p class="rsub">Phần mềm ghi nhận <b>${money(c.st.net)}</b> từ ${c.st.n} hóa đơn</p>
   ${done?`<div class="demo" style="margin-top:12px;background:${Math.abs(done.diff)<1?'var(--green-soft)':'var(--red-soft)'};color:${Math.abs(done.diff)<1?'var(--green)':'var(--red)'};border-color:transparent">Đã chốt lúc ${pad(new Date(done.t).getHours())}:${pad(new Date(done.t).getMinutes())} bởi ${esc(done.by)} · ${Math.abs(done.diff)<1?'khớp 100%':(done.diff<0?'thiếu ':'thừa ')+money(Math.abs(done.diff))}</div>`:''}
   ${M.map(([m,nm,hint])=>`<div class="rrow"><b>${nm}</b><small>${hint}</small><small>Phần mềm ghi: ${money(c.st[m])}${m==='cash'?` · <span id="rx-cash">cần có: ${money(c.res.cash.exp)}</span>`:''}</small>
-   <div class="inl"><input id="ra-${m}" class="in" type="number" inputmode="numeric" min="0" step="1000" placeholder="Số thực nhận" value="${r.act[m]}" ${dis} oninput="recIn(${d},'${m}',this.value)" aria-label="Thực nhận ${nm}"><span id="rd-${m}">${dChip(c.res[m].diff)}</span></div></div>`).join('')}
+   <div class="inl"><input id="ra-${m}" class="in mny" type="text" inputmode="numeric" autocomplete="off" placeholder="Số thực nhận" value="${fmtIn(r.act[m])}" ${dis} oninput="recIn(${d},'${m}',unm(this.value))" aria-label="Thực nhận ${nm}"><span id="rd-${m}">${dChip(c.res[m].diff)}</span></div></div>`).join('')}
   <div class="rrow"><b>Đã chi từ két trong ngày</b><small>Mua hàng lặt vặt, ứng lương… lấy từ tiền mặt. Số này được trừ khỏi tiền mặt cần có.</small>
-   <div class="inl"><input id="ro" class="in" type="number" inputmode="numeric" min="0" step="1000" placeholder="0" value="${r.out}" ${dis} oninput="recOut(${d},this.value)" aria-label="Đã chi từ két"></div></div>
+   <div class="inl"><input id="ro" class="in mny" type="text" inputmode="numeric" autocomplete="off" placeholder="0" value="${fmtIn(r.out)}" ${dis} oninput="recOut(${d},unm(this.value))" aria-label="Đã chi từ két"></div></div>
   <div class="rrow"><b>Ghi chú</b><div class="inl"><input class="in" placeholder="VD: thối nhầm tiền khách" value="${esc(r.note)}" ${dis} oninput="recOf(${d}).note=this.value" aria-label="Ghi chú đối soát"></div></div>
   <div style="background:#f8fafc;border-radius:14px;padding:12px 14px;margin-top:6px">
    <div class="pl" style="padding:6px 0;border:0"><span>Tiền cần có</span><b id="rt-need">${money(c.need)}</b></div>
@@ -743,7 +749,7 @@ function vPL(){
  const per=PNAME[S.per].toLowerCase();
  const person=s=>{const q=S.sdays[S.per][s.id]||0,L=PAYL[s.type],o=isOpen('s'+s.id,false);
   return `<div class="srow"><button class="fold-h" onclick="tgl('s${s.id}',false)" aria-expanded="${o}"><div><b style="font-size:15.5px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)} · ${PAYT[s.type].toLowerCase()}</small></div><span class="fsum"><b style="font-size:15px">${money(staffPay(s))}</b><i class="chv ${o?'open':''}">${ic('chevd',18)}</i></span></button>
-  ${o?`<div class="two" style="gap:8px;margin-top:10px"><div><span class="fl">${L[0]}</span><input class="in" style="min-height:44px" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}" onchange="setRate(${s.id},this.value)" aria-label="${L[0]} ${esc(s.name)}"></div>
+  ${o?`<div class="two" style="gap:8px;margin-top:10px"><div><span class="fl">${L[0]}</span><input class="in mny" style="min-height:44px" type="text" inputmode="numeric" autocomplete="off" value="${fmtIn(s.rate)}" onchange="setRate(${s.id},unm(this.value))" aria-label="${L[0]} ${esc(s.name)}"></div>
   <div><span class="fl">${L[1]}</span>${s.type==='month'?`<input class="in" style="min-height:44px" value="${PDAYS()} (tự tính)" disabled aria-label="Số ngày tự tính">`:`<input class="in" style="min-height:44px" type="number" inputmode="decimal" min="0" step="0.5" value="${q}" onchange="setHours(${s.id},this.value)" aria-label="${L[1]} ${esc(s.name)}">`}</div></div>
   <button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="openStaff(${s.id})">${ic('edit',14)} Sửa lương / thông tin</button>`:''}</div>`};
  const staffBody=`<p class="rsub" style="margin:0 0 6px;font-size:13.5px">Mỗi người tự chọn cách tính lương: theo giờ, theo ngày hoặc theo tháng. Bấm vào tên để nhập số giờ / ngày làm trong ${per}.</p>
@@ -772,11 +778,11 @@ function openStaff(id){const s=id?S.staff.find(x=>x.id===id):{name:'',role:'',ty
  <label class="l" for="st-n">Tên</label><input id="st-n" class="in" placeholder="VD: Em Hương" value="${esc(s.name)}">
  <label class="l" for="st-r">Vị trí</label><input id="st-r" class="in" placeholder="VD: Phục vụ, Phụ bếp…" value="${esc(s.role)}">
  <label class="l" for="st-t">Cách tính lương</label><select id="st-t" class="in" onchange="$('#st-pl').textContent='Lương '+({hour:'mỗi giờ',day:'mỗi ngày',month:'mỗi tháng'})[this.value]+' (đ)'">${Object.entries(PAYT).map(([k,v])=>`<option value="${k}" ${k===s.type?'selected':''}>${v}</option>`).join('')}</select>
- <label class="l" for="st-p" id="st-pl">Lương ${({hour:'mỗi giờ',day:'mỗi ngày',month:'mỗi tháng'})[s.type]} (đ)</label><input id="st-p" class="in" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}">
+ <label class="l" for="st-p" id="st-pl">Lương ${({hour:'mỗi giờ',day:'mỗi ngày',month:'mỗi tháng'})[s.type]} (đ)</label><input id="st-p" class="in mny" type="text" inputmode="numeric" autocomplete="off" value="${fmtIn(s.rate)}">
  <p class="sub" style="margin-top:8px">Lương theo tháng sẽ tự chia đều cho 30 ngày để tính theo kỳ báo cáo.</p>
  <div class="acts"><button class="btn btn-blue" onclick="saveStaff(${id||'null'})">${ic('check',18)} ${id?'Lưu':'Thêm'}</button>${id?`<button class="btn btn-danger" onclick="delStaff(${id})">Xóa nhân viên</button>`:''}<button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
 function saveStaff(id){const n=$('#st-n').value.trim();if(!n){toast('Nhập tên nhân viên','err');return}
- const v={name:n,role:$('#st-r').value.trim()||'Nhân viên',type:$('#st-t').value,rate:Math.max(0,+$('#st-p').value||0)};
+ const v={name:n,role:$('#st-r').value.trim()||'Nhân viên',type:$('#st-t').value,rate:Math.max(0,+unm($('#st-p').value)||0)};
  if(id)Object.assign(S.staff.find(s=>s.id===id),v);else{const nid=Math.max(0,...S.staff.map(s=>s.id))+1;S.staff.push({id:nid,...v});Object.values(S.sdays).forEach(o=>o[nid]=0)}
  closeSheet();render();toast(id?'Đã lưu thay đổi':'Đã thêm nhân viên — nhập số giờ / ngày làm bên dưới')}
 function delStaff(id){if(S.cd!=='st'+id){S.cd='st'+id;toast('Bấm “Xóa nhân viên” thêm lần nữa để xác nhận','err');return}
@@ -786,10 +792,10 @@ function openExp(id){const e=id?S.exps.find(x=>x.id===id):{name:'',type:'month',
  sheet(`<h3>${id?'Sửa khoản chi':'Thêm khoản chi'}</h3>
  <label class="l" for="ex-n">Tên khoản</label><input id="ex-n" class="in" placeholder="VD: Internet, Gas, Rác…" value="${esc(e.name)}">
  <label class="l" for="ex-t">Tính theo</label><select id="ex-t" class="in">${Object.entries(EXPT).map(([k,v])=>`<option value="${k}" ${k===e.type?'selected':''}>${v[0].toUpperCase()+v.slice(1)}</option>`).join('')}</select>
- <label class="l" for="ex-p">Số tiền (đ)</label><input id="ex-p" class="in" type="number" inputmode="numeric" min="0" step="1000" value="${e.rate}">
+ <label class="l" for="ex-p">Số tiền (đ)</label><input id="ex-p" class="in mny" type="text" inputmode="numeric" autocomplete="off" value="${fmtIn(e.rate)}">
  <div class="acts"><button class="btn btn-blue" onclick="saveExp(${id||'null'})">${ic('check',18)} ${id?'Lưu':'Thêm'}</button>${id?`<button class="btn btn-danger" onclick="delExp(${id})">Xóa khoản này</button>`:''}<button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
 function saveExp(id){const n=$('#ex-n').value.trim();if(!n){toast('Nhập tên khoản chi','err');return}
- const v={name:n,type:$('#ex-t').value,rate:Math.max(0,+$('#ex-p').value||0)};
+ const v={name:n,type:$('#ex-t').value,rate:Math.max(0,+unm($('#ex-p').value)||0)};
  if(id)Object.assign(S.exps.find(x=>x.id===id),v);else S.exps.push({id:Math.max(0,...S.exps.map(x=>x.id))+1,...v});
  closeSheet();render();toast(id?'Đã lưu thay đổi':'Đã thêm khoản chi')}
 function delExp(id){if(S.cd!=='ex'+id){S.cd='ex'+id;toast('Bấm “Xóa khoản này” thêm lần nữa để xác nhận','err');return}
