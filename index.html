@@ -419,7 +419,7 @@ function vNeed(){
    <div class="qin"><input type="number" inputmode="decimal" min="0" step="any" aria-label="Số lượng đặt ${esc(i.name)}" value="${i.usual??''}" placeholder="?" oninput="it(${i.id}).usual=this.value===''?null:+this.value"><span>${esc(uUnit(i))}</span></div>
    <button class="btn btn-ghost btn-sm" onclick="arrived(${i.id})">Về rồi</button></div>`).join('')}</div>
   <div class="two" style="margin-top:10px"><button class="btn btn-ghost" onclick="copyMsg(${s.id})">${ic('copy',18)} Sao chép Zalo</button><a class="btn btn-blue" style="text-decoration:none" href="tel:${s.phone.replace(/\s/g,'')}">${ic('phone',18)} Gọi ${esc(s.short)}</a></div></div>`}).join('')}
-function zaloMsg(sid){const s=sp(sid),d=new Date();return `Chào ${s.short}, nhà hàng Ăn Ngon Hoà Lạc cần đặt hàng ngày ${pad(d.getDate())}/${pad(d.getMonth()+1)}:\n`+needList().filter(i=>i.sup===sid).map(i=>`- ${i.name}${i.usual?': '+num(i.usual)+' '+uUnit(i):''}`).join('\n')+`\nNhờ ${s.short} giao giúp. Cảm ơn!`}
+function zaloMsg(sid){const d=new Date();return `Ngày ${pad(d.getDate())}/${pad(d.getMonth()+1)}:\n`+needList().filter(i=>i.sup===sid).map(i=>`- ${i.name}${i.usual?': '+num(i.usual)+' '+uUnit(i):''}`).join('\n')}
 function copyMsg(sid){const t=zaloMsg(sid),done=()=>toast('Đã sao chép — dán vào Zalo gửi nhà cung cấp');
  const fb=()=>{const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();done()};
  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(done,fb);else fb()}
