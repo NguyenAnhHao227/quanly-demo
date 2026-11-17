@@ -404,6 +404,72 @@ body:not(.gate) #gate{display:none}
 .g-st{display:flex;gap:12px;align-items:center;padding:9px 0;color:var(--muted);font-weight:600}
 .g-st i{width:28px;height:28px;border-radius:99px;border:2px solid var(--line);display:grid;place-items:center;flex:none;font-style:normal;font-size:13px;font-weight:800}
 .g-st.done{color:var(--ink)}.g-st.done i{background:var(--green);border-color:var(--green);color:#fff}
+.g-pay{display:flex;gap:12px;align-items:center;margin-top:12px;padding:12px 14px;border-radius:14px;border:1.5px solid}
+.g-pay i{font-style:normal;font-size:26px;flex:none}.g-pay b{display:block;font-size:15.5px}.g-pay span{display:block;font-size:13px;margin-top:2px;line-height:1.4}
+.g-pay.cod{background:#f0fdf4;border-color:#86efac;color:#166534}.g-pay.bank{background:#eff6ff;border-color:#93c5fd;color:#1e40af}
+.g-to{margin-top:10px;padding:2px 2px 0;line-height:1.5}.g-to small{display:block;color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.g-to b{display:block;font-size:15px}.g-to span{color:var(--muted);font-size:13.5px}
+.gtopb{gap:8px;padding:10px 12px}
+.gbrand{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+.glg{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#fff1e8,#ffd9bf);display:grid;place-items:center;font-size:26px;flex:none}
+@media(max-width:420px){.glg{display:none}.gtopb{gap:6px;padding:10px}.gbtn{padding:0 11px}.gbtn.back{padding:0 9px}}
+.gtopb .g-title{min-width:0}.gtopb .g-title b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gtopb .g-title small{color:var(--orange);font-weight:700;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.gbtn{height:42px;border-radius:13px;padding:0 13px;font-weight:800;font-size:15px;display:inline-flex;align-items:center;gap:6px;flex:none;border:1.5px solid var(--line);background:#fff;color:var(--ink2);text-decoration:none}
+.gbtn.green{background:#22a05b;border-color:#22a05b;color:#fff}.gbtn.back{padding:0 11px}
+.gbtn.orange{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 6px 14px rgba(255,77,0,.25)}
+.gcard{padding:14px}.gaddr{display:flex;gap:6px;align-items:flex-start;color:var(--ink2);font-size:14.5px;line-height:1.4}.gaddr .ic{color:var(--orange);flex:none;margin-top:1px}
+.gtel{display:inline-flex;gap:6px;align-items:center;color:#c2410c;font-weight:800;margin-top:6px;text-decoration:none}
+.gl{display:grid;gap:10px;margin-top:12px}
+.gpc{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;cursor:pointer}
+.gpc.off{opacity:.55;cursor:default}
+.gpc .em{width:64px;height:64px;border-radius:16px;background:#fff7ed;display:grid;place-items:center;font-size:34px;flex:none}
+.gpc .tx{flex:1;min-width:0}.gpc .tx b{display:block;font-size:16.5px;line-height:1.25}
+.gpc .gp{display:block;color:var(--orange);font-weight:800;margin-top:3px}.gpc .gp small{color:var(--muted);font-weight:500}
+.gpc .gs{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.gadd{position:relative;width:46px;height:46px;border-radius:14px;background:var(--orange);color:#fff;display:grid;place-items:center;flex:none;box-shadow:0 6px 14px rgba(255,77,0,.25)}
+.gadd i{position:absolute;top:-7px;right:-7px;min-width:20px;height:20px;border-radius:99px;background:var(--ink);color:#fff;font-style:normal;font-size:11.5px;font-weight:800;display:grid;place-items:center;padding:0 5px;border:2px solid #fff}
+.gsh-h{display:flex;align-items:center;gap:12px;padding:6px 0 12px;border-bottom:1px solid var(--line)}
+.gsh-h h3{flex:1;font-size:18px;margin:0}.gsh-i{color:var(--orange);display:grid;place-items:center}
+.gsh-h.gi .em{width:56px;height:56px;border-radius:16px;background:#fff7ed;display:grid;place-items:center;font-size:30px;flex:none}
+.gsh-h.gi .tx{flex:1;min-width:0}.gsh-h.gi .tx b{display:block;font-size:18px;line-height:1.25}.gp2{color:var(--blue);font-weight:800}.gp2 small{color:var(--muted);font-weight:500}
+.gsec{font-size:12.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:18px 0 8px}
+.gsz{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gsz button{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:11px 12px;text-align:left}
+.gsz button b{display:block;font-size:15.5px}.gsz button small{color:var(--muted);font-size:13px}
+.gsz button.on{border-color:var(--blue);background:var(--blue-soft)}.gsz button.on b{color:#1e3a8a}
+.gtp{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;position:relative}
+.gtp input{position:absolute;opacity:0;width:0;height:0}
+.gtp i{width:24px;height:24px;border-radius:7px;border:2px solid #cbd5e1;flex:none;display:grid;place-items:center;font-style:normal;color:#fff;font-size:15px;font-weight:800}
+.gtp input:checked+i{background:var(--blue);border-color:var(--blue)}.gtp input:checked+i:after{content:"✓"}
+.gtp input:focus-visible+i{outline:3px solid rgba(10,132,255,.4)}
+.gtp span{flex:1}.gtp b{color:var(--ink2);font-size:14px}
+.gchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.gchips button{background:#f1f5f9;border-radius:99px;padding:8px 13px;font-weight:600;font-size:14px;color:var(--ink2)}
+.gfoot{position:sticky;bottom:0;display:flex;align-items:center;gap:12px;margin:16px -18px calc(-22px - env(safe-area-inset-bottom));padding:12px 18px calc(14px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);z-index:2}
+.gfoot .btn{flex:1;justify-content:space-between;padding:0 14px;font-size:15px}.gfoot .btn span,.gfoot .btn b{white-space:nowrap}.gft small{display:block;color:var(--muted);font-size:12.5px}.gft b{display:block;font-size:20px;color:var(--orange);white-space:nowrap}
+.gqty{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;flex:none}
+.gqty button{width:44px;height:50px;font-size:22px;font-weight:700;background:#f8fafc}.gqty span{min-width:32px;text-align:center;font-weight:800;font-size:17px}
+.gl-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eef2f6}
+.gl-row .tx{flex:1;min-width:0}.gl-row .tx b{display:block;font-size:15.5px;line-height:1.3}.gl-row .tx small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}.gl-row .tx span{color:var(--orange);font-weight:800;font-size:14.5px}
+.gdel{width:36px;height:36px;color:var(--red);background:var(--red-soft);border-color:transparent}
+.gmap{margin-top:14px;padding:12px;border-radius:14px;background:#fff8f0;border:1.5px solid #fed7aa}
+.gmap b{display:flex;align-items:center;gap:6px;font-size:14.5px}.gmap small{display:block;color:var(--muted);font-size:12.5px;margin:4px 0 8px;line-height:1.4}
+.gl-lbl{font-size:13px;font-weight:700;color:var(--muted);margin:16px 0 8px}
+.gpay{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gpay button{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:12px 6px;text-align:center}
+.gpay button i{display:block;font-style:normal;font-size:22px}.gpay button b{display:block;font-size:14.5px;margin-top:2px}.gpay button small{color:var(--muted);font-size:12.5px;font-weight:600}
+.gpay button.cod.on{border-color:var(--orange);background:var(--orange-soft)}.gpay button.bank.on{border-color:var(--blue);background:var(--blue-soft)}
+.gdn{padding-top:20px}.gok{text-align:center;padding:22px 18px}
+.gcheck{width:72px;height:72px;border-radius:50%;background:#dcfce7;color:#16a34a;display:grid;place-items:center;margin:0 auto 10px;font-size:34px;border:4px solid #16a34a}.gcheck.bad{background:#fee2e2;border-color:#fca5a5}
+.gbn{display:block;color:var(--orange);font-weight:800;letter-spacing:.06em;font-size:13.5px}
+.gok h2{font-size:24px;margin:4px 0 6px}.gcode{color:var(--muted);font-size:14.5px;line-height:1.5}.gcode b{color:var(--ink)}
+.ginfo{text-align:left;background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:6px 14px;margin-top:14px}
+.ginfo>div{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid #e8edf3;font-size:15px}.ginfo>div:last-child{border:0}
+.ginfo span{color:var(--muted);flex:none}.ginfo b{text-align:right;min-width:0;overflow-wrap:anywhere}
+.ginfo .t{font-size:17px}.ginfo .t b{color:var(--orange);font-size:19px}
+.gstep,.glist{text-align:left}.glist .pl small{display:block;color:var(--muted);font-size:12.5px;font-weight:500}
+.ghot{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:14px;padding:14px;border-radius:14px;background:#ecfdf5;border:1.5px solid #a7f3d0;color:#047857;text-decoration:none;text-align:left;line-height:1.35}
+.gsub{display:flex;justify-content:center;gap:18px;margin-top:10px}.gsub button{color:var(--muted);font-weight:700;font-size:14px;padding:10px 6px;text-decoration:underline;text-underline-offset:3px}
 .g-st.now{color:var(--orange);font-weight:800}.g-st.now i{border-color:var(--orange);color:var(--orange)}
 </style>
 </head>
@@ -421,6 +487,8 @@ body:not(.gate) #gate{display:none}
 <script>
 /* ===== icons ===== */
 const ICONS={
+ trash:'<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',
+ pin:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
  home:'<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
  pkg:'<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/>',
  cart:'<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
@@ -986,7 +1054,7 @@ function delGroup(k){const n=S.items.filter(i=>i.g===k).length;
 const me=()=>S.accts.find(a=>a.id===S.me);
 const can=p=>me().role==='owner'||!!(S.perm[me().role]||{})[p];
 const NW='<span class="nwb">MỚI</span>';
-function logA(txt){S.log.unshift({t:Date.now(),who:me().name,txt})}
+function logA(txt){S.log.unshift({t:Date.now(),who:me().name,txt,rid:webRid()})}
 const SHIPT=['ship','online','ctv'];
 const isShipT=o=>SHIPT.includes(o.type);
 const oById=id=>S.orders.find(o=>o.id===id);
@@ -1006,14 +1074,14 @@ const stCls=o=>({new:'low',cook:'gray',ready:'ok',ship:'auto',done:'ok',cancel:'
 const shipFee=km=>{km=+km||0;const c=S.cfg;if(km<=0)return 0;if(km<=c.km0)return c.fee0;return Math.ceil((c.fee0+(km-c.km0)*c.feeKm)/1000)*1000};
 let oseq=INV.filter(i=>i.day===0).length;
 function nextCode(){const dt=new Date(),ds=String(dt.getFullYear()).slice(2)+pad(dt.getMonth()+1)+pad(dt.getDate());return `HD${ds}-${String(++oseq).padStart(3,'0')}`}
-let oid=0;
-function newOrder(type,extra){const o=Object.assign({id:++oid,code:nextCode(),type,t:Date.now(),lines:[],status:type==='table'?'open':'new',disc:0,paid:false,by:me().name},extra||{});S.orders.push(o);return o}
-function mkLine(mid,qty,st,tops,note){const m=mById(mid);return {mid,name:m.name,price:m.price,qty,st:st||'new',tops:tops||[],note:note||''}}
+let oid=0;var SBLIVE=false;
+function newOrder(type,extra){const o=Object.assign({id:++oid,rid:webRid(),code:nextCode(),type,t:Date.now(),lines:[],status:type==='table'?'open':'new',disc:0,paid:false,by:me().name},extra||{});S.orders.push(o);return o}
+function mkLine(mid,qty,st,tops,note,sz){const m=mById(mid);return {lid:webRid(),mid,name:m.name+(sz?' - '+sz.n:''),price:m.price+(sz?sz.p:0),qty,st:st||'new',tops:tops||[],note:note||''}}
 function refreshO(o){if(o.type==='table'||!o.lines.length)return;
  if((o.status==='cook'||o.status==='new')&&o.lines.every(l=>l.st==='done'))o.status='ready'}
 const tickets=()=>S.orders.filter(o=>o.status!=='done'&&o.status!=='cancel'&&o.lines.some(l=>l.st==='cook'));
 function pushInv(o,method){const n=new Date();
- INV.push({day:0,hour:n.getHours(),min:n.getMinutes(),table:oLabel(o),ch:o.type,code:o.code,method,amount:oNet(o),shift:S.shift,cod:!!o.cod,remit:false,
+ INV.push({day:0,hour:n.getHours(),min:n.getMinutes(),table:oLabel(o),ch:o.type,code:o.code,method,amount:oNet(o),shift:S.shift,cod:!!o.cod,remit:false,live:SBLIVE,ts:Date.now(),
   lines:o.lines.map(l=>({name:l.name+(l.tops.length?' + '+l.tops.map(t=>t.name).join(', '):''),price:lineUnit(l),qty:l.qty}))});
  /* món bán lẻ có liên kết kho thì tự trừ */
  const warn=[];o.lines.forEach(l=>{const m=mById(l.mid);if(m&&m.stock){const i=it(m.stock);if(i){const b=i.lv;i.amt=Math.max(0,(i.amt||0)-l.qty);refresh(i);if(b==='ok'&&i.lv!=='ok')warn.push(i.name)}}});
@@ -1189,6 +1257,7 @@ function openAcct(id){const isOwner=me().role==='owner',a=id?S.accts.find(x=>x.i
  sheet(`<h3>${id?'Sửa nhân viên':'Thêm nhân viên'}</h3><p class="sub">${id?'@'+esc(a.user)+' · ':''}Một nơi duy nhất cho tài khoản đăng nhập, phân quyền và lương.</p>
  <label class="l" for="ae-n">Họ tên</label><input id="ae-n" class="in" value="${esc(a.name)}" placeholder="VD: Em Hương">
  <label class="l" for="ae-t">Chức danh</label><input id="ae-t" class="in" value="${esc(a.title||'')}" placeholder="VD: Phục vụ, Phụ bếp…">
+ ${id?`<label class="l" for="ae-p2">Đặt mật khẩu mới</label><input id="ae-p2" class="in" type="password" placeholder="Bỏ trống nếu không đổi (≥ 4 ký tự)" autocomplete="new-password">`:''}
  ${id?'':`<div class="two"><div><label class="l" for="ae-u">Tài khoản</label><input id="ae-u" class="in" placeholder="VD: huong.nv" autocomplete="off"></div><div><label class="l" for="ae-p">Mật khẩu</label><input id="ae-p" class="in" type="password" placeholder="≥ 4 ký tự" autocomplete="new-password"></div></div>`}
  <label class="l" for="ae-r">Vai trò (quyết định được làm gì)</label><select id="ae-r" class="in" ${a.id===S.me&&!isOwner?'disabled':''}>${Object.entries(ROLES).filter(([k])=>k!=='owner'||isOwner).map(([k,v])=>`<option value="${k}" ${k===a.role?'selected':''}>${v}</option>`).join('')}</select>
  <p class="gtitle" style="margin:16px 4px 0">💰 Lương ${cp?'':'<span class="lock" style="display:inline-flex;margin:0;padding:2px 8px">🔒 cần quyền Bảng lương</span>'}</p>
@@ -1196,12 +1265,14 @@ function openAcct(id){const isOwner=me().role==='owner',a=id?S.accts.find(x=>x.i
  <div><label class="l" for="ae-pr">Mức lương (đ)</label><input id="ae-pr" class="in mny" type="text" inputmode="numeric" autocomplete="off" value="${fmtIn(p.rate)}" ${cp?'':'disabled'}></div></div>
  <p class="sub" style="margin-top:8px">Giờ làm tự lấy từ nút Vào ca / Ra ca. Lương tháng tự chia 30 ngày để tính theo kỳ báo cáo.</p>
  ${id&&a.id!==S.me?`<div class="swrow"><div><b>Cho phép đăng nhập</b><span>Tắt khi nhân viên nghỉ việc, dữ liệu cũ vẫn giữ</span></div><label class="sw"><input id="ae-on" type="checkbox" ${a.on?'checked':''}><i></i></label></div>`:''}
- <div class="acts"><button class="btn btn-blue" onclick="saveAcct(${id||'null'})">${ic('check',18)} ${id?'Lưu':'Thêm nhân viên'}</button>${id?`<button class="btn btn-ghost" onclick="closeSheet();toast('Bản demo: đã gửi mật khẩu tạm cho nhân viên')">Đặt lại mật khẩu</button>`:''}<button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
+ <div class="acts"><button class="btn btn-blue" onclick="saveAcct(${id||'null'})">${ic('check',18)} ${id?'Lưu':'Thêm nhân viên'}</button><button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
 function saveAcct(id){const n=$('#ae-n').value.trim();if(!n){toast('Nhập họ tên','err');return}const cp=can('payroll'),r=$('#ae-r').value,title=$('#ae-t').value.trim()||ROLES[r];
  let pay=null;if(cp){const t=$('#ae-pt').value;pay=t==='none'?null:{type:t,rate:Math.max(0,+unm($('#ae-pr').value)||0)}}
  if(!id){const u=$('#ae-u').value.trim(),p=$('#ae-p').value;if(!u){toast('Nhập tài khoản đăng nhập','err');return}if(p.length<4){toast('Mật khẩu ít nhất 4 ký tự','err');return}if(S.accts.some(a=>a.user===u)){toast('Tài khoản này đã có','err');return}
-  const na={id:Math.max(...S.accts.map(a=>a.id))+1,name:n,title,user:u,role:r,on:true,pay};S.accts.push(na);if(pay)S.work[na.id]={0:0};logA(`Thêm nhân viên ${n} (${ROLES[r]})${pay?' · lương '+payLbl(na):''}`);closeSheet();render();toast('Đã thêm '+n+' — vừa có tài khoản, vừa có trong bảng lương');return}
+  const na={id:Math.max(...S.accts.map(a=>a.id))+1,name:n,title,user:u,role:r,on:true,pay,ph:pwHash(u,p)};S.accts.push(na);if(pay)S.work[na.id]={0:0};logA(`Thêm nhân viên ${n} (${ROLES[r]})${pay?' · lương '+payLbl(na):''}`);closeSheet();render();toast('Đã thêm '+n+' — vừa có tài khoản, vừa có trong bảng lương');return}
  const a=S.accts.find(x=>x.id===id),on=$('#ae-on')?$('#ae-on').checked:a.on;
+ const p2=$('#ae-p2')?$('#ae-p2').value:'';if(p2&&p2.length<4){toast('Mật khẩu mới ít nhất 4 ký tự','err');return}
+ if(p2){a.ph=pwHash(a.user,p2);logA('Đổi mật khẩu của '+a.name)}
  if(r!==a.role)logA(`Đổi vai trò ${a.name}: ${ROLES[a.role]} → ${ROLES[r]}`);if(on!==a.on)logA(`${on?'Mở khóa':'Khóa'} tài khoản ${a.name}`);
  if(cp&&JSON.stringify(pay)!==JSON.stringify(a.pay)){logA(`Đổi lương ${a.name}: ${payLbl(a)} → ${pay?payLbl({pay}):'Không tính lương'}`);a.pay=pay;if(pay&&!S.work[a.id])S.work[a.id]={0:0}}
  a.name=n;a.title=title;a.role=r;a.on=on;closeSheet();render();toast('Đã lưu')}
@@ -1241,7 +1312,7 @@ function allowed(m){if(me().role==='owner')return NAV.some(n=>n[0]===m);return !
 function need(p){if(can(p))return true;const l=(PERMS.find(x=>x[0]===p)||[0,p])[1];toast(`Vai trò ${ROLES[me().role]} chưa được bật quyền “${l}”. Nhờ quản lý bật trong Cài đặt → Phân quyền`,'err');return false}
 function navBadge(m){if(m==='ship')return !can('shipAll')?S.orders.filter(o=>o.status==='ship'&&o.shipper===S.me).length:S.orders.filter(o=>isShipT(o)&&((o.status==='new'&&can('confirm'))||o.status==='ready')).length;if(m==='bep')return tickets().length;if(m==='don')return S.orders.filter(o=>o.type==='take'&&o.status==='ready').length;return 0}
 function buildPos(){const u=me(),nb=can('confirm')?S.orders.filter(o=>isShipT(o)&&o.status==='new').length:0;
- $('#pos').innerHTML=`<div class="r1"><div class="logo">🍖</div><div class="t"><b>${esc(S.cfg.name)}</b><small>${ic('wifi',12)} Đồng bộ trực tuyến</small></div>
+ $('#pos').innerHTML=`<div class="r1"><div class="logo">🍖</div><div class="t"><b>${esc(S.cfg.name)}</b><small id="sbstat">${sbLbl()}</small></div>
   <button class="iconbtn" onclick="openNoti()" aria-label="Thông báo">${ic('bell',17)}${nb?'<i class="dotr"></i>':''}</button>
   <button class="ubtn" onclick="openMe()" aria-label="Tài khoản"><b>${esc(u.user)}</b><small>${ROLES[u.role]} ▾</small></button></div>
   <div class="nav" role="tablist">${NAV.filter(n=>allowed(n[0])).map(([m,i,l])=>{const on=S.mod===m,b=navBadge(m);
@@ -1321,7 +1392,7 @@ function vTables(){const busy=t=>S.orders.find(o=>o.type==='table'&&o.table===t.
 function openTable(id){if(!need('order'))return;const o=newOrder('table',{table:id,guests:1});openOrd(o.id)}
 function newTake(){if(!need('order'))return;const o=newOrder('take');openOrd(o.id)}
 function openOrd(id){S.ord=id;S.oq='';S.ocat='Tất cả';render(false);window.scrollTo(0,0)}
-function closeOrd(){const o=oById(S.ord);if(o&&!o.lines.length&&o.status!=='done'){S.orders=S.orders.filter(x=>x!==o)}S.ord=null;render(false);window.scrollTo(0,0)}
+function closeOrd(){const o=oById(S.ord);if(o&&!o.lines.length&&o.status!=='done'){if(o.rid&&SBON())sbUp([{id:'o:'+o.rid,kind:'o',data:{del:1}}]).catch(sbFail);S.orders=S.orders.filter(x=>x!==o)}S.ord=null;render(false);window.scrollTo(0,0)}
 function sendK(id){const o=oById(id),n=o.lines.filter(l=>l.st==='new');if(isShipT(o)&&o.status==='new'){if(can('confirm'))openConfirm(id);else toast('Đơn giao hàng phải được quản lý gọi khách xác nhận rồi mới vào bếp','err');return}if(!need('kit'))return;if(!n.length){toast('Không có món mới để báo bếp','err');return}
  n.forEach(l=>l.st='cook');if(o.status==='new')o.status='cook';render();toast(`Đã báo bếp ${sumA(n.map(l=>l.qty))} món · ${tName(o)} ${o.code}`)}
 function openConfirm(id){const o=oById(id);if(!can('confirm')){toast('Chỉ quản lý được xác nhận đơn','err');return}const c=o.cust||{};
@@ -1606,7 +1677,8 @@ function vSet(){const c=S.cfg,cb=can('bank'),cs=can('staff'),isOwner=me().role==
  <div class="demobox"><b>🧪 Chỉ dùng khi demo</b><p>Đưa toàn bộ về dữ liệu mẫu ban đầu để thử lại từ đầu. <b>Đây không phải tính năng chính thức</b>, app thật sẽ không có nút này.</p><button class="btn btn-sm" onclick="askReset()">↺ Reset dữ liệu mẫu</button></div>`}
 function askReset(){sheet(`<h3>Reset dữ liệu mẫu?</h3><p class="sub">Mọi đơn, món, cài đặt bạn vừa bấm thử sẽ mất, app quay về như lúc mới mở.</p>
  <p class="lock">🧪 Nút này chỉ có trong bản demo để test nhiều lần, không phải tính năng chính thức.</p>
- <div class="acts"><button class="btn btn-danger" onclick="location.reload()">↺ Reset ngay</button><button class="btn btn-ghost" onclick="closeSheet()">Thôi</button></div>`)}
+ ${SBON()?'<p class="hint" style="margin-top:10px">Đang nối máy chủ: “Reset ngay” chỉ làm mới máy này, tài khoản, thực đơn và đơn khách trên máy chủ vẫn còn. Muốn xóa sạch thì chọn nút thứ hai.</p>':''}
+ <div class="acts"><button class="btn btn-danger" onclick="location.reload()">↺ Reset ngay</button>${SBON()?`<button class="btn btn-danger" onclick="sbWipe().then(function(){location.reload()}).catch(sbFail)">↺ Reset và xóa luôn dữ liệu trên máy chủ</button>`:''}<button class="btn btn-ghost" onclick="closeSheet()">Thôi</button></div>`)}
 function permEdit(r){return me().role==='owner'||(can('perm')&&r!==me().role)}
 function vPerm(isOwner){const r=S.prole,P=S.perm[r],ed=permEdit(r),acc=S.accts.find(a=>a.role===r&&a.on);
  return `<div class="card"><h3>🛡 Phân quyền theo vai trò ${NW}</h3><p class="rsub" style="font-size:13px">Chọn vai trò rồi bật / tắt từng quyền. Bật quyền nào thì vai trò đó dùng được ngay. Chủ quán luôn có toàn quyền.</p>
@@ -1626,100 +1698,304 @@ function delAcct(id){const a=S.accts.find(x=>x.id===id);if(a.role==='owner'&&me(
 function fakeOnline(){const o=newOrder('online',{cust:{name:'Khách online',phone:'0933 777 888',addr:'Cổng ĐH Quốc gia, Hòa Lạc'},ship:{km:2.2,fee:shipFee(2.2),pay:'bank'}});o.lines=[mkLine(1,1,'new'),mkLine(16,1,'new')];render();toast('Giả lập: có 1 đơn khách tự đặt — xem ở mục Giao hàng')}
 
 /* ---------- bìa ngoài: khách đặt hàng / nhân viên đăng nhập ---------- */
-const G={scr:'cover',q:'',cat:'Tất cả',cart:{},last:null,f:{name:'',phone:'',addr:'',note:'',km:2,pay:'cod'}};
+const G={scr:'cover',q:'',cat:'Tất cả',cart:[],it:null,last:null,f:{name:'',phone:'',addr:'',note:'',km:2,pay:'cod'}};
 const gNrm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d');
 function gateTo(s){G.scr=s;document.body.classList.add('gate');closeSheet();
- $('#gate').innerHTML=({cover:gCover,login:gLoginPage,cust:gCust,pay:gCheckout,done:gDone})[s]();window.scrollTo(0,0)}
+ $('#gate').innerHTML=({cover:gCover,login:gLoginPage,cust:gCust,pay:gCust,done:gDone})[s]();window.scrollTo(0,0);
+ if(s==='login'&&SBON())sbSync(false).catch(sbFail)}
 function gCover(){const c=S.cfg;
  return `<div class="g-cover"><div class="g-top"><div class="g-logo">🍖</div><h1>${esc(c.name)}</h1><p>${esc(c.addr)}</p></div>
  <button class="g-big" onclick="gateTo('cust')"><span class="g-bi">🛵</span><b>Khách đặt hàng</b><span class="g-bs">Chọn món ngay, quán giao tận nơi</span><span class="g-go">${ic('arrowr',26)}</span></button>
  <div class="g-bot"><a class="g-phone" href="tel:${unm(c.phone)}">${ic('phone',16)} Gọi quán: ${esc(c.phone)}</a><button class="g-staff" onclick="gateTo('login')">Nhân viên của quán? Đăng nhập</button></div></div>`}
 
 /* ----- nhân viên đăng nhập ----- */
-function gLoginPage(){const L=S.accts.filter(a=>a.on);
+function gLoginList(){return S.accts.filter(a=>a.on).map(a=>`<button class="row" onclick="loginAs(${a.id})"><div class="tx"><b>${esc(a.name)}</b><span>${ROLES[a.role]} · @${esc(a.user)}</span></div>${ic('chev',18)}</button>`).join('')}
+function gLoginPage(){const real=SBON();
  return `<div class="g-page"><div class="g-bar"><button class="iconbtn" onclick="gateTo('cover')" aria-label="Quay lại">${ic('back',20)}</button><b>Nhân viên đăng nhập</b></div>
  <div class="g-body"><form class="card" onsubmit="doLogin();return false"><h3>Đăng nhập</h3><p class="sub" style="font-size:13.5px;color:var(--muted)">Tài khoản do chủ quán cấp. Đăng nhập xong, app tự hiện đúng những mục theo vai trò của bạn.</p>
   <label class="l" for="lg-u" style="margin-top:12px">Tên đăng nhập</label><input id="lg-u" class="in" autocomplete="username" autocapitalize="none" placeholder="VD: thungan">
   <label class="l" for="lg-p">Mật khẩu</label><input id="lg-p" class="in" type="password" autocomplete="current-password" placeholder="Mật khẩu">
+  ${real?`<p class="rmuted" style="font-size:12.5px;margin-top:6px">Tài khoản mẫu có sẵn dùng mật khẩu <b>${DEFPW}</b>. Tài khoản chủ vừa cấp thì dùng mật khẩu chủ đã đặt.</p>`:''}
   <button class="btn btn-blue" type="submit" style="margin-top:14px">Đăng nhập</button></form>
- <div class="demobox" style="margin-top:14px"><b>🧪 Chỉ có trong bản demo</b><p>Đang test nên không cần gõ gì, <b>bấm vào một tài khoản bên dưới là vào luôn</b>. App thật sẽ bắt nhập tên đăng nhập và mật khẩu.</p></div>
+ ${!real||QUICKLOGIN?`<div class="demobox" style="margin-top:14px"><b>🧪 Chỉ có trong bản demo</b><p>Đang test nên <b>bấm vào một tài khoản bên dưới là vào luôn</b>, không cần gõ gì. App thật sẽ bắt nhập tên đăng nhập và mật khẩu.</p></div>
  <p class="gtitle" style="margin:14px 2px 6px">Chọn tài khoản để vào ${NW}</p>
- <div class="list">${L.map(a=>`<button class="row" onclick="loginAs(${a.id})"><div class="tx"><b>${esc(a.name)}</b><span>${ROLES[a.role]} · @${esc(a.user)}</span></div>${ic('chev',18)}</button>`).join('')}</div></div></div>`}
-function doLogin(){const u=$('#lg-u').value.trim().toLowerCase();if(!u){toast('Nhập tên đăng nhập','err');return}
- const a=S.accts.find(x=>x.user.toLowerCase()===u);if(!a){toast('Không có tên đăng nhập này','err');return}
- if(!a.on){toast('Tài khoản này đang bị khóa, hỏi chủ quán','err');return}loginAs(a.id)}
+ <div class="list" id="lg-list">${gLoginList()}</div>`:''}</div></div>`}
+function doLogin(){const u=$('#lg-u').value.trim().toLowerCase(),pw=$('#lg-p').value;if(!u){toast('Nhập tên đăng nhập','err');return}
+ const go=()=>{const a=S.accts.find(x=>x.user.toLowerCase()===u);if(!a){toast('Không có tên đăng nhập này','err');return}
+  if(!a.on){toast('Tài khoản này đang bị khóa, hỏi chủ quán','err');return}
+  if(SBON()&&!pwOk(a,pw)){toast('Sai mật khẩu','err');return}loginAs(a.id)};
+ if(SBON()){sbSyncing=false;sbSync(false).then(go,()=>toast('Không kết nối được máy chủ, kiểm tra mạng rồi thử lại','err'))}else go()}
 function loginAs(id){const a=S.accts.find(x=>x.id===id);if(!a||!a.on){toast('Tài khoản đang bị khóa','err');return}
  S.me=id;S.ord=null;S.cd=null;S.mod=NAV.map(n=>n[0]).find(allowed)||'none';
- document.body.classList.remove('gate');$('#gate').innerHTML='';G.scr='app';render(false);window.scrollTo(0,0);toast('Xin chào '+a.name+' · '+ROLES[a.role])}
+ document.body.classList.remove('gate');$('#gate').innerHTML='';G.scr='app';render(false);window.scrollTo(0,0);toast('Xin chào '+a.name+' · '+ROLES[a.role]);if(SBON())sbTick()}
 function logout(){closeSheet();S.ord=null;gateTo('cover');toast('Đã đăng xuất')}
 
-/* ----- khách đặt hàng ----- */
-const gCount=()=>sumA(Object.keys(G.cart).filter(id=>mById(+id)).map(id=>G.cart[id]));
-const gSub=()=>sumA(Object.keys(G.cart).filter(id=>mById(+id)).map(id=>mById(+id).price*G.cart[id]));
+/* ----- khách đặt hàng: khung giống app gốc (thanh trên + danh sách món + sheet chọn món + sheet giỏ hàng + trang thành công) ----- */
+const DEMO_SZ={1:[['Thường',0],['Tô Lớn (ĐB)',15000]],4:[['Thường',0],['Đĩa Lớn',15000]],14:[['Cỡ vừa',0],['Cỡ lớn',8000]],15:[['Ly thường',0],['Ly lớn',8000]]};
+const G_CHIPS=['Không hành','Ít cay','Không cay','Ít đá','Ít ngọt','Làm trước','Bỏ riêng nước chấm','Đóng hộp mang về'];
+function mSizes(m){const s=m.sizes||DEMO_SZ[m.id];return s?s.map(x=>Array.isArray(x)?{n:x[0],p:x[1]}:x):[]}
+function gLines(){G.cart=G.cart.filter(l=>!!mById(l.mid));return G.cart}
+function gTops(l){return S.tops.filter(x=>l.tops.indexOf(x.id)>-1)}
+function gUnit(l){const m=mById(l.mid),z=mSizes(m)[l.sz];return m.price+(z?z.p:0)+sumA(gTops(l).map(x=>x.price))}
+function gLName(l){const m=mById(l.mid),z=mSizes(m)[l.sz];return m.name+(z?' - '+z.n:'')}
+function gLOpt(l){return gTops(l).map(x=>'+ '+x.name).concat(l.note?['“'+l.note+'”']:[]).join(' · ')}
+const gCount=()=>sumA(gLines().map(l=>l.qty));
+const gSub=()=>sumA(gLines().map(l=>gUnit(l)*l.qty));
 function gRows(){const q=gNrm(G.q.trim());
  const L=S.menu.filter(m=>(G.cat==='Tất cả'||m.cat===G.cat)&&(!q||gNrm(m.name).includes(q)));
- return L.map(m=>{const n=G.cart[m.id]||0;
-  const ctl=!m.on?'<span class="chip out">Hết món</span>':n?`<div class="mini"><button onclick="gQ(${m.id},-1)" aria-label="Bớt">−</button><span>${n}</span><button onclick="gQ(${m.id},1)" aria-label="Thêm">+</button></div>`:`<button class="plusb" onclick="gQ(${m.id},1)" aria-label="Thêm ${esc(m.name)}">${ic('plus',18)}</button>`;
-  return `<div class="ml ${m.on?'':'off'}"><span class="em">${m.em}</span><div class="tx"><b>${esc(m.name)}</b><span>${money(m.price)} <small class="muted" style="font-weight:500">/ ${esc(m.unit)}</small></span></div>${ctl}</div>`}).join('')||'<div class="empty">Không tìm thấy món nào</div>'}
-function gPills(){return ['Tất cả'].concat(S.cats).map((c,k)=>`<button class="pill ${G.cat===c?'on':''}" onclick="G.cat=['Tất cả'].concat(S.cats)[${k}];gListUI()">${esc(c)}</button>`).join('')}
-function gBar(){const n=gCount();return n?`<button class="btn btn-orange g-cartbtn" onclick="gateTo('pay')"><span class="g-cn">${n}</span><b>Xem giỏ hàng</b><span>${money(gSub())}</span></button>`:''}
-function gListUI(){const a=$('#g-list'),b=$('#g-bar'),p=$('#g-pills');if(a)a.innerHTML=gRows();if(b)b.innerHTML=gBar();if(p)p.innerHTML=gPills()}
+ return L.map(m=>{const n=sumA(gLines().filter(l=>l.mid===m.id).map(l=>l.qty)),sub=mSizes(m).length?'Chọn size / topping':S.tops.length?'Chọn topping / ghi chú':'Thêm ghi chú cho bếp';
+  return `<div class="gpc ${m.on?'':'off'}" ${m.on?`onclick="gOpenItem(${m.id})"`:''}><span class="em">${m.em}</span><div class="tx"><b>${esc(m.name)}</b><span class="gp">${money(m.price)} <small>/ ${esc(m.unit)}</small></span>${m.on?`<small class="gs">${sub}</small>`:''}</div>${m.on?`<span class="gadd" aria-label="Chọn ${esc(m.name)}">${ic('plus',22)}${n?`<i>${n}</i>`:''}</span>`:'<span class="chip out">Hết món</span>'}</div>`}).join('')||'<div class="empty">Không tìm thấy món nào</div>'}
+function gPills(){return ['Tất cả'].concat(S.cats).map((c,k)=>`<button class="pill ${G.cat===c?'on':''}" onclick="G.cat=['Tất cả'].concat(S.cats)[${k}];gListUI()">${esc(c)}${k===0?' ('+S.menu.filter(m=>m.on).length+')':''}</button>`).join('')}
+function gCartBtn(){return `<button class="gbtn orange" onclick="gOpenCart()">${ic('cart',17)}<span>Giỏ (${gCount()})</span></button>`}
+function gListUI(){const a=$('#g-list'),b=$('#g-cartbtn'),p=$('#g-pills');if(a)a.innerHTML=gRows();if(b)b.innerHTML=gCartBtn();if(p)p.innerHTML=gPills()}
 function gCust(){const c=S.cfg;
- return `<div class="g-page"><div class="g-bar"><button class="iconbtn" onclick="gateTo('cover')" aria-label="Về trang đầu">${ic('back',20)}</button><div class="g-title"><b>${esc(c.name)}</b><small>Đặt hàng online · quán giao tận nơi</small></div></div>
- <div class="g-body"><div class="search">${ic('search',18)}<input placeholder="Tìm món ăn, đồ uống…" value="${esc(G.q)}" oninput="G.q=this.value;gListUI()" aria-label="Tìm món"></div>
- <div class="pills" id="g-pills" style="margin:10px 0">${gPills()}</div>
- <div class="card" id="g-list" style="padding:4px 14px">${gRows()}</div></div>
- <div class="g-barb" id="g-bar">${gBar()}</div></div>`}
-function gQ(mid,d){const m=mById(mid);if(!m||!m.on){toast('Món này đã hết','err');return}
- const n=Math.max(0,(G.cart[mid]||0)+d);if(n)G.cart[mid]=n;else delete G.cart[mid];
- if(G.scr==='pay'){if(!gCount()){toast('Giỏ hàng đang trống');gateTo('cust');return}gPayUI()}else gListUI()}
+ return `<div class="g-page"><div class="g-bar gtopb"><div class="gbrand"><span class="glg">🍖</span><div class="g-title"><b>${esc(c.name)}</b><small>${ic('truck',14)} Đặt món Online</small></div></div>
+  <a class="gbtn green" href="tel:${unm(c.phone)}">${ic('phone',16)}<span>Gọi</span></a><button class="gbtn back" onclick="gateTo('cover')" aria-label="Về trang đầu">${ic('back',18)}</button><span id="g-cartbtn">${gCartBtn()}</span></div>
+ <div class="g-body"><div class="card gcard"><p class="gaddr">${ic('pin',16)} ${esc(c.addr)}</p><a class="gtel" href="tel:${unm(c.phone)}">${ic('phone',15)} ${esc(c.phone)}</a>
+  <div class="search" style="margin-top:12px">${ic('search',18)}<input placeholder="Tìm món ăn, đồ uống…" value="${esc(G.q)}" oninput="G.q=this.value;gListUI()" aria-label="Tìm món"></div>
+  <div class="pills" id="g-pills" style="margin-top:12px">${gPills()}</div></div>
+  <div class="gl" id="g-list">${gRows()}</div></div></div>`}
 
+/* --- sheet chọn món: size, topping, ghi chú, số lượng --- */
+function gSzHTML(m){return mSizes(m).map((s,i)=>`<button class="${G.it.sz===i?'on':''}" onclick="giSz(${i})"><b>${esc(s.n)}</b><small>${s.p?'+'+money(s.p):'Giá gốc'}</small></button>`).join('')}
+function gOpenItem(mid){const m=mById(mid);if(!m||!m.on){toast('Món này đã hết','err');return}
+ const sz=mSizes(m);G.it={mid,sz:sz.length?0:-1,q:1};
+ sheet(`<div class="gsh-h gi"><span class="em">${m.em}</span><div class="tx"><b>${esc(m.name)}</b><span class="gp2">${money(m.price)} <small>/ ${esc(m.unit)}</small></span></div><button class="iconbtn" onclick="closeSheet()" aria-label="Đóng">${ic('x',18)}</button></div>
+ ${sz.length?`<p class="gsec">Chọn kích cỡ / phân loại</p><div class="gsz" id="gi-sz">${gSzHTML(m)}</div>`:''}
+ ${S.tops.length?`<p class="gsec">Món thêm / Topping</p>${S.tops.map(t=>`<label class="gtp"><input type="checkbox" class="gi-t" value="${t.id}" onchange="giCalc()"><i></i><span>${esc(t.name)}</span><b>${t.price?'+'+money(t.price):'Miễn phí'}</b></label>`).join('')}`:''}
+ <p class="gsec">Ghi chú cho bếp / bar</p><div class="gchips">${G_CHIPS.map(c=>`<button type="button" onclick="giChip(this)">+ ${c}</button>`).join('')}</div>
+ <input id="gi-n" class="in" placeholder="Ví dụ: Ít cay, không hành, mang ra sau…" maxlength="120" autocomplete="off">
+ <div class="gfoot"><div class="gqty"><button onclick="giQ(-1)" aria-label="Bớt">−</button><span id="gi-q">1</span><button onclick="giQ(1)" aria-label="Thêm">+</button></div><button class="btn btn-blue" onclick="giAdd()"><span>Thêm vào đơn</span><b id="gi-tot"></b></button></div>`);giCalc()}
+function giTops(){return [].slice.call(document.querySelectorAll('.gi-t:checked')).map(x=>+x.value)}
+function giCalc(){const it=G.it,m=mById(it.mid);if(!m)return;const z=mSizes(m)[it.sz],t=S.tops.filter(x=>giTops().indexOf(x.id)>-1),e=$('#gi-tot');
+ if(e)e.textContent=money((m.price+(z?z.p:0)+sumA(t.map(x=>x.price)))*it.q)}
+function giSz(i){G.it.sz=i;$('#gi-sz').innerHTML=gSzHTML(mById(G.it.mid));giCalc()}
+function giQ(d){G.it.q=Math.max(1,Math.min(99,G.it.q+d));$('#gi-q').textContent=G.it.q;giCalc()}
+function giChip(b){const i=$('#gi-n'),t=b.textContent.replace(/^\+\s*/,'');if(i.value.indexOf(t)>-1)return;i.value=i.value.trim()?i.value.trim().replace(/[,\s]+$/,'')+', '+t:t}
+function giAdd(){const it=G.it,m=mById(it.mid);if(!m||!m.on){toast('Món này đã hết','err');return}
+ const tops=giTops().sort((a,b)=>a-b),note=$('#gi-n').value.trim(),key=[it.mid,it.sz,tops.join('.'),note].join('|'),ex=G.cart.find(l=>l.key===key);
+ if(ex)ex.qty=Math.min(99,ex.qty+it.q);else G.cart.push({key,mid:it.mid,sz:it.sz,tops,note,qty:it.q});
+ closeSheet();gListUI();toast('Đã thêm '+it.q+' × '+m.name+' vào giỏ')}
+
+/* --- sheet giỏ hàng & thông tin nhận hàng --- */
 function gFee(){return shipFee(G.f.km)}
-function gLinesHTML(){const ids=Object.keys(G.cart).filter(id=>mById(+id));
- return ids.map(id=>{const m=mById(+id),n=G.cart[id];return `<div class="ml"><span class="em">${m.em}</span><div class="tx"><b>${esc(m.name)}</b><span>${money(m.price*n)}</span></div><div class="mini"><button onclick="gQ(${m.id},-1)" aria-label="Bớt">−</button><span>${n}</span><button onclick="gQ(${m.id},1)" aria-label="Thêm">+</button></div></div>`}).join('')}
+function gLinesHTML(){return gLines().map((l,i)=>`<div class="gl-row"><div class="tx"><b>${esc(gLName(l))}</b>${gLOpt(l)?`<small>${esc(gLOpt(l))}</small>`:''}<span>${money(gUnit(l)*l.qty)}</span></div><div class="mini"><button onclick="gCQ(${i},-1)" aria-label="Bớt">−</button><span>${l.qty}</span><button onclick="gCQ(${i},1)" aria-label="Thêm">+</button></div><button class="iconbtn gdel" onclick="gDel(${i})" aria-label="Xóa món">${ic('trash',17)}</button></div>`).join('')}
 function gTotHTML(){const sub=gSub(),fee=gFee();
- return `<div class="pl"><span>Tiền món</span><b>${money(sub)}</b></div><div class="pl"><span>Phí ship (tạm tính)</span><b>${money(fee)}</b></div>
- <div class="pl tot"><span>Tổng thanh toán</span><span style="color:var(--orange)">${money(sub+fee)}</span></div>
- <button class="btn btn-orange" style="margin-top:10px" onclick="gSend()">${ic('check',18)} Đặt hàng</button>
- <p class="rmuted" style="font-size:13px;text-align:center;margin-top:8px">Quán sẽ gọi điện xác nhận đơn trước khi làm món.</p>`}
-function gPayBtns(){const p=G.f.pay;return `<div class="seg"><button class="sg ${p==='cod'?'on plain':''}" onclick="gPay('cod')">Tiền mặt khi nhận</button><button class="sg ${p==='bank'?'on plain':''}" onclick="gPay('bank')">Chuyển khoản</button></div>${p==='bank'?'<p class="hint" style="margin-top:8px">Quán sẽ gửi mã VietQR cho bạn sau khi xác nhận đơn.</p>':''}`}
+ return `<div class="pl"><span>Tiền món</span><b>${money(sub)}</b></div><div class="pl" style="border:0"><span>Phí ship (tạm tính)</span><b>${money(fee)}</b></div>`}
+function gPayBtns(){const p=G.f.pay;return `<div class="gpay"><button class="cod ${p==='cod'?'on':''}" onclick="gPay('cod')"><i>💵</i><b>Tiền mặt khi nhận</b><small>(COD)</small></button><button class="bank ${p==='bank'?'on':''}" onclick="gPay('bank')"><i>🏦</i><b>Chuyển khoản</b><small>(VietQR)</small></button></div><p class="hint" style="margin-top:8px">${p==='bank'?'Quán sẽ gửi mã QR để bạn quét trả sau khi xác nhận đơn.':'Bạn trả tiền mặt cho người giao hàng khi nhận món.'}</p>`}
 function gPay(p){G.f.pay=p;$('#g-pay').innerHTML=gPayBtns()}
-function gPayUI(){$('#g-lines').innerHTML=gLinesHTML();$('#g-tot').innerHTML=gTotHTML()}
-function gCheckout(){const f=G.f;
- if(!gCount()){return gCust()}
- return `<div class="g-page"><div class="g-bar"><button class="iconbtn" onclick="gateTo('cust')" aria-label="Quay lại chọn món">${ic('back',20)}</button><b>Giỏ hàng & thông tin nhận hàng</b></div>
- <div class="g-body"><div class="card"><h3>🛍 Món đã chọn</h3><div id="g-lines">${gLinesHTML()}</div>
-  <button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="gateTo('cust')">${ic('plus',16)} Thêm món</button></div>
- <div class="card" style="margin-top:12px"><h3>${ic('truck',17)} Thông tin nhận hàng</h3>
-  <label class="l" for="g-n">Tên của bạn *</label><input id="g-n" class="in" autocomplete="name" placeholder="VD: Anh Nam" value="${esc(f.name)}" oninput="G.f.name=this.value">
-  <label class="l" for="g-p">Số điện thoại *</label><input id="g-p" class="in" inputmode="tel" autocomplete="tel" placeholder="09xxxxxxxx" value="${esc(f.phone)}" oninput="G.f.phone=this.value">
-  <label class="l" for="g-a">Địa chỉ nhận hàng *</label><input id="g-a" class="in" autocomplete="street-address" placeholder="VD: KTX ĐH FPT, Dom A" value="${esc(f.addr)}" oninput="G.f.addr=this.value">
-  <label class="l" for="g-k">Từ quán đến chỗ bạn khoảng</label><select id="g-k" class="in" onchange="G.f.km=+this.value;gPayUI()">${[1,2,3,4,5].map(k=>`<option value="${k}" ${+f.km===k?'selected':''}>${k===1?'Dưới 1 km':'Khoảng '+k+' km'}</option>`).join('')}</select>
-  <p class="rmuted" style="font-size:12.5px;margin-top:4px">Bản thật sẽ tự đo khoảng cách theo địa chỉ. Phí ship ${S.cfg.km0} km đầu ${money(S.cfg.fee0)}, mỗi km thêm ${money(S.cfg.feeKm)}.</p>
-  <label class="l" for="g-no">Ghi chú (nếu có)</label><input id="g-no" class="in" placeholder="VD: ít cay, không hành, gọi trước khi đến" value="${esc(f.note)}" oninput="G.f.note=this.value">
-  <label class="l">Cách thanh toán</label><div id="g-pay">${gPayBtns()}</div></div>
- <div class="card" style="margin-top:12px" id="g-tot">${gTotHTML()}</div></div></div>`}
-function gSend(){const f=G.f,ids=Object.keys(G.cart).filter(id=>mById(+id)&&mById(+id).on);
+function gPayUI(){const a=$('#g-lines'),b=$('#g-tot'),c=$('#g-ft');if(a)a.innerHTML=gLinesHTML();if(b)b.innerHTML=gTotHTML();if(c)c.textContent=money(gSub()+gFee());gListUI()}
+function gCQ(i,d){const l=G.cart[i];if(!l)return;l.qty+=d;if(l.qty<1)G.cart.splice(i,1);if(l.qty>99)l.qty=99;gAfterCart()}
+function gDel(i){G.cart.splice(i,1);gAfterCart()}
+function gAfterCart(){if(!gCount()){closeSheet();gListUI();toast('Giỏ hàng đang trống');return}gPayUI()}
+function gOpenCart(){if(!gCount()){toast('Giỏ hàng đang trống, chọn món trước nhé');return}const f=G.f;
+ sheet(`<div class="gsh-h"><span class="gsh-i">${ic('cart',22)}</span><h3>Giỏ hàng & Đặt giao tận nơi</h3><button class="iconbtn" onclick="closeSheet()" aria-label="Đóng">${ic('x',18)}</button></div>
+ <div id="g-lines">${gLinesHTML()}</div>
+ <label class="l" for="g-n">Tên người nhận *</label><input id="g-n" class="in" autocomplete="name" placeholder="VD: Minh Anh" value="${esc(f.name)}" oninput="G.f.name=this.value">
+ <label class="l" for="g-p">Số điện thoại liên hệ *</label><input id="g-p" class="in" inputmode="tel" autocomplete="tel" placeholder="09xxxxxxxx" value="${esc(f.phone)}" oninput="G.f.phone=this.value">
+ <label class="l" for="g-a">Địa chỉ giao hàng chi tiết *</label><input id="g-a" class="in" autocomplete="street-address" placeholder="Số nhà / phòng / tòa / thôn tại Hòa Lạc…" value="${esc(f.addr)}" oninput="G.f.addr=this.value">
+ <div class="gmap"><b>${ic('pin',18)} Khoảng cách & phí ship</b><small>Bản chính thức: dán link Google Maps hoặc bấm “GPS của tôi” để tự đo. Bản demo: chọn khoảng cách gần đúng.</small>
+  <select id="g-k" class="in" onchange="G.f.km=+this.value;gPayUI()" aria-label="Khoảng cách từ quán">${[1,2,3,4,5].map(k=>`<option value="${k}" ${+f.km===k?'selected':''}>${k===1?'Dưới 1 km':'Khoảng '+k+' km'}</option>`).join('')}</select>
+  <small style="margin:6px 0 0">${S.cfg.km0} km đầu ${money(S.cfg.fee0)}, mỗi km thêm ${money(S.cfg.feeKm)}.</small></div>
+ <p class="gl-lbl">Thanh toán</p><div id="g-pay">${gPayBtns()}</div>
+ <label class="l" for="g-no">Ghi chú cho quán / shipper</label><input id="g-no" class="in" placeholder="VD: Giao giờ trưa, ít cay…" value="${esc(f.note)}" oninput="G.f.note=this.value">
+ <div id="g-tot" style="margin-top:8px">${gTotHTML()}</div>
+ <div class="gfoot"><div class="gft"><small>Tổng thanh toán</small><b id="g-ft">${money(gSub()+gFee())}</b></div><button class="btn btn-orange" onclick="gSend()">Đặt hàng ngay</button></div>`)}
+function gSend(){const f=G.f,L=gLines().filter(l=>mById(l.mid).on);
  f.name=$('#g-n').value.trim();f.phone=$('#g-p').value.trim();f.addr=$('#g-a').value.trim();f.note=$('#g-no').value.trim();
- if(!ids.length){toast('Giỏ hàng đang trống','err');return}
- if(!f.name){toast('Nhập tên của bạn','err');$('#g-n').focus();return}
+ if(!L.length){toast('Giỏ hàng đang trống','err');return}
+ if(!f.name){toast('Nhập tên người nhận','err');$('#g-n').focus();return}
  if(f.phone.replace(/\D/g,'').length<9){toast('Nhập số điện thoại để quán gọi xác nhận','err');$('#g-p').focus();return}
- if(!f.addr){toast('Nhập địa chỉ nhận hàng','err');$('#g-a').focus();return}
- const o=newOrder('online',{by:'Khách online',cust:{name:f.name,phone:f.phone,addr:f.addr},ship:{km:+f.km,fee:shipFee(f.km),pay:f.pay},note:f.note});
- o.lines=ids.map(id=>mkLine(+id,G.cart[id],'new'));G.cart={};G.last=o.id;f.note='';gateTo('done');toast('Đã gửi đơn '+o.code)}
-function gDone(){const o=G.last&&oById(G.last);if(!o)return gCover();
- const steps=['Chờ quán xác nhận','Quán đang làm món','Đang giao đến bạn','Đã giao xong'],at={new:0,cook:1,ready:1,ship:2,done:3}[o.status],fee=o.ship?o.ship.fee:0;
- return `<div class="g-page"><div class="g-bar"><button class="iconbtn" onclick="gateTo('cover')" aria-label="Về trang đầu">${ic('back',20)}</button><b>Đơn của bạn</b></div>
- <div class="g-body"><div class="card" style="text-align:center"><div style="font-size:44px">${o.status==='cancel'?'😔':'✅'}</div><h3 style="font-size:20px;margin-top:4px">${o.status==='cancel'?'Quán chưa nhận được đơn này':'Đặt hàng thành công'}</h3>
-  <p class="rsub">Mã đơn <b>${esc(o.code)}</b>${o.status==='cancel'?'<br>Quán sẽ liên hệ lại với bạn.':'<br>Quán sẽ gọi số <b>'+esc(o.cust.phone)+'</b> để xác nhận.'}</p></div>
- ${o.status==='cancel'?'':`<div class="card" style="margin-top:12px"><h3>Tình trạng đơn</h3><div style="margin-top:6px">${steps.map((t,k)=>`<div class="g-st ${k<at||at===3&&k===3?'done':k===at?'now':''}"><i>${k<at||at===3&&k===3?'✓':k+1}</i>${t}</div>`).join('')}</div></div>`}
- <div class="card" style="margin-top:12px"><h3>Món đã đặt</h3>${o.lines.map(l=>`<div class="pl"><span>${l.qty} × ${esc(l.name)}</span><b>${money(l.price*l.qty)}</b></div>`).join('')}
-  <div class="pl"><span>Phí ship</span><b>${money(fee)}</b></div><div class="pl tot"><span>Tổng</span><span style="color:var(--orange)">${money(oNet(o)+fee)}</span></div>
-  <p class="rmuted" style="font-size:13px;margin-top:6px">${esc(o.cust.name)} · ${esc(o.cust.addr)} · ${o.ship.pay==='cod'?'Trả tiền mặt khi nhận':'Chuyển khoản'}</p></div>
- <div class="demobox" style="margin-top:12px"><b>🧪 Chỉ có trong bản demo</b><p>Đơn đã sang hệ thống của quán. Nhân viên đăng nhập, vào mục <b>Giao hàng</b> sẽ thấy đơn này đang “Chờ quản lý xác nhận”. Xác nhận xong, bấm “Cập nhật trạng thái” ở đây để xem đổi theo.</p></div>
- <div class="acts" style="display:grid;gap:10px;margin-top:14px"><button class="btn btn-orange" onclick="gateTo('done')">↻ Cập nhật trạng thái</button><button class="btn btn-ghost" onclick="gateTo('cust')">Đặt thêm món</button><button class="btn btn-ghost" onclick="gateTo('cover')">Về trang đầu</button></div></div></div>`}
+ if(!f.addr){toast('Nhập địa chỉ giao hàng','err');$('#g-a').focus();return}
+ if(G.sending)return;
+ const make=code=>{const o=newOrder('online',{by:'Khách online',cust:{name:f.name,phone:f.phone,addr:f.addr},ship:{km:+f.km,fee:shipFee(f.km),pay:f.pay},note:f.note});
+  if(code)o.code=code;o.lines=L.map(l=>mkLine(l.mid,l.qty,'new',gTops(l),l.note,mSizes(mById(l.mid))[l.sz]));return o};
+ if(SBON()){G.sending=true;toast('Đang gửi đơn…');
+  sbReq('POST','rpc/next_block',{d:dayStr(),k:1}).then(n=>typeof n==='number'?'WB'+dayStr()+'-'+String(n).padStart(3,'0'):webCode()).catch(()=>webCode()).then(code=>{
+   const o=make(code),d=cp(ser(o)),s=cj(d);
+   return sbUp([{id:'o:'+o.rid,kind:'o',data:d}]).then(()=>{G.sending=false;o._sbs=s;G.cart=[];G.last=o.id;f.note='';sbOK();gateTo('done');toast('Đã gửi đơn '+o.code+' cho quán')})
+    .catch(e=>{G.sending=false;const i=S.orders.indexOf(o);if(i>-1)S.orders.splice(i,1);sbFail(e);toast('Chưa gửi được đơn, kiểm tra mạng rồi bấm lại','err')})});return}
+ const o=make();G.cart=[];G.last=o.id;f.note='';gateTo('done');toast('Đã gửi đơn '+o.code)}
 
-buildPos();render(false);gateTo('cover');window.__ok=true;
+/* --- trang đặt món thành công --- */
+function gDone(){const o=G.last&&oById(G.last);if(!o)return gCover();
+ const steps=['Chờ quán xác nhận','Quán đang làm món','Đang giao đến bạn','Đã giao xong'],at={new:0,cook:1,ready:1,ship:2,done:3}[o.status],fee=o.ship?o.ship.fee:0,tt=oNet(o)+fee,cx=o.status==='cancel',cod=o.ship.pay==='cod',tel=unm(S.cfg.phone);
+ return `<div class="g-page"><div class="g-body gdn"><div class="card gok">
+  <div class="gcheck ${cx?'bad':''}">${cx?'😔':ic('check',36)}</div><small class="gbn">${esc(S.cfg.name).toUpperCase()}</small>
+  <h2>${cx?'Quán chưa nhận được đơn này':'Đặt món thành công!'}</h2>
+  <p class="gcode">Mã đơn: <b>${esc(o.code)}</b>${cx?'<br>Quán sẽ liên hệ lại với bạn.':'<br>Quán sẽ gọi số <b>'+esc(o.cust.phone)+'</b> để xác nhận.'}</p>
+  <div class="ginfo"><div><span>Người nhận:</span><b>${esc(o.cust.name)}</b></div><div><span>Số điện thoại:</span><b>${esc(o.cust.phone)}</b></div><div><span>Địa chỉ:</span><b>${esc(o.cust.addr)}</b></div><div class="t"><span>Tổng thanh toán:</span><b>${money(tt)}</b></div></div>
+  ${cx?'':`<div class="g-pay ${cod?'cod':'bank'}"><i>${cod?'💵':'🏦'}</i><div><b>${cod?'Trả tiền mặt khi nhận':'Chuyển khoản'}</b><span>${cod?'Chuẩn bị '+money(tt)+' đưa cho người giao hàng':'Quán sẽ gửi mã QR để bạn quét trả '+money(tt)}</span></div></div>
+  <p class="gsec" style="text-align:left">Tình trạng đơn</p><div class="gstep">${steps.map((t,k)=>`<div class="g-st ${k<at||at===3&&k===3?'done':k===at?'now':''}"><i>${k<at||at===3&&k===3?'✓':k+1}</i>${t}</div>`).join('')}</div>`}
+  <p class="gsec" style="text-align:left">Món đã đặt</p><div class="glist">${o.lines.map(l=>`<div class="pl"><span>${l.qty} × ${esc(l.name)}${l.tops&&l.tops.length?`<small>+ ${l.tops.map(t=>esc(t.name)).join(', ')}</small>`:''}${l.note?`<small>“${esc(l.note)}”</small>`:''}</span><b>${money(lineUnit(l)*l.qty)}</b></div>`).join('')}<div class="pl" style="border:0"><span>Phí ship</span><b>${money(fee)}</b></div></div>
+  <a class="ghot" href="tel:${tel}">${ic('phone',18)}<b>Hotline gọi trực tiếp quán: ${esc(S.cfg.phone)}</b></a>
+  <button class="btn btn-orange" style="margin-top:12px" onclick="gateTo('cust')">Đặt thêm đơn mới</button>
+  <div class="gsub"><button onclick="gateTo('done')">↻ Cập nhật trạng thái</button><button onclick="gateTo('cover')">Về trang đầu</button></div></div>
+ <div class="demobox" style="margin-top:12px"><b>🧪 Chỉ có trong bản demo</b><p>${SBON()?'Đơn đã gửi lên máy chủ. Nhân viên đăng nhập ở máy khác, vào mục <b>Giao hàng</b> sẽ thấy đơn này trong vài giây. Khi quán xác nhận, trạng thái ở đây tự đổi theo.':'Đơn chỉ nằm trên máy này (chưa nối máy chủ). Nhân viên đăng nhập trên cùng máy, vào mục <b>Giao hàng</b> sẽ thấy đơn “Chờ quản lý xác nhận”; bấm “Cập nhật trạng thái” để xem đổi theo.'}</p></div></div></div>`}
+/* ---------- Supabase: đồng bộ dữ liệu giữa các máy (bản TEST, đợt 1) ----------
+   Để trống url/key thì app chạy như bản demo cũ (dữ liệu chỉ nằm trên máy này).
+   Một bảng chung "docs" (id, kind, data, updated_at). kind: k = dữ liệu dùng chung, o = đơn, i = hóa đơn, l = nhật ký.
+   Mỗi máy chỉ hỏi "có gì mới từ lần trước" nên rất nhẹ. Hai máy sửa cùng một đơn thì được trộn theo từng dòng món. */
+const SB={url:'https://agvekfyfqlmdaonmqgwd.supabase.co',key:'sb_publishable_TnBNWaGrb56uzMvVPXhtCQ_z9pZKXly'};
+const SBS={ok:null,err:''};
+const QUICKLOGIN=true; /* true = trong danh sách "chọn tài khoản để vào" bấm là vào luôn (để test). Đặt false để bắt buộc gõ mật khẩu */
+const SBON=()=>!!(SB.url&&SB.key);
+const KVK={accts:1,perm:1,menu:1,cfg:1,tables:1,shifts:1};
+const SBK={},SEEN={};let SBREADY=false,sbTimer=null,sbPend=false,sbStarted=false,SBC=null,SBCK=null,sbFirstAll=true,sbSyncing=false;
+const enc=encodeURIComponent;
+const dayStr=()=>{const d=new Date();return String(d.getFullYear()).slice(2)+pad(d.getMonth()+1)+pad(d.getDate())};
+const dayOf=ts=>{const a=new Date(ts);a.setHours(0,0,0,0);const b=new Date();b.setHours(0,0,0,0);return Math.round((b-a)/864e5)};
+
+/* JSON có thứ tự khóa cố định (Postgres jsonb đổi thứ tự khóa, nên phải so sánh theo dạng này) */
+function cj(v){if(v===null||typeof v!=='object')return JSON.stringify(v);if(Array.isArray(v))return '['+v.map(cj).join(',')+']';
+ return '{'+Object.keys(v).filter(k=>v[k]!==undefined).sort().map(k=>JSON.stringify(k)+':'+cj(v[k])).join(',')+'}'}
+const cp=v=>JSON.parse(JSON.stringify(v));
+function ensureLids(o){(o.lines||[]).forEach(l=>{if(!l.lid)l.lid=webRid()})}
+function ser(o){ensureLids(o);const x={};Object.keys(o).forEach(k=>{if(k!=='id'&&k!=='rid'&&k!=='_sbs')x[k]=o[k]});return x}
+function serI(i){const x={};Object.keys(i).forEach(k=>{if(k!=='_sbs'&&k!=='day')x[k]=i[k]});return x}
+
+/* ----- SHA-256 (đồng bộ, chạy được cả khi mở bằng file) để lưu mật khẩu dạng băm, không lưu mật khẩu thật ----- */
+function sha256(ascii){function rr(v,a){return(v>>>a)|(v<<(32-a))}
+ var mp=Math.pow,mw=mp(2,32),i,j,r='',words=[],al=ascii.length*8,hash=[],k=[],pc=0,ic={};
+ for(var c=2;pc<64;c++){if(!ic[c]){for(i=0;i<313;i+=c)ic[i]=c;hash[pc]=(mp(c,.5)*mw)|0;k[pc++]=(mp(c,1/3)*mw)|0}}
+ ascii+='\x80';while(ascii.length%64-56)ascii+='\x00';
+ for(i=0;i<ascii.length;i++){j=ascii.charCodeAt(i);words[i>>2]|=j<<((3-i)%4)*8}
+ words[words.length]=((al/mw)|0);words[words.length]=al;
+ for(j=0;j<words.length;){var w=words.slice(j,j+=16),old=hash;hash=hash.slice(0,8);
+  for(i=0;i<64;i++){var w15=w[i-15],w2=w[i-2],a=hash[0],e=hash[4];
+   var t1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+   var t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+   hash=[(t1+t2)|0].concat(hash);hash[4]=(hash[4]+t1)|0}
+  for(i=0;i<8;i++)hash[i]=(hash[i]+old[i])|0}
+ for(i=0;i<8;i++)for(j=3;j+1;j--){var b=(hash[i]>>(j*8))&255;r+=((b<16)?'0':'')+b.toString(16)}
+ return r}
+const pwHash=(user,pw)=>sha256(unescape(encodeURIComponent('anngon:'+String(user).toLowerCase()+':'+pw)));
+const DEFPW='123456'; /* mật khẩu của các tài khoản mẫu có sẵn (chưa được chủ đặt mật khẩu riêng) */
+const pwOk=(a,pw)=>a.ph?a.ph===pwHash(a.user,pw):pw===DEFPW;
+
+/* ----- gọi Supabase (REST) ----- */
+function sbReq(m,path,body,prefer){const h={apikey:SB.key,'Content-Type':'application/json'};
+ if(/^eyJ/.test(SB.key))h.Authorization='Bearer '+SB.key;if(prefer)h.Prefer=prefer;
+ return fetch(SB.url.replace(/\/+$/,'')+'/rest/v1/'+path,{method:m,headers:h,body:body!==undefined?JSON.stringify(body):undefined}).then(r=>{
+  if(!r.ok)return r.text().then(t=>{throw new Error(r.status+' '+t.slice(0,140))});
+  return r.status===204?null:r.text().then(t=>t?JSON.parse(t):null)})}
+const sbUp=rows=>sbReq('POST','docs?on_conflict=id',rows,'resolution=merge-duplicates,return=minimal');
+function sbOK(){if(SBS.ok!==true){SBS.ok=true;SBS.err='';sbStat()}}
+function sbFail(e){SBS.ok=false;SBS.err=String(e&&e.message||e);sbStat()}
+function sbLbl(){return !SBON()?ic('wifi',12)+' Bản demo · dữ liệu chỉ trên máy này':SBS.ok===false?'<span style="color:var(--amber)">● Mất kết nối máy chủ</span>':ic('wifi',12)+' Đã nối máy chủ Supabase'}
+function sbStat(){const e=$('#sbstat');if(e)e.innerHTML=sbLbl()}
+function beep(){try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;const c=new A(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=880;g.gain.setValueAtTime(.15,c.currentTime);o.start();o.stop(c.currentTime+.25);setTimeout(()=>{try{c.close()}catch(e){}},600)}catch(e){}}
+function webRid(){return 'w'+Date.now().toString(36)+Math.random().toString(36).slice(2,8)}
+function webCode(){return 'WB'+dayStr()+'-'+String(Math.floor(Math.random()*900)+100)}
+
+/* ----- mã đơn không trùng giữa các máy: mỗi máy xin trước một dãy số từ máy chủ ----- */
+const CB={q:[],busy:false};
+function cbFetch(){if(!SBON()||CB.busy)return;CB.busy=true;const d=dayStr();
+ sbReq('POST','rpc/next_block',{d:d,k:20}).then(n=>{CB.busy=false;if(typeof n==='number')CB.q.push({d:d,n:n,e:n+20})}).catch(()=>{CB.busy=false})}
+const _nextCode=nextCode;
+nextCode=function(){if(!SBON())return _nextCode();const d=dayStr();CB.q=CB.q.filter(b=>b.d===d&&b.n<b.e);
+ const left=CB.q.reduce((a,b)=>a+b.e-b.n,0);if(left<=5)cbFetch();
+ if(!CB.q.length)return 'HD'+d+'-'+String(Math.floor(Math.random()*400)+600);
+ const b=CB.q[0],n=b.n++;return 'HD'+d+'-'+String(n).padStart(3,'0')}
+
+/* ----- dữ liệu dùng chung: tài khoản, quyền, thực đơn, cài đặt, bàn, ca ----- */
+function kvGet(k){return k==='accts'?S.accts:k==='perm'?S.perm:k==='menu'?{cats:S.cats,menu:S.menu}:k==='tables'?{areas:S.areas,tables:S.tables}:k==='shifts'?{list:S.shifts,cur:S.shift}:S.cfg}
+function kvSet(k,v){if(k==='accts'){S.accts=v;S.accts.forEach(a=>{if(a.pay&&!S.work[a.id])S.work[a.id]={0:0}})}
+ else if(k==='perm')S.perm=v;else if(k==='menu'){S.cats=v.cats;S.menu=v.menu}
+ else if(k==='tables'){S.areas=v.areas;S.tables=v.tables}else if(k==='shifts'){S.shifts=v.list;S.shift=v.cur}else Object.assign(S.cfg,v)}
+function kvApply(key,data){if(!KVK[key])return false;const rs=cj(data),ls=cj(kvGet(key));
+ if(rs===ls){SBK[key]=rs;return false}
+ if(SBK[key]===undefined||ls===SBK[key]){kvSet(key,data);SBK[key]=cj(kvGet(key));return true}return false}
+
+/* ----- đơn: trộn khi hai máy cùng sửa ----- */
+const RK={open:0,new:0,cook:1,ready:2,ship:3,done:4,cancel:5},lrk={new:0,cook:1,done:2};
+function mergeLine(b,l,r){const m={};Object.keys(Object.assign({},b,l,r)).forEach(k=>{const lc=cj(l[k])!==cj(b[k]),rc=cj(r[k])!==cj(b[k]);let v;
+ if(lc&&!rc)v=l[k];else if(!lc&&rc)v=r[k];else if(lc&&rc)v=k==='st'?((lrk[l.st]||0)>=(lrk[r.st]||0)?l.st:r.st):l[k];else v=l[k];if(v!==undefined)m[k]=v});return m}
+function mergeLines(b,l,r){const by=a=>{const o={};a.forEach(x=>{if(x.lid)o[x.lid]=x});return o},B=by(b),L=by(l),R=by(r),order=[],out=[];
+ r.forEach(x=>order.push(x.lid));l.forEach(x=>{if(order.indexOf(x.lid)<0)order.push(x.lid)});
+ order.forEach(id=>{const bl=B[id],ll=L[id],rl=R[id];
+  if(!ll&&rl){if(bl&&cj(rl)===cj(bl))return;out.push(rl);return}
+  if(ll&&!rl){if(bl&&cj(ll)===cj(bl))return;out.push(ll);return}
+  out.push(mergeLine(bl||ll,ll,rl))});return out}
+function mergeOrd(b,l,r){const m={},ks={};[b,l,r].forEach(x=>Object.keys(x).forEach(k=>{ks[k]=1}));
+ Object.keys(ks).forEach(k=>{if(k==='lines')return;const lc=cj(l[k])!==cj(b[k]),rc=cj(r[k])!==cj(b[k]);let v;
+  if(lc&&!rc)v=l[k];else if(!lc&&rc)v=r[k];else if(lc&&rc)v=k==='status'?((RK[l[k]]||0)>=(RK[r[k]]||0)?l[k]:r[k]):l[k];else v=l[k];if(v!==undefined)m[k]=v});
+ m.lines=mergeLines(b.lines||[],l.lines||[],r.lines||[]);return m}
+function setOrd(o,d,rid){const id=o.id;Object.keys(o).forEach(k=>{delete o[k]});Object.assign(o,d,{id:id,rid:rid})}
+function ordApply(rid,d,R){let o=S.orders.find(x=>x.rid===rid);
+ if(d.del){if(o){if(S.ord===o.id)S.ord=null;S.orders.splice(S.orders.indexOf(o),1);return true}return false}
+ const rs=cj(d);
+ if(!o){o=Object.assign({},cp(d),{id:++oid,rid:rid});o._sbs=rs;S.orders.push(o);if(R&&isShipT(o)&&o.status==='new')R.newShip++;sbSeen(o,R);return true}
+ if(o._sbs===rs)return false;
+ const base=JSON.parse(o._sbs),loc=cp(ser(o));
+ if(cj(loc)===o._sbs)setOrd(o,cp(d),rid);else setOrd(o,mergeOrd(base,loc,cp(d)),rid);
+ o._sbs=rs;sbSeen(o,R);return true}
+function sbSeen(o,R){o.lines.forEach(l=>{if(l.st==='cook'&&l.lid&&!SEEN[l.lid]){SEEN[l.lid]=1;if(R&&!sbFirstAll)R.cookNew++}})}
+
+/* ----- hóa đơn đã thanh toán ----- */
+function invApply(code,d){const rs=cj(d);let cur=INV.find(x=>x.code===code&&x.live)||VOIDED.find(x=>x.code===code&&x.live);
+ if(!cur){const n=Object.assign({},cp(d),{live:true});n._sbs=rs;if(n.ts)n.day=dayOf(n.ts);if(n.void)VOIDED.unshift(n);else INV.push(n);return true}
+ if(cur._sbs===rs)return false;if(cj(serI(cur))!==cur._sbs)return false;
+ const wasV=!!cur.void;Object.keys(cur).forEach(k=>{delete cur[k]});Object.assign(cur,cp(d),{live:true});cur._sbs=rs;if(cur.ts)cur.day=dayOf(cur.ts);
+ if(cur.void&&!wasV){const i=INV.indexOf(cur);if(i>-1){INV.splice(i,1);VOIDED.unshift(cur)}}return true}
+
+/* ----- nhật ký ----- */
+function logApply(rid,d){if(S.log.some(x=>x.rid===rid))return false;const e=Object.assign({},cp(d),{rid:rid,_p:true});S.log.push(e);S.log.sort((a,b)=>b.t-a.t);if(S.log.length>300)S.log.length=300;return true}
+
+/* ----- kéo thay đổi từ máy chủ ----- */
+function sbBusy(){const a=document.activeElement;return $('#sheet-root').innerHTML!==''||!!(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))}
+function sbRender(){if(G.scr!=='app')return;if(sbBusy()){sbPend=true;return}sbPend=false;render(true)}
+function sbApply(rows){const R={newShip:0,cookNew:0,kv:[],data:false};
+ rows.forEach(r=>{const k=r.kind,id=r.id.slice(2);let ch=false;
+  if(k==='k'){if(kvApply(id,r.data)){R.kv.push(id);ch=true}}
+  else if(k==='o')ch=ordApply(id,r.data,R);else if(k==='i')ch=invApply(id,r.data);else if(k==='l')ch=logApply(id,r.data);
+  if(ch)R.data=true});return R}
+function sbAfter(R){
+ if(R.kv.indexOf('accts')>-1){const m=S.accts.find(a=>a.id===S.me);if(!m){S.me=S.accts[0].id}
+  if(G.scr==='app'&&(!m||!m.on)){logout();toast('Tài khoản của bạn đã bị khóa hoặc xóa','err');return}
+  if(G.scr==='login'){const l=$('#lg-list');if(l)l.innerHTML=gLoginList()}}
+ if(G.scr==='cust'&&R.kv.length)gListUI();
+ if(G.scr==='app'){if(R.newShip&&can('confirm')){toast('Có '+R.newShip+' đơn giao hàng chờ bạn xác nhận');beep()}
+  else if(R.cookNew&&can('cook')){toast('Có món mới cho bếp');beep()}
+  if(R.data){buildPos();sbRender()}}}
+let sbSyncAt=0;
+function sbSync(all){if(sbSyncing&&Date.now()-sbSyncAt<20000)return Promise.resolve();sbSyncing=true;sbSyncAt=Date.now();
+ const cur=all?SBC:SBCK;let f;
+ if(cur)f='&updated_at=gt.'+enc(new Date(Date.parse(cur)-2500).toISOString())+(all?'':'&kind=eq.k');
+ else f=all?'&or='+enc('(kind.eq.k,updated_at.gt.'+new Date(Date.now()-3*864e5).toISOString()+')'):'&kind=eq.k';
+ const go=(extra)=>sbReq('GET','docs?select=id,kind,data,updated_at&order=updated_at.asc&limit=1000'+extra).then(rows=>{
+  const R=sbApply(rows);if(rows.length){const l=rows[rows.length-1].updated_at;if(all)SBC=l;else SBCK=l}
+  if(all&&sbFirstAll&&rows.length<1000)sbFirstAll=false;
+  SBREADY=true;sbOK();sbAfter(R);
+  if(rows.length>=1000)return go('&updated_at=gt.'+enc(rows[rows.length-1].updated_at)+(all?'':'&kind=eq.k'));return null});
+ return go(f).then(()=>{sbSyncing=false},e=>{sbSyncing=false;throw e})}
+function sbPullOne(rid){return sbReq('GET','docs?id=eq.'+enc('o:'+rid)+'&select=id,kind,data').then(rows=>{sbOK();const r=rows&&rows[0];if(!r)return;
+ if(ordApply(rid,r.data,null)&&G.scr==='done')$('#gate').innerHTML=gDone()})}
+
+/* ----- đẩy thay đổi lên máy chủ (sau mỗi lần app vẽ lại) ----- */
+function sbPush(){if(!SBON()||!SBREADY)return;clearTimeout(sbTimer);sbTimer=setTimeout(sbPushNow,500)}
+/* trước khi đẩy đơn đã có trên máy chủ: tải bản mới nhất về và trộn, để không ghi đè thay đổi của máy khác */
+function sbPushNow(){if(!SBON()||!SBREADY)return;
+ const ids=S.orders.filter(o=>o.rid&&o._sbs&&cj(ser(o))!==o._sbs).map(o=>'"o:'+o.rid+'"');
+ if(!ids.length)return sbPushRows();
+ sbReq('GET','docs?select=id,kind,data&id=in.('+enc(ids.join(','))+')').then(rows=>{let ch=false;rows.forEach(r=>{if(ordApply(r.id.slice(2),r.data,null))ch=true});if(ch)sbRender();sbPushRows()}).catch(()=>sbPushRows())}
+function sbPushRows(){const rows=[],ack=[];
+ Object.keys(KVK).forEach(k=>{const s=cj(kvGet(k));if(s!==SBK[k]){rows.push({id:'k:'+k,kind:'k',data:cp(kvGet(k))});ack.push(()=>{SBK[k]=s})}});
+ S.orders.forEach(o=>{if(!o.rid)return;const d=cp(ser(o)),s=cj(d);if(s!==o._sbs){rows.push({id:'o:'+o.rid,kind:'o',data:d});ack.push(()=>{o._sbs=s});o.lines.forEach(l=>{if(l.st==='cook'&&l.lid)SEEN[l.lid]=1})}});
+ INV.concat(VOIDED).forEach(i=>{if(!i.live||!i.code)return;const d=cp(serI(i)),s=cj(d);if(s!==i._sbs){rows.push({id:'i:'+i.code,kind:'i',data:d});ack.push(()=>{i._sbs=s})}});
+ S.log.forEach(e=>{if(e.rid&&!e._p){const d={t:e.t,who:e.who,txt:e.txt};rows.push({id:'l:'+e.rid,kind:'l',data:d});ack.push(()=>{e._p=true})}});
+ if(!rows.length)return;
+ sbUp(rows).then(()=>{ack.forEach(f=>f());sbOK()}).catch(sbFail)}
+function sbTick(){if(!SBON()||document.hidden)return;let p;
+ if(G.scr==='app')p=sbSync(true);else{p=sbSync(false);if(G.scr==='done'){const o=G.last&&oById(G.last);if(o&&o.rid)p=p.then(()=>sbPullOne(o.rid))}}
+ p.then(()=>{if(sbPend&&G.scr==='app')sbRender();sbPush()}).catch(sbFail)}
+function sbBoot(){if(!SBON())return;S.orders=[];for(let i=INV.length-1;i>=0;i--){if(INV[i].day===0&&INV[i].code&&!INV[i].live)INV.splice(i,1)}}
+function sbInit(){if(!SBON())return;if(!sbStarted){sbStarted=true;
+ const _r=render;render=function(k){_r(k);sbPush()};
+ setInterval(sbTick,3000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)sbTick()})}
+ sbStat();sbSync(false).then(()=>{cbFetch();sbPush()}).catch(sbFail)}
+function sbWipe(){return sbReq('DELETE','docs?id=neq.__none')}
+sbBoot();buildPos();render(false);gateTo('cover');sbInit();SBLIVE=true;window.__ok=true;
 </script>
 </body>
 </html>
