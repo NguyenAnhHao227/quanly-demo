@@ -341,14 +341,14 @@ const S={
  buyD:null,tmp:null,
  /* báo cáo */
  mod:'kho',rtab:'over',per:'today',recDay:0,rec:{},
- other:{today:300000,yday:300000,w7:2100000},
+ exps:[{id:1,name:'Điện nước',type:'month',rate:3000000},{id:2,name:'Mặt bằng',type:'month',rate:6000000}],
  staff:[
-  {id:1,name:'Anh Nam',role:'Bếp trưởng',rate:45000},
-  {id:2,name:'Chị Mai',role:'Phụ bếp',rate:30000},
-  {id:3,name:'Em Tuấn',role:'Phụ bếp',rate:30000},
-  {id:4,name:'Em Lan',role:'Phục vụ',rate:25000},
-  {id:5,name:'Em Hà',role:'Phục vụ',rate:25000},
-  {id:6,name:'Chị Thu',role:'Thu ngân',rate:28000}
+  {id:1,name:'Anh Nam',role:'Bếp trưởng',type:'hour',rate:45000},
+  {id:2,name:'Chị Mai',role:'Phụ bếp',type:'hour',rate:30000},
+  {id:3,name:'Em Tuấn',role:'Phụ bếp',type:'hour',rate:30000},
+  {id:4,name:'Em Lan',role:'Phục vụ',type:'hour',rate:25000},
+  {id:5,name:'Em Hà',role:'Phục vụ',type:'hour',rate:25000},
+  {id:6,name:'Chị Thu',role:'Thu ngân',type:'hour',rate:28000}
  ],
  /* số giờ làm của từng người theo kỳ báo cáo */
  sdays:{today:{1:10,2:9,3:9,4:8,5:8,6:8},yday:{1:10,2:9,3:9,4:8,5:4,6:8},w7:{1:62,2:54,3:56,4:50,5:48,6:52}}
@@ -407,7 +407,7 @@ function render(keep=true){
  const y=window.scrollY,nd=needList().length;
  document.querySelector('.phone').classList.toggle('rep',S.mod==='report');
  if(S.mod==='report'){$('#ktitle').innerHTML='';$('#tabbar').innerHTML='';$('#view').innerHTML=vReport();if(keep)window.scrollTo(0,y);return}
- const TITLES={sup:'Nhà cung cấp',auto:'Hàng bán lẻ (tự trừ)',units:'Đơn vị tính',hist:'Lịch sử mua hàng',count:'Kiểm nhanh kho'};
+ const TITLES={sup:'Nhà cung cấp',auto:'Hàng bán lẻ (tự trừ)',groups:'Nhóm hàng',units:'Đơn vị tính',hist:'Lịch sử mua hàng',count:'Kiểm nhanh kho'};
  const back=S.tab==='more'&&S.sub!=='menu';
  $('#ktitle').innerHTML=back?`<button class="iconbtn" style="background:#fff" onclick="setTab('more')" aria-label="Quay lại">${ic('back',20)}</button><b>${TITLES[S.sub]}</b>`
    :'';
@@ -461,12 +461,13 @@ function stockList(){$('#stock-list').innerHTML=stockHTML(filtered())}
 
 /* sửa món — có công tắc tự trừ */
 function openItem(id){const i=it(id);
- S.tmp={id,auto:!!i.auto,lv:i.lv,name:i.name,sup:i.sup,usual:i.usual??'',amt:i.amt??'',unit:i.unit,min:i.min??'',pu:i.pack?.unit||'thùng',pn:i.pack?.n||''};renderItem()}
+ S.tmp={id,auto:!!i.auto,lv:i.lv,name:i.name,g:i.g,sup:i.sup,usual:i.usual??'',amt:i.amt??'',unit:i.unit,min:i.min??'',pu:i.pack?.unit||'thùng',pn:i.pack?.n||''};renderItem()}
 function syncTmp(){const t=S.tmp,g=id=>document.getElementById(id);
- [['e-name','name'],['e-sup','sup'],['e-usual','usual'],['e-amt','amt'],['e-unit','unit'],['e-min','min'],['e-pu','pu'],['e-pn','pn']].forEach(([e,k])=>{const x=g(e);if(x)t[k]=k==='sup'?+x.value:x.value})}
+ [['e-name','name'],['e-g','g'],['e-sup','sup'],['e-usual','usual'],['e-amt','amt'],['e-unit','unit'],['e-min','min'],['e-pu','pu'],['e-pn','pn']].forEach(([e,k])=>{const x=g(e);if(x)t[k]=k==='sup'?+x.value:x.value})}
 function renderItem(){const t=S.tmp,i=it(t.id);
- sheet(`<h3>Sửa món</h3><p class="sub">${GROUPS[i.g]}</p>
+ sheet(`<h3>Sửa món</h3>
  <label class="l" for="e-name">Tên món</label><input id="e-name" class="in" value="${esc(t.name)}">
+ <label class="l" for="e-g">Nhóm</label><select id="e-g" class="in">${Object.entries(GROUPS).map(([k,v])=>`<option value="${k}" ${k===t.g?'selected':''}>${esc(v)}</option>`).join('')}</select>
  <div class="swrow"><div><b>Tự trừ khi bán</b><span>${t.auto?'Đang bật: khách thanh toán là kho tự giảm':'Đang tắt: bạn tự chỉnh Đủ / Sắp hết / Hết'}</span></div><label class="sw"><input type="checkbox" ${t.auto?'checked':''} onchange="tglAuto(this.checked)" aria-label="Tự trừ khi bán"><i></i></label></div>
  ${t.auto?`
   <label class="l" for="e-amt">Số đang có (đếm thực tế)</label><div class="frow"><input id="e-amt" class="in" type="number" inputmode="decimal" min="0" step="any" value="${t.amt}"><select id="e-unit" class="in">${unitOpts(t.unit)}</select></div>
@@ -483,7 +484,7 @@ function tglAuto(v){syncTmp();const t=S.tmp;t.auto=v;if(v){if(t.amt===''||t.amt=
 function saveItem(){syncTmp();const t=S.tmp,i=it(t.id),name=String(t.name).trim();
  if(!name){toast('Tên món không được để trống','err');return}
  if(S.items.some(x=>x.id!==i.id&&x.name.toLowerCase()===name.toLowerCase())){toast('Đã có món trùng tên này','err');return}
- i.name=name;i.sup=+t.sup;i.unit=t.unit;i.usual=t.usual===''?null:+t.usual;i.auto=t.auto;
+ i.name=name;i.g=GROUPS[t.g]?t.g:i.g;i.sup=+t.sup;i.unit=t.unit;i.usual=t.usual===''?null:+t.usual;i.auto=t.auto;
  if(t.auto){i.amt=+t.amt||0;i.min=+t.min||0;i.pack=+t.pn>0?{unit:t.pu,n:+t.pn}:null;i.lv=calcLv(i)}
  else{i.lv=t.lv;i.amt=i.lv==='out'?null:(t.amt===''?null:+t.amt);i.pack=null}
  closeSheet();render();toast(`Đã lưu ${i.name}`)}
@@ -548,20 +549,21 @@ function saveBuy(){const d=S.buyD,name=d.name.trim(),q=+d.qty;
 
 /* ===== THÊM ===== */
 function vMore(){
- if(S.sub==='sup')return vSup();if(S.sub==='auto')return vAuto();if(S.sub==='units')return vUnits();if(S.sub==='hist')return vHist();if(S.sub==='count')return vCount();
+ if(S.sub==='sup')return vSup();if(S.sub==='auto')return vAuto();if(S.sub==='groups')return vGroups();if(S.sub==='units')return vUnits();if(S.sub==='hist')return vHist();if(S.sub==='count')return vCount();
  const R=(i,t,s,tone,sub)=>`<button class="row" onclick="setTab('more','${sub}')"><span class="ico t-${tone}">${ic(i,20)}</span><div class="tx"><b>${t}</b><span>${s}</span></div><span class="muted">${ic('chev',18)}</span></button>`;
  const n=S.items.filter(i=>i.auto).length;
  return `<div class="list">
   ${R('bolt','Hàng bán lẻ (tự trừ)',`Bật / tắt món nào tự trừ khi bán · đang bật ${n} món`,'green','auto')}
   ${R('users','Nhà cung cấp',S.sups.length+' nhà cung cấp · sửa, gọi, trả nợ','blue','sup')}
   ${R('tick','Kiểm nhanh kho','Đi một vòng, chọn Đủ / Sắp hết / Hết','amber','count')}
+  ${R('pkg','Nhóm hàng','Thịt cá, rau củ, đồ uống… tự đặt tên nhóm','blue','groups')}
   ${R('tag','Đơn vị tính','Thêm “ký, bó, bắp, thùng…” theo cách quán hay dùng','orange','units')}
   ${R('hist','Lịch sử mua hàng','Xem lại đã mua gì, bao nhiêu tiền','gray','hist')}
  </div>`}
 
 /* màn hình bật / tắt tự trừ */
 function vAuto(){const n=S.items.filter(i=>i.auto).length;
- const order=['drink','other','meat','veg'];
+ const order=[...new Set(['drink','other','meat','veg',...Object.keys(GROUPS)])].filter(g=>GROUPS[g]);
  return `<div class="hint">Bật công tắc ở món nào thì <b>khi khách thanh toán, kho tự trừ món đó</b>. Thường bật cho nước, bia, đồ bán lẻ. Thịt, cá, rau để tắt: bạn tự chỉnh Đủ / Sắp hết / Hết.</div>
  <div class="tiles"><div class="tile"><span>Đang tự trừ</span><b>${n} món</b></div><div class="tile"><span>Bạn tự chỉnh</span><b>${S.items.length-n} món</b></div></div>`
  +order.map(g=>{const rows=S.items.filter(i=>i.g===g);if(!rows.length)return '';
@@ -632,7 +634,6 @@ const sumA=a=>a.reduce((x,y)=>x+y,0);
 const fmtD=d=>{const x=new Date(dayStart(d));return pad(x.getMonth()+1)+'/'+pad(x.getDate())+'/'+x.getFullYear()};
 const dayLabelOff=d=>d===0?'Hôm nay':d===1?'Hôm qua':(x=>pad(x.getDate())+'/'+pad(x.getMonth()+1))(new Date(dayStart(d)));
 const nhapHang=()=>sumA(S.buys.filter(b=>inP(dayOff(b.t))).map(b=>b.money));
-const staffCost=()=>sumA(S.staff.map(s=>s.rate*(S.sdays[S.per][s.id]||0))); /* lương giờ × số giờ làm */
 const hhmm=i=>pad(i.hour)+':'+pad(i.min);
 /* đối soát: dữ liệu mẫu cho các ngày đã chốt */
 (function(){for(let d=1;d<=6;d++){const st=dayStat(d),bad=d===2;S.rec[d]={act:{cash:String(st.cash-(bad?150000:0)),bank:String(st.bank),wallet:String(st.wallet)},out:'0',note:bad?'Thu ngân thối nhầm tiền khách':'',done:{t:dayAt(d,23),by:'mozart227',diff:bad?-150000:0}}}})();
@@ -715,43 +716,87 @@ function recClose(d){const c=recCalc(d);if(!c.complete){toast('Nhập đủ số
  c.r.done={t:Date.now(),by:'mozart227',diff:c.diff};render();toast(Math.abs(c.diff)<1?'Đã chốt: khớp 100%':`Đã chốt: ${c.diff<0?'thiếu':'thừa'} ${money(Math.abs(c.diff))}`)}
 function recOpen(d){recOf(d).done=null;render()}
 
-/* ----- LÃI LỖ: doanh thu − nhập hàng − nhân viên ----- */
+/* ----- LÃI LỖ: doanh thu − nhập hàng − nhân viên − chi phí khác (khoản nào cũng tự chỉnh được) ----- */
+const PDAYS=()=>PERS[S.per].length;
+const PAYT={hour:'Theo giờ',day:'Theo ngày',month:'Theo tháng'};
+const PAYL={hour:['Lương / giờ (đ)','Giờ làm'],day:['Lương / ngày (đ)','Ngày công'],month:['Lương / tháng (đ)','Số ngày']};
+const EXPT={month:'mỗi tháng',day:'mỗi ngày'};
+function staffPay(s){const q=S.sdays[S.per][s.id]||0;return s.type==='month'?s.rate/30*PDAYS():s.rate*q}
+function expPay(e){return e.type==='day'?e.rate*PDAYS():e.rate/30*PDAYS()}
+const staffCost=()=>sumA(S.staff.map(staffPay));
+const expCost=()=>sumA(S.exps.map(expPay));
 function vPL(){
- const net=sumA(INV.filter(i=>inP(i.day)).map(i=>i.amount)),nh=nhapHang(),sc=staffCost(),ot=S.other[S.per]||0,gp=net-nh,rem=gp-sc-ot;
+ const net=sumA(INV.filter(i=>inP(i.day)).map(i=>i.amount)),nh=nhapHang(),sc=staffCost(),ot=expCost(),gp=net-nh,rem=gp-sc-ot;
  const debt=sumA(S.buys.filter(b=>inP(dayOff(b.t))&&!b.paid).map(b=>b.money)),pc=v=>net?Math.round(v/net*100):0;
  const seg=[[nh,'#ff7a2f','Nhập hàng'],[sc,'#0a84ff','Nhân viên'],[ot,'#94a3b8','Chi phí khác'],[Math.max(rem,0),'#059669','Còn lại']],tot=Math.max(net,nh+sc+ot,1);
- const sd=S.sdays[S.per];
- return `<div class="rcard"><h3>Kết quả kinh doanh · ${PNAME[S.per]}</h3><p class="rsub">Doanh thu trừ nhập hàng và nhân viên, còn lại là tiền lời</p>
+ const per=PNAME[S.per].toLowerCase();
+ return `<div class="rcard"><h3>Kết quả kinh doanh · ${PNAME[S.per]}</h3><p class="rsub">Doanh thu trừ nhập hàng, nhân viên và chi phí khác, còn lại là tiền lời</p>
   <div class="stack">${seg.map(([v,c])=>`<i style="width:${v/tot*100}%;background:${c}"></i>`).join('')}</div>
   <div class="legend">${seg.map(([v,c,l])=>`<span><em style="background:${c}"></em>${l} ${pc(v)}%</span>`).join('')}</div>
   <div class="pl" style="margin-top:8px"><span>Doanh thu thuần</span><b style="color:var(--blue)">${money(net)}</b></div>
   <div class="pl"><span>− Nhập hàng<small>Tự lấy từ mục Kho${debt?` · trong đó ghi nợ NCC ${money(debt)}`:''}</small></span><span style="text-align:right"><b>${money(nh)}</b><br><button class="link" style="padding:0;font-size:13px" onclick="setMod('kho');setTab('more','hist')">Xem trong Kho →</button></span></div>
   <div class="pl tot"><span>= Lãi gộp</span><span style="color:${gp<0?'var(--red)':'var(--green)'}">${money(gp)}</span></div>
-  <div class="pl"><span>− Nhân viên<small>${S.staff.length} người · lương giờ × giờ làm, nhập bên dưới</small></span><b>${money(sc)}</b></div>
-  <div class="pl"><span>− Chi phí khác<small>Điện, nước, mặt bằng… bạn tự nhập</small></span><input class="in" style="width:130px;min-height:42px;text-align:right" type="number" inputmode="numeric" min="0" step="1000" value="${ot}" onchange="S.other[S.per]=Math.max(0,+this.value||0);render()" aria-label="Chi phí khác"></div>
+  <div class="pl"><span>− Nhân viên<small>${S.staff.length} người · chỉnh ở phần bên dưới</small></span><b>${money(sc)}</b></div>
+  <div class="pl"><span>− Chi phí khác<small>${S.exps.length} khoản · chỉnh ở phần bên dưới</small></span><b>${money(ot)}</b></div>
   <div class="pl tot" style="border-bottom:0"><span>= Còn lại (tiền lời)<small>${pc(rem)}% doanh thu</small></span><span style="color:${rem<0?'var(--red)':'var(--green)'}">${money(rem)}</span></div></div>
- <div class="rcard"><h3>Nhân viên & giờ làm</h3><p class="rsub">Lương tính theo giờ: <b>lương mỗi giờ × số giờ làm</b> trong ${PNAME[S.per].toLowerCase()}. Nhập số giờ cho từng người (làm 8 tiếng rưỡi ghi 8,5).</p>
-  <div style="margin-top:6px">${S.staff.map(s=>{const h=sd[s.id]||0;return `<div class="srow"><div class="top"><div><b style="font-size:15.5px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)}</small></div><b style="font-size:15px">${money(s.rate*h)}</b></div>
-   <div class="two" style="gap:8px;margin-top:8px"><div><span class="fl">Lương / giờ (đ)</span><input class="in" style="min-height:44px" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}" onchange="setRate(${s.id},this.value)" aria-label="Lương mỗi giờ ${esc(s.name)}"></div>
-   <div><span class="fl">Giờ làm</span><input class="in" style="min-height:44px" type="number" inputmode="decimal" min="0" step="0.5" value="${h}" onchange="setHours(${s.id},this.value)" aria-label="Số giờ làm ${esc(s.name)}"></div></div>
-   <button class="link" style="padding:6px 0 0;font-size:13px" onclick="openStaff(${s.id})">Sửa tên / xóa</button></div>`}).join('')}
-  <div class="pl tot" style="border-bottom:0"><span>Tổng lương ${PNAME[S.per].toLowerCase()}<small>${money(S.staff.length?sc/Math.max(1,sumA(S.staff.map(s=>sd[s.id]||0))):0)}/giờ trung bình · ${num(sumA(S.staff.map(s=>sd[s.id]||0)))} giờ</small></span><span>${money(sc)}</span></div>
+
+ <div class="rcard"><h3>Nhân viên & lương</h3><p class="rsub">Mỗi người tự chọn cách tính lương: <b>theo giờ, theo ngày hoặc theo tháng</b>. Nhập số giờ / ngày làm trong ${per}.</p>
+  <div style="margin-top:6px">${S.staff.map(s=>{const q=S.sdays[S.per][s.id]||0,L=PAYL[s.type];
+   return `<div class="srow"><div class="top"><div><b style="font-size:15.5px">${esc(s.name)}</b><small style="display:block;color:var(--muted);font-size:12.5px">${esc(s.role)} · ${PAYT[s.type].toLowerCase()}</small></div><b style="font-size:15px">${money(staffPay(s))}</b></div>
+   <div class="two" style="gap:8px;margin-top:8px"><div><span class="fl">${L[0]}</span><input class="in" style="min-height:44px" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}" onchange="setRate(${s.id},this.value)" aria-label="${L[0]} ${esc(s.name)}"></div>
+   <div><span class="fl">${L[1]}</span>${s.type==='month'?`<input class="in" style="min-height:44px" value="${PDAYS()} (tự tính)" disabled aria-label="Số ngày tự tính">`:`<input class="in" style="min-height:44px" type="number" inputmode="decimal" min="0" step="0.5" value="${q}" onchange="setHours(${s.id},this.value)" aria-label="${L[1]} ${esc(s.name)}">`}</div></div>
+   <button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="openStaff(${s.id})">${ic('edit',14)} Sửa lương / thông tin</button></div>`}).join('')}
+  <div class="pl tot" style="border-bottom:0"><span>Tổng lương ${per}<small>${S.staff.length} người</small></span><span>${money(sc)}</span></div>
   <button class="btn btn-ghost" onclick="openStaff(null)">${ic('plus',18)} Thêm nhân viên</button></div></div>
- <p class="hint">Nhập hàng lấy tự động từ mục Kho (phần Ghi hàng về). Giờ làm và chi phí khác bạn nhập tay. Đây là bản demo, số chỉ để minh họa.</p>`}
+
+ <div class="rcard"><h3>Chi phí khác</h3><p class="rsub">Điện, nước, mặt bằng, internet… Thêm bao nhiêu khoản cũng được, mỗi khoản tính theo tháng hoặc theo ngày.</p>
+  <div style="margin-top:4px">${S.exps.length?S.exps.map(e=>`<div class="pl"><span><b>${esc(e.name)}</b><small>${money(e.rate)} ${EXPT[e.type]} · ${per} ≈ ${money(expPay(e))}</small></span><button class="btn btn-ghost btn-sm" onclick="openExp(${e.id})">${ic('edit',14)} Sửa</button></div>`).join(''):'<p class="rmuted" style="margin-top:10px">Chưa có khoản nào.</p>'}</div>
+  <div style="margin-top:12px"><button class="btn btn-ghost" onclick="openExp(null)">${ic('plus',18)} Thêm khoản chi</button></div></div>
+ <p class="hint">Nhập hàng lấy tự động từ mục Kho (phần Ghi hàng về). Lương, chi phí khác bạn tự đặt và sửa bất cứ lúc nào. Đây là bản demo, số chỉ để minh họa.</p>`}
 function setHours(id,v){S.sdays[S.per][id]=Math.max(0,+v||0);render()}
 function setRate(id,v){S.staff.find(s=>s.id===id).rate=Math.max(0,+v||0);render()}
-function openStaff(id){const s=id?S.staff.find(x=>x.id===id):{name:'',role:'',rate:25000};
+function openStaff(id){const s=id?S.staff.find(x=>x.id===id):{name:'',role:'',type:'hour',rate:25000};
  sheet(`<h3>${id?'Sửa nhân viên':'Thêm nhân viên'}</h3>
  <label class="l" for="st-n">Tên</label><input id="st-n" class="in" placeholder="VD: Em Hương" value="${esc(s.name)}">
  <label class="l" for="st-r">Vị trí</label><input id="st-r" class="in" placeholder="VD: Phục vụ, Phụ bếp…" value="${esc(s.role)}">
- <label class="l" for="st-p">Lương mỗi giờ (đ)</label><input id="st-p" class="in" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}">
+ <label class="l" for="st-t">Cách tính lương</label><select id="st-t" class="in" onchange="$('#st-pl').textContent='Lương '+({hour:'mỗi giờ',day:'mỗi ngày',month:'mỗi tháng'})[this.value]+' (đ)'">${Object.entries(PAYT).map(([k,v])=>`<option value="${k}" ${k===s.type?'selected':''}>${v}</option>`).join('')}</select>
+ <label class="l" for="st-p" id="st-pl">Lương ${({hour:'mỗi giờ',day:'mỗi ngày',month:'mỗi tháng'})[s.type]} (đ)</label><input id="st-p" class="in" type="number" inputmode="numeric" min="0" step="1000" value="${s.rate}">
+ <p class="sub" style="margin-top:8px">Lương theo tháng sẽ tự chia đều cho 30 ngày để tính theo kỳ báo cáo.</p>
  <div class="acts"><button class="btn btn-blue" onclick="saveStaff(${id||'null'})">${ic('check',18)} ${id?'Lưu':'Thêm'}</button>${id?`<button class="btn btn-danger" onclick="delStaff(${id})">Xóa nhân viên</button>`:''}<button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
 function saveStaff(id){const n=$('#st-n').value.trim();if(!n){toast('Nhập tên nhân viên','err');return}
- const v={name:n,role:$('#st-r').value.trim()||'Nhân viên',rate:Math.max(0,+$('#st-p').value||0)};
+ const v={name:n,role:$('#st-r').value.trim()||'Nhân viên',type:$('#st-t').value,rate:Math.max(0,+$('#st-p').value||0)};
  if(id)Object.assign(S.staff.find(s=>s.id===id),v);else{const nid=Math.max(0,...S.staff.map(s=>s.id))+1;S.staff.push({id:nid,...v});Object.values(S.sdays).forEach(o=>o[nid]=0)}
- closeSheet();render();toast(id?'Đã lưu thay đổi':'Đã thêm nhân viên — nhập số giờ làm bên dưới')}
+ closeSheet();render();toast(id?'Đã lưu thay đổi':'Đã thêm nhân viên — nhập số giờ / ngày làm bên dưới')}
 function delStaff(id){if(S.cd!=='st'+id){S.cd='st'+id;toast('Bấm “Xóa nhân viên” thêm lần nữa để xác nhận','err');return}
  S.staff=S.staff.filter(s=>s.id!==id);closeSheet();render();toast('Đã xóa nhân viên')}
+
+function openExp(id){const e=id?S.exps.find(x=>x.id===id):{name:'',type:'month',rate:0};
+ sheet(`<h3>${id?'Sửa khoản chi':'Thêm khoản chi'}</h3>
+ <label class="l" for="ex-n">Tên khoản</label><input id="ex-n" class="in" placeholder="VD: Internet, Gas, Rác…" value="${esc(e.name)}">
+ <label class="l" for="ex-t">Tính theo</label><select id="ex-t" class="in">${Object.entries(EXPT).map(([k,v])=>`<option value="${k}" ${k===e.type?'selected':''}>${v[0].toUpperCase()+v.slice(1)}</option>`).join('')}</select>
+ <label class="l" for="ex-p">Số tiền (đ)</label><input id="ex-p" class="in" type="number" inputmode="numeric" min="0" step="1000" value="${e.rate}">
+ <div class="acts"><button class="btn btn-blue" onclick="saveExp(${id||'null'})">${ic('check',18)} ${id?'Lưu':'Thêm'}</button>${id?`<button class="btn btn-danger" onclick="delExp(${id})">Xóa khoản này</button>`:''}<button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
+function saveExp(id){const n=$('#ex-n').value.trim();if(!n){toast('Nhập tên khoản chi','err');return}
+ const v={name:n,type:$('#ex-t').value,rate:Math.max(0,+$('#ex-p').value||0)};
+ if(id)Object.assign(S.exps.find(x=>x.id===id),v);else S.exps.push({id:Math.max(0,...S.exps.map(x=>x.id))+1,...v});
+ closeSheet();render();toast(id?'Đã lưu thay đổi':'Đã thêm khoản chi')}
+function delExp(id){if(S.cd!=='ex'+id){S.cd='ex'+id;toast('Bấm “Xóa khoản này” thêm lần nữa để xác nhận','err');return}
+ S.exps=S.exps.filter(x=>x.id!==id);closeSheet();render();toast('Đã xóa khoản chi')}
+
+/* ===== NHÓM HÀNG (tự đặt) ===== */
+function vGroups(){return `<p class="hint">Nhóm giúp bạn sắp xếp món trong kho. Thêm, đổi tên hay xóa theo cách quán hay gọi.</p>
+ <div class="list">${Object.entries(GROUPS).map(([k,v])=>{const n=S.items.filter(i=>i.g===k).length;return `<div class="row"><div class="tx"><b>${esc(v)}</b><span>${n} món</span></div><button class="btn btn-ghost btn-sm" onclick="openGroup('${k}')">${ic('edit',14)} Sửa</button></div>`}).join('')}</div>
+ <button class="btn btn-ghost" onclick="openGroup(null)">${ic('plus',18)} Thêm nhóm</button>`}
+function openGroup(k){sheet(`<h3>${k?'Sửa nhóm':'Thêm nhóm'}</h3><label class="l" for="g-n">Tên nhóm</label><input id="g-n" class="in" placeholder="VD: Hải sản, Đồ khô…" value="${k?esc(GROUPS[k]):''}">
+ <div class="acts"><button class="btn btn-blue" onclick="saveGroup(${k?`'${k}'`:'null'})">${ic('check',18)} ${k?'Lưu':'Thêm'}</button>${k?`<button class="btn btn-danger" onclick="delGroup('${k}')">Xóa nhóm</button>`:''}<button class="btn btn-ghost" onclick="closeSheet()">Hủy</button></div>`)}
+function saveGroup(k){const v=$('#g-n').value.trim();if(!v){toast('Nhập tên nhóm','err');return}
+ if(Object.entries(GROUPS).some(([x,y])=>x!==k&&y.toLowerCase()===v.toLowerCase())){toast('Đã có nhóm trùng tên này','err');return}
+ GROUPS[k||'g'+Date.now()]=v;closeSheet();render();toast(k?'Đã đổi tên nhóm':'Đã thêm nhóm')}
+function delGroup(k){const n=S.items.filter(i=>i.g===k).length;
+ if(n){toast(`Còn ${n} món trong nhóm này — chuyển sang nhóm khác trước khi xóa`,'err');return}
+ if(Object.keys(GROUPS).length<=1){toast('Cần giữ lại ít nhất 1 nhóm','err');return}
+ if(S.cd!=='g'+k){S.cd='g'+k;toast('Bấm “Xóa nhóm” thêm lần nữa để xác nhận','err');return}
+ delete GROUPS[k];closeSheet();render();toast('Đã xóa nhóm')}
 
 buildPos();render(false);
 </script>
